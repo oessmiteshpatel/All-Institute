@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<content marked="false" checkText="I'm done" showText="Show me" instructionsText="Instructions" titleText="Question 3" closeText="OK">
+  <instructions>What is the correct order for the following survey sections?</instructions>
+  <question>
+  </question>
+  <answers>
+    <option correct="1" display_order="0" word="Survey Title" />
+    <option correct="1" display_order="1" word="Welcome and Introduction" />
+    <option correct="1" display_order="2" word="Survey Questions" />
+    <option correct="1" display_order="3" word="Demographics" />
+    <option correct="1" display_order="4" word="Incentive" />
+    <option correct="1" display_order="5" word="Thank you" />
+  </answers>
+  <correct audio="">
+  </correct>
+  <incorrect audio="">
+  </incorrect>
+  <partial audio="">
+  </partial>
+  <show_me audio="">
+  </show_me>
+</content>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<content marked="false" checkText="I'm done" showText="Show me" instructionsText="Instructions" titleText="Question 2" closeText="OK">
+  <instructions>
+  </instructions>
+  <question>What would be a purpose of using an online survey?</question>
+  <media>
+    <visual type="image" width="2000" height="2000" alt="" file="../media/content/Online_Survey_Icon_or_logosvg_4889490.png" />
+  </media>
+  <answers>
+    <option correct="1" display_order="0">Collect information about a job</option>
+    <option correct="0" display_order="1">Interview a job candidate</option>
+    <option correct="0" display_order="2">Provide growth opportunities at work</option>
+    <option correct="0" display_order="3">Discuss career growth for an entry level candidate</option>
+  </answers>
+  <correct audio="">
+  </correct>
+  <incorrect audio="">
+  </incorrect>
+  <partial audio="">
+  </partial>
+  <show_me audio="">
+  </show_me>
+</content>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<content marked="true" checkText="I'm done" showText="Show me" instructionsText="Instructions" titleText="Question 1" closeText="OK">
+  <instructions>
+  </instructions>
+  <question>What is an online survey?</question>
+  <media>
+    <visual type="image" width="410" height="411" alt="" file="../media/content/Picture1_4889457.png" />
+  </media>
+  <answers>
+    <option correct="0" display_order="0">A response delivered on the internet</option>
+    <option correct="1" display_order="1">A set of questions delivered on the internet</option>
+    <option correct="0" display_order="2">A portfolio delivered on the internet</option>
+    <option correct="0" display_order="3">A program delivered on the internet</option>
+  </answers>
+  <correct audio="">
+  </correct>
+  <incorrect audio="">
+  </incorrect>
+  <partial audio="">
+  </partial>
+  <show_me audio="">
+  </show_me>
+</content>

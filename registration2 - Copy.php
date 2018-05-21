@@ -20,12 +20,7 @@ $(document).ready(function () {
 <?php 
 
 
-include("admin/connect.php");
- $USERNAME=USERNAME;
- $USERPASSWORD=USERPASSWORD;
- $SETFROM=SETFROM;
- $SETTO=SETTO;
-
+include("admin/connect.php"); 
 $res=mysql_query("SELECT * FROM tblcourse Where CourseID = '".$_REQUEST['cid']."'");
 $data=mysql_fetch_array($res);
 
@@ -746,10 +741,10 @@ setTimeout(function() {
 		$mail->Host = "smtp.gmail.com";
 		$mail->Port = 465; // or 587
 		$mail->IsHTML(true);
-		$mail->FromName="AERE";
-		$mail->Username=USERNAME;
-		$mail->Password=USERPASSWORD;
-		$mail->SetFrom=SETFROM;
+		$mail->FromName="AERE"; 
+		$mail->Username = "myopeneyes3937@gmail.com";
+		$mail->Password = "W3lc0m3@2018";
+		$mail->SetFrom("myopeneyes3937@gmail.com");
 		$mail->Subject = "AERE Confirmation Email ID";
 		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
 		     Dear $fnm, <br/><br/>
@@ -757,8 +752,9 @@ setTimeout(function() {
 				Here is your AERE Registration Verification Code: <b>$otp</b><br><br>
 			
 				If you need to make any changes to this, please do not hesitate to contact us at Manny@AERExperts.com.
-			<br><br>
-			Thank you,<br>
+			<br>
+			
+			<b>Thank you,</b><br>
 			<b>AERE Team</b>";
 		$mail->AddAddress($email);
 		//$msg="";
@@ -893,9 +889,9 @@ setTimeout(function() {
 		$mail->Port = 465; // or 587
 		$mail->IsHTML(true);
 		$mail->FromName="AERE"; 
-		$mail->Username=USERNAME;
-		$mail->Password=USERPASSWORD;
-		$mail->SetFrom=SETFROM;
+		$mail->Username = "myopeneyes3937@gmail.com";
+		$mail->Password = "W3lc0m3@2018";
+		$mail->SetFrom("myopeneyes3937@gmail.com");
 		$mail->Subject = "AERE Password for Email ID";
 		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
 		    Hello $fnam, <br/><br/>
@@ -903,7 +899,7 @@ setTimeout(function() {
 		
 			Your Password for Email ID $emai of AERE account is $pass<br/><br/>
 			
-			Thank You,<br/>
+			<b>Thank You,</b><br/>
 			<b>AERE Team </b><br/>";
 		$mail->AddAddress($emai);
 		//$msg="";

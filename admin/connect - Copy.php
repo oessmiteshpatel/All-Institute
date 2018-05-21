@@ -12,37 +12,21 @@ if($webstatus=="production"){
 	define('DBUSER', 'PRDAERECourses');
 	define('DBPASS', 'Op3n3y3s@2017');
 	define('DBNAME', 'PRDAERECourses');
-	define('USERNAME', 'myopeneyes3937@gmail.com');
-	define('USERPASSWORD', 'W3lc0m3@2018');
-	define('SETFROM', 'myopeneyes3937@gmail.com');
-	define('SETTO', 'pooja.patel@theopeneyes.com');
 }else if($webstatus=="local"){
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
 	define('DBPASS', '');
 	define('DBNAME', 'aere');
-	define('USERNAME', 'myopeneyes3937@gmail.com');
-	define('USERPASSWORD', 'W3lc0m3@2018');
-	define('SETFROM', 'myopeneyes3937@gmail.com');
-	define('SETTO', 'pooja.patel@theopeneyes.com');
 }else if($webstatus=="developement"){
 	define('DBHOST', 'DevAERECourses.db.11797364.2d8.hostedresource.net');
 	define('DBUSER', 'DevAERECourses');
 	define('DBPASS', 'W3lc0m3@2018');
 	define('DBNAME', 'DevAERECourses');
-	define('USERNAME', 'myopeneyes3937@gmail.com');
-	define('USERPASSWORD', 'W3lc0m3@2018');
-	define('SETFROM', 'myopeneyes3937@gmail.com');
-	define('SETTO', 'pooja.patel@theopeneyes.com');
 }else if($webstatus=="QA"){
 	define('DBHOST', 'QAAERECourses.db.11797364.a8d.hostedresource.net');
 	define('DBUSER', 'QAAERECourses');
 	define('DBPASS', 'Op3n3y3s@2017');
 	define('DBNAME', 'QAAERECourses');
-	define('USERNAME', 'myopeneyes3937@gmail.com');
-	define('USERPASSWORD', 'W3lc0m3@2018');
-	define('SETFROM', 'myopeneyes3937@gmail.com');
-	define('SETTO', 'pooja.patel@theopeneyes.com');
 }
  
  $conn = mysql_connect(DBHOST,DBUSER,DBPASS);

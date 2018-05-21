@@ -1,6 +1,10 @@
 <?php 
 
 include("admin/connect.php"); 
+$USERNAME=USERNAME;
+ $USERPASSWORD=USERPASSWORD;
+ $SETFROM=SETFROM;
+ $SETTO=SETTO;
 session_start();
 $cid=$_REQUEST['cid'];
 //$res=mysql_query("SELECT * FROM tblcourse Where CourseID = '".$_REQUEST['cid']."'");
@@ -1013,9 +1017,9 @@ setTimeout(function() {
 									$mail->Port = 465; // or 587
 									$mail->IsHTML(true);
 									$mail->FromName="AERE"; 
-									$mail->Username = "myopeneyes3937@gmail.com";
-									$mail->Password = "W3lc0m3@2018";
-									$mail->SetFrom("myopeneyes3937@gmail.com");
+									$mail->Username=USERNAME;
+									$mail->Password=USERPASSWORD;
+									$mail->SetFrom=SETFROM;
 								//	$mail->AddEmbeddedImage('emailimage/logo.png','logoimg','logo.jpg');
 									$mail->Subject = "AERE Course $tit";
 									$mail->Body =  "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
@@ -1047,7 +1051,7 @@ setTimeout(function() {
 
 									
 
-									 <b>Thank you,</b><br>
+									Thank you,<br>
 									<b>AERE Team</b>";
 									$mail->AddAddress($emailpass);
 								
@@ -1069,9 +1073,9 @@ setTimeout(function() {
 									$mail->Port = 465; // or 587
 									$mail->IsHTML(true);
 									$mail->FromName="AERE"; 
-									$mail->Username = "myopeneyes3937@gmail.com";
-									$mail->Password = "W3lc0m3@2018";
-									$mail->SetFrom("myopeneyes3937@gmail.com");
+									$mail->Username=USERNAME;
+									$mail->Password=USERPASSWORD;
+									$mail->SetFrom=SETFROM;
 									
 									$mail->Subject = "New registration for course $tit";
 									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
@@ -1087,9 +1091,9 @@ setTimeout(function() {
 									<br/><br/>
 										
 										
-									<b>Thank You,</b><br/>
+									Thank You,<br/>
 									<b>Our web team </b><br/>";
-									$mail->AddAddress('pooja.patel@theopeneyes.com');
+									$mail->AddAddress($SETTO);
 									if(!$mail->Send())
 									{
 										echo "Mailer Error: " . $mail->ErrorInfo;

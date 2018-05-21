@@ -61,6 +61,11 @@ $(".navbar-toggle").click(function() {
 
 				<?php
 
+$USERNAME=USERNAME;
+$USERPASSWORD=USERPASSWORD;
+$SETFROM=SETFROM;
+$SETTO=SETTO;
+
 				if ( isset( $_POST[ 'send' ] ) ) {
 					$fname = $_POST[ 'fname' ];
 
@@ -146,25 +151,25 @@ $(".navbar-toggle").click(function() {
 									$mail->Port = 465; // or 587
 									$mail->IsHTML(true);
 									$mail->FromName="OpenEyes Software Solutions Pvt.Ltd"; 
-									$mail->Username = "myopeneyes3937@gmail.com";
-									$mail->Password = "W3lc0m3@2018";
-									$mail->SetFrom("myopeneyes3937@gmail.com");
+									$mail->Username=USERNAME;
+									$mail->Password=USERPASSWORD;
+									$mail->SetFrom=SETFROM;
 									
 									$mail->Subject = "User Visited";
 									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
 									Hello, <br/>
 									
 										User visited detail<br>
-										Email: $email<br/>
-									    Name: $fname<br/>
-										Contact number: $contact<br/>
+										<b>Email ID</b>: $email<br/>
+									    <b>Name</b>: $fname<br/>
+										<b>Contact number</b>: $contact<br/>
 										
-										<br/><br/>
+										<br/>
 										
 										Kind Regards, <br/>
 										Thank You,<br/>
-										Our Team <br/>";
-									$mail->AddAddress('pooja.patel@theopeneyes.com');
+										<b>Our Team</b> <br/>";
+									$mail->AddAddress($SETTO);
 									if(!$mail->Send())
 									{
                    // echo "Mailer Error: " . $mail->ErrorInfo;
@@ -178,7 +183,7 @@ $(".navbar-toggle").click(function() {
                    ?>
 
 				<div class="alert alert-danger messageclass" id="insert_not_contact" style="width:100%">
-					<strong>Your Email Id address is wrong.</strong>
+					<strong>Your Email Id is wrong.</strong>
 				</div>
 				<script>
 					setTimeout( function () {

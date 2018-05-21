@@ -1,3 +1,26 @@
+<script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script>
+
+
+$(document).ready(function () {
+    if(window.location.href.indexOf("check=0") > -1) {
+        $('#check_mail').css('display','block');
+   
+     setTimeout(function() {
+        $('#check_mail').css('display','none');
+
+				var my_variable_name = window.location.href;
+        
+        var success = my_variable_name.replace("?check=0", '');
+        
+        window.location.replace(success);
+
+    }, 5000);
+}
+});
+</script>
+
+<script src="js_new/bootstrap.min.js" type="text/javascript"></script>
 <?php
 include( "admin/connect.php" );
 include_once "allfunction.php";
@@ -11,7 +34,7 @@ $cid = $data[ 'CourseID' ];
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-	<title>All-Institute | Forgotton password</title>
+	<title>ALL-Institute | Forgotton password</title>
 	<link rel="apple-touch-icon" href="image/favicon-apple.png">
 	<link rel="icon" href="image/favicon.png">
 	<link rel="pingback" href="http://tritraining.edu.au/xmlrpc.php">
@@ -191,7 +214,7 @@ $cid = $data[ 'CourseID' ];
 
 					<!-- Navigation -->
 					<div class="col-md-9 col-sm-9 col-xs-9">
-						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" class="aere-button">Visit AERE</a> </div>
+						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" title="Opens in a new window" target="_blank" class="aere-button">Visit AERE</a> </div>
 						<div class="clearfix"></div>
 						<nav>
 							<div role="navigation" class="navbar navigation post_animation3">
@@ -230,6 +253,17 @@ $cid = $data[ 'CourseID' ];
 							<br>
 							<header class="article-header wow fadeInUp">
 								<h1 class="page-title">Forgot password</h1>
+								
+  
+										
+											<div class="alert alert-success" id="pass_corr" style="width:100%; margin:0px 0px 10px 0px;display:none;">
+												<b>Your password is correct.</b>
+											</div>
+										
+			
+
+
+
 							</header>
 
 					</div>
@@ -255,6 +289,11 @@ $cid = $data[ 'CourseID' ];
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
+								<center>
+											<div class="alert alert-success" id="check_mail" style="width:100%; margin:0px 0px 10px 0px;display:none;">
+												<b>Your Password is sent to your Email ID. Please check your Email.</b>
+											</div>
+										</center>
 									<div class="form-top ">
 										<div class="form-top-left">
 											<h3>Forgot Password <i class="fa fa-pencil pull-right"></i></h3>
@@ -283,17 +322,22 @@ if(isset($_POST['otpbtn']))
 
 		?>
 
-										<center>
-											<div class="alert alert-success" id="pass_corr" style="width:98%; margin:0px 0px 10px 0px; text-align:center;">
-												<strong>Your password is correct!</strong>
-											</div>
-										</center>
+										
 
 
 										<script>
-											setTimeout( function () {
-												$( '#pass_corr' ).fadeOut( 'hide' );
-											}, 10000 );
+											// setTimeout( function () {
+												// $( '#pass_corr' ).fadeOut( 'hide' );
+											// }, 10000 );
+											
+											$( document ).ready(function() {
+												$('#pass_corr').attr('style','display:block;');  
+												setTimeout(function() {
+												window.location.href="allcourses.php";
+												$('#pass_corr').fadeOut('hide');
+												}, 10000);
+										});
+											
 										</script>
 										<?php
 
@@ -306,20 +350,25 @@ if(isset($_POST['otpbtn']))
 											?>
 
 										<center>
-											<div class="alert alert-danger" id="pass_wrong" style="width:98%; margin:0px 0px 10px 0px; text-align:center;">
-												<strong>Your password is wrong!</strong>
+											<div class="alert alert-danger" id="pass_wrong" style="width:100%; margin:0px 0px 10px 0px; text-align:center;">
+												<b>Your password is wrong.</b>
 											</div>
 										</center>
 
 
 										<script>
-											setTimeout( function () {
-												$( '#pass_wrong' ).fadeOut( 'hide' );
-											}, 10000 );
+											$( document ).ready(function() {
+												$('#already_exist').attr('style','display:none;');  
+												setTimeout(function() {
+											
+												$('#pass_wrong').fadeOut('hide');
+												}, 10000);
+										});
 										</script>
+										
 										<?php
 										}
-										}s
+										}
 
 										?>
 										<form name="f1" id="signupbtn" method="post" class="registration-form">
@@ -382,46 +431,7 @@ if(isset($_POST['otpbtn']))
 
 
 
-								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 user">
-									<div class="courses-box1">
-										<div class="single-item-wrapper" style="float:left">
-											<div class="courses-img-wrapper hvr-bounce-to-bottom">
-
-												<img class="img-responsive">
-
-												<div style="height:180px;width:285px; background-color:lightgrey;padding:25px">
-													<h style="font-size: 18px;font-weight: 500;text-align:justify ;line-height: 1.1;color:black !important;">
-														<center style="padding-top:30px;">
-															<?php echo $data['Title'];?>
-														</center>
-													</h>
-												</div>
-												<a href="detail.php?cid=<?php echo $data['CourseID'];?>"><i class="logo" aria-hidden="true"></i>
-									  <div style="margin-top:0px;">Click for</div>
-									 <div style="margin-top:-25px;">detail</div>
-									 </a>
-
-											</div>
-
-											<div class="courses-content-wrapper">
-
-
-
-												<ul class="courses-info">
-													<li>
-														<?php echo $data['StartDate'];?>
-														<br><span> <b> StartDate </b></span>
-													</li>
-
-													<li>
-														<?php echo $data['createdOn'];?>
-														<br><span> <b>Registeron</b></span>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
+								
 
 
 
@@ -573,6 +583,12 @@ if(isset($_POST['otpbtn']))
 			<link rel='stylesheet' id='gforms_browsers_css-css' href='css/browsers.min.css' type='text/css' media='all'/>
 
 			<script type='text/javascript' src="js/jquery-2.1.1.min.js"></script>
+
+			<script>
+setTimeout(function() {
+  $('#already_exist').fadeOut('hide');
+}, 10000);
+				</script>
 			<script type="text/javascript">
 				$( '#mega-menu ul li a' ).on( 'click', function () {
 					$( '.menu-main' ).addClass( 'none' );

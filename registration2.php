@@ -1,6 +1,25 @@
+<script src="js/jquery-1.12.4-jquery.min.js"></script> 
+<script>
+$(document).ready(function () {
+    if(window.location.href.indexOf("check=0") > -1) {
+        $('#register_success2').css('display','block');
+   
+     setTimeout(function() {
+        $('#register_success2').css('display','none');
 
+				var my_variable_name = window.location.href;
+        
+        var success = my_variable_name.replace("?check=0", '');
+        
+        window.location.replace(success);
 
+    }, 5000);
+}
+});
+</script>
 <?php 
+
+
 include("admin/connect.php"); 
 $res=mysql_query("SELECT * FROM tblcourse Where CourseID = '".$_REQUEST['cid']."'");
 $data=mysql_fetch_array($res);
@@ -16,7 +35,7 @@ $cid=$_REQUEST['cid'];
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>All-Institute | Register page</title>
+<title>ALL-Institute | Register page</title>
 <link rel="apple-touch-icon" href="image/favicon-apple.png">
 <link rel="icon" href="image/favicon.png">
 <link rel="pingback" href="http://tritraining.edu.au/xmlrpc.php">
@@ -115,6 +134,16 @@ h3.sidebar-title {
 	font-weight: 500;
 	text-align: left;
 }
+
+.fontnone
+{
+	text-transform: none !important;
+}
+
+/* .fa {
+    margin-top: 13px;
+} */
+#scrollUp{padding:13px 0;}
 .title-default-left {
 	text-transform: capitalize;
 	text-align: left;
@@ -326,7 +355,7 @@ input.address
 
 					<!-- Navigation -->
 					<div class="col-md-9 col-sm-9 col-xs-9">
-						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" class="aere-button">Visit AERE</a> </div>
+						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" title="Opens in a new window" class="aere-button">Visit AERE</a> </div>
 						<div class="clearfix"></div>
 						<nav>
 							<div role="navigation" class="navbar navigation post_animation3">
@@ -367,12 +396,27 @@ input.address
     <article class="cf wrap post-410 team type-team status-publish has-post-thumbnail hentry profile-category-manager" role="article">
     <br>
     <header class="article-header wow fadeInUp">
-      <h1 class="page-title" >Course Registration</h1>
+			<h1 class="page-title" >Course Registration</h1>
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+			<div class="alert alert-warning" id="user_not_active" style="width:100%;margin:0px 0px 10px 0px;display:none"> <b>Please contact to Admin.</b> <br>
+            You are currently not activated.</div>
+
+			<div class="alert alert-danger" id="mail_wrong" style="width:100%; margin:0px 0px 10px 0px;display:none"><strong>Your Email ID is not existing.</strong></div>	 
+
+			<div class="alert alert-success" id="register_success2" style="width:100%;margin:15px 0px 10px 0px;display:none"><b>You are register successsfully.</b></div>
+			
+			<div class="alert alert-danger" id="answer_sign" style="width:100%; margin:0px 0px 10px 0px; display:none;"> <strong>Your Email ID or Password is wrong.</strong> <br>
+            Please try again to login. </div>
+			
+  <div class="alert alert-danger" id="already_exist" style="width:100%;margin:15px 0px 10px 0px;display:none"> <strong>Your Email ID is already exist.</strong>
+           </div>
+
+</div>
     </header>
   </div>
-  
-  
-  
+	
   <div class="courses-page-area5">
     <div class="container">
       <div class="row">
@@ -402,24 +446,23 @@ input.address
                         <div class="form-top-divider"></div>
                       </div>
                       <div class="form-bottom signIn">
-<div class="alert alert-danger" id="answer_sign" style="width:100%; margin:0px 0px 10px 0px; display:none;"> <strong>Your Email-Id or Password is wrong.</strong> <br>
-            Please try again to login...! </div>
+
                         <form name="signinbtn" method="post" class="registration-form">
                           <div class="form-group">
                             <label class="sr-only" for="email1">Type your email address</label>
                             <br>
                        
-                          <input name="email1" placeholder="What's your email address?" class="email form-control" type="email" required oninvalid="this.setCustomValidity('Please enter your email')" oninput="setCustomValidity('')">
+                          <input name="email1" placeholder="What's your email address?" class="email form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required oninvalid="this.setCustomValidity('Please enter your email')" oninput="setCustomValidity('')">
 						  </div>
 
 							
 
 						<div class="form-group">
                             <label class="sr-only"  for="form-password">Type your password</label>
-								<div data-toggle="tooltip" data-placement="bottom" data-html="true" title="Must contain at least one number, uppercase, lowercase letter and Special character">
+								
 							  <input name="pass1" placeholder="Type your password" id="pass1" class="form-control" required
 							   type="password" oninvalid="this.setCustomValidity('Please enter your password')" oninput="setCustomValidity('')" maxlength="30" minlength="8" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,30})">
-								</div>
+							
                         </div>
 
   
@@ -443,8 +486,8 @@ input.address
                           <div class="form-top-divider"></div>
                         </div>
                         <div class="form-bottom signUp">
-<div class="alert alert-danger" id="already_exist" style="width:100%;margin:0px 0px 10px 0px;display:none;"> <strong>Your emailid are alredy existing.</strong> <br>
-            Please enter new emailid...! </div>
+<!-- <div class="alert alert-danger" id="already_exist" style="width:100%;margin:0px 0px 10px 0px;display:none;"> <strong>Your emailid are alredy existing.</strong> <br>
+            Please enter new emailid...! </div> -->
 							<div class="row">
                           <form name="f1" id="signupbtn"  method="post" class="registration-form">
                             <input type="hidden" name="action" value="signUp" />
@@ -460,11 +503,11 @@ input.address
                             </div>
                             <div class="form-group col-md-6">
                               <label class="sr-only" for="email">Email</label>
-                              <input name="email" placeholder="What's your email address?" class="email form-control" id="email" type="email" required oninvalid="this.setCustomValidity('Please enter your Email')" oninput="setCustomValidity('')">
+                              <input name="email" placeholder="What's your email address?" class="email form-control" id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required oninvalid="this.setCustomValidity('Please enter your Email')" oninput="setCustomValidity('')">
                             </div>
 							 <div class="form-group col-md-6">
                               <label class="sr-only" for="Phone">Phone</label>
-                              <input name="Phone" placeholder="Where can we call you?" class="Phone form-control" id="Phone" type="text" maxlength="12" pattern="[0-9\-.\s]+" required oninvalid="this.setCustomValidity('Please enter your phone number in xxx.xxx.xxxx format')" oninput="setCustomValidity('')">
+                              <input name="Phone" placeholder="What's your contact number?" class="Phone form-control" id="Phone" type="text" maxlength="12" pattern="[0-9\-\s]+" required oninvalid="this.setCustomValidity('Please enter your phone number in xxx.xxx.xxxx format')" oninput="setCustomValidity('')">
                             </div>
 							 <div class="form-group col-md-12">
                               <label class="sr-only" for="address">Address</label>
@@ -472,16 +515,16 @@ input.address
                             </div>
                             <div class="form-group col-md-6">
                               <label class="sr-only" for="pass">Password</label>
-							    <div data-toggle="tooltip" data-placement="bottom" data-html="true" title="Must contain at least one number, uppercase, lowercase letter and apecial character">
-								  <input name="pass" maxlength="30" placeholder="Type secure password" class="pass form-control" 
+							    <div data-toggle="tooltip" data-placement="top" data-html="true" title="Minimum 8 character password, Must contain at least one number, uppercase, lowercase letter and special character">
+								  <input name="pass" placeholder="Type secure password" class="pass form-control"
 								  id="pass" type="password" required oninvalid="this.setCustomValidity('Please enter your password')" oninput="setCustomValidity('')" maxlength="30" minlength="8" 
 								  pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,30})">
 								</div>
                             </div>
                             <div class="form-group col-md-6">
                               <label class="sr-only" for="confpass">Confirm password</label>
-                              <input name="confpass" maxlength="30" placeholder="Confirm your password" class="confpass form-control" 
-								type="password" required oninvalid="this.setCustomValidity('Please enter your password')" oninput="setCustomValidity('')" maxlength="30" minlength="8" 
+                              <input name="confpass" placeholder="Confirm your password" id="confpass" class="confpass form-control" 
+								type="password"  required oninvalid="this.setCustomValidity('Those passwords didn't match. Try again.')" oninput="setCustomValidity('')" maxlength="30" minlength="8" 
 								  pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,30})" >
                             </div>
                             
@@ -518,7 +561,7 @@ input.address
                             <input type="hidden" name="action" value="forgot" />
                             <div class="form-group">
                               <label class="sr-only" for="email3">Email</label>
-                              <input name="email1" placeholder="What's your email address?" class="email form-control" type="email" required oninvalid="this.setCustomValidity('Please enter your email')" oninput="setCustomValidity('')">
+                              <input name="email1" placeholder="What's your email address?" class="email form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="email" required oninvalid="this.setCustomValidity('Please enter your email')" oninput="setCustomValidity('')">
                             </div>
                            
                             <div class="form-group">
@@ -534,7 +577,7 @@ input.address
             </div>
           </div>
           <div class="related-courses-title-area">
-            <h3>Related Courses</h3>
+            <h3>Other Courses You Might Be Interested</h3>
           </div>
           <div id="shadow-carousel" class="related-courses-carousel">
             <div class="rc-carousel" data-loop="true" data-items="3" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="1" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="2" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true" data-r-large-dots="false">
@@ -596,9 +639,19 @@ $date=date('Y-m-d');
 											
 											<br>
                         <span><b> Start Date</b></span></li>
-                      <li><?php echo $data['TotalCapacity']; ?> <br>
-                        <span><b>Seat</b></span></li>
-                      <li><?php echo $data['StartTime']; ?> <br>
+											<li><?php  $noofuserreg=$data['NoofUserRegistered'];	
+															$totcap=$data['TotalCapacity'];
+															$setave=$totcap-$noofuserreg; 
+															if($setave!=''){ echo $setave;}else{echo  "Not Available";}?> <br>
+                        <span><b>Seats</b></span></li>
+											<li>
+											<?php
+													//echo $data1['StartTime'];
+
+												//echo $data1['StartTime']; 										 
+											 	$D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E;
+											  ?>
+											 <br>
                         <span><b> Time</b></span></li>
                     </ul>
                   </div>
@@ -678,7 +731,7 @@ setTimeout(function() {
 		$_SESSION['email']=$email;
 		
 		$email=trim($email);
-		
+		//$imglog=dirname(__FILE__).'/image/logo.png';
 		require_once('email/class.phpmailer.php');
 		$mail = new PHPMailer(); // create a new object
 		$mail->IsSMTP(); // enable SMTP
@@ -692,16 +745,14 @@ setTimeout(function() {
 		$mail->Username = "myopeneyes3937@gmail.com";
 		$mail->Password = "W3lc0m3@2018";
 		$mail->SetFrom("myopeneyes3937@gmail.com");
-		$mail->Subject = "AERE Confirmation email";
-		$mail->Body = "<img src='http://aerexperts.com/image/logo.png' height='80px' width='180px'> <br><br><br>
+		$mail->Subject = "AERE Confirmation Email ID";
+		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
 		     Dear $fnm, <br/><br/>
 		
-		    Here is the your otp verification for registration :- <b>$otp</b><br><br>
+				Here is your AERE Registration Verification Code: <b>$otp</b><br><br>
 			
-			
-			If you need to make any changes to this, please do not hesitate to 
-			contact us at Manny@AERExperts.com or simply reply and someone will get back
-			to you soon.<br><br>
+				If you need to make any changes to this, please do not hesitate to contact us at Manny@AERExperts.com.
+			<br>
 			
 			<b>Thank you,</b><br>
 			<b>AERE Team</b>";
@@ -715,7 +766,7 @@ setTimeout(function() {
 		{
 			$cid=$_REQUEST['cid'];
 			//echo "Message has been sent";
-			echo"<script>window.location='conf_otp.php?cid=$cid';</script>";
+			echo"<script>window.location='conf_otp.php?cid=$cid?check=1';</script>";
 			
 			
 			
@@ -726,7 +777,7 @@ setTimeout(function() {
 	
 											if($ins)
 											{	?>
-          <div class="alert alert-success" id="register_success" style="display:inline-block; margin:0px 0px 10px 0px"> <strong>You are register successfully.</strong> <br>
+          <div class="alert alert-success" id="register_success" style="display:none; margin:0px 0px 10px 0px"> <strong>You are register successfully.</strong> <br>
             Please make sure to login...! </div>
 <script>
 setTimeout(function() {
@@ -752,7 +803,8 @@ setTimeout(function() {
 									$Password=$_POST['pass1'];
 															
 															
-							$select=mysql_query("select * from tblregister where Email='$Email' and Password='$Password'");
+							$select=mysql_query("select * from tblregister where Email='$Email' and Password=BINARY'$Password'");
+							
 							$result=mysql_fetch_array($select);
 							$emailpass=$result['Email'];
 							$regid=$result['RegisterId'];
@@ -766,14 +818,24 @@ setTimeout(function() {
 								
 									echo "<script> 
 								
-										window.location.href='detail.php?cid=$cid';
+										window.location.href='detail.php?cid=$cid?check=0';
 															</script>";
 							}
 							else if($isactive=='0')
 							{
 								?>
-          <div class="alert alert-warning" style=" margin:0px 0px 10px 0px"> <strong>Please contact to Admin.</strong> <br>
-            You are currently not activated...! </div>
+
+<script>
+											$( document ).ready(function() {
+												$('#user_not_active').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#user_not_active').fadeOut('hide');
+												}, 10000);
+										});
+										</script>
+
+         
 		
           <?php	
 							}	
@@ -830,15 +892,15 @@ setTimeout(function() {
 		$mail->Username = "myopeneyes3937@gmail.com";
 		$mail->Password = "W3lc0m3@2018";
 		$mail->SetFrom("myopeneyes3937@gmail.com");
-		$mail->Subject = "Aere Password for email";
-		$mail->Body = "<img src='http://aerexperts.com/image/logo.png' height='80px' width='180px'> <br><br><br>
+		$mail->Subject = "AERE Password for Email ID";
+		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
 		    Hello $fnam, <br/><br/>
 			
-			Your Password code:-$pass<br/><br/>
-			
+		
+			Your Password for Email ID $emai of AERE account is $pass<br/><br/>
 			
 			<b>Thank You,</b><br/>
-			<b>Our Team </b><br/>";
+			<b>AERE Team </b><br/>";
 		$mail->AddAddress($emai);
 		//$msg="";
 		if(!$mail->Send())
@@ -847,15 +909,18 @@ setTimeout(function() {
 			//echo"<script>alert('Your email-id is wrong');window.location='registration2.php';</script>"; 
 			?>
 		
-      <div class="alert alert-danger" id="mail_wrong" style="width:93%; margin:0px 0px 10px 0px; text-align:center;">
-									<strong>Your email is wrong!</strong>
-								</div>	  
+      
 						
             
  <script>
-		setTimeout(function() {
-		$('#mail_wrong').fadeOut('hide');
-		}, 10000);
+
+	$( document ).ready(function() {
+												$('#mail_wrong').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#mail_wrong').fadeOut('hide');
+												}, 10000);
+										});
 	</script>
 <?php
 
@@ -864,7 +929,8 @@ setTimeout(function() {
 		else
 		{
 			//echo "Message has been sent";
-			echo"<script>alert('Please check your mail');window.location='forgotpass.php';</script>";
+			 echo "<script>window.location='forgotpass.php?check=0';</script>";
+			//header("location:forgotpass.php");
 			
 		}
 		
@@ -880,7 +946,7 @@ setTimeout(function() {
           <div class="sidebar">
             <div class="sidebar-box" style="margin-top:-30px;">
               <div class="sidebar-box-inner">
-                <h3 class="sidebar-title">Course Fees</h3>
+                <h3 class="sidebar-title">Fees</h3>
                 <div class="sidebar-course-price">
 									<p><?php  if($data['CourseFees']!='')
 									{
@@ -944,11 +1010,15 @@ $setave=$totcap-$noofuserreg;
 ?>
             <div class="sidebar-box">
               <div class="sidebar-box-inner">
-                <h3 class="sidebar-title">Start Date and Time</h3>
+                <h3 class="sidebar-title">Start Date <span class="fontnone">and</span> Time</h3>
                 <div class="sidebar-course-price">
                   <p><?php  $endDate = date('m/d/Y', strtotime($data['StartDate']));  
 									   
-									   echo  $endDate; ?>&nbsp;/&nbsp;<?php echo $data['StartTime'];?></p>
+										 echo  $endDate; ?>&nbsp;/&nbsp;<?php //echo $data['StartTime'];
+										 $stimes=date("h:i a", strtotime($data['StartTime']));
+													echo $stimes;
+										 
+										 ?></p>
                 </div>
                 <h3 class="sidebar-title">Location</h3>
                 <div class="sidebar-course-price">
@@ -968,7 +1038,7 @@ $setave=$totcap-$noofuserreg;
                 </div>
                 <h3 class="sidebar-title">Seats Available</h3>
                 <div class="sidebar-course-price">
-                  <p><?php  if($setave!=''){ echo $setave;}else{echo  "Not Available";}?></p>
+                  <p><?php if($setave!=''){ echo $setave;}else{echo  "Not Available";}?></p>
                 </div>
               </div>
             </div>
@@ -991,7 +1061,7 @@ $setave=$totcap-$noofuserreg;
               <div class="sidebar-box-inner">
 						<div class="sidebar" style="margin:0px 0px 10px 0px">
                            
-                                    <h3 class="sidebar-title">Course video</h3>
+                                    <h3 class="sidebar-title">Video</h3>
                                    <?php 
 								   if($data3['Video']!='')
 								   {
@@ -1108,7 +1178,7 @@ $(".about-the-quickfacts").stick_in_parent({
 <script src="js_new/jquery.magnific-popup.min.js" type="text/javascript"></script> 
 <!-- Custom Js --> 
 <script src="js_new/main.js" type="text/javascript"></script> 
-<script src="js/jquery-1.12.4-jquery.min.js"></script> 
+
 <script src="js/bootstrap.min.js"></script> 
 <script>
 var pass = document.getElementById("pass")
@@ -1116,7 +1186,7 @@ var pass = document.getElementById("pass")
 
 function validatePassword(){
   if(pass.value != confpass.value) {
-    confpass.setCustomValidity("Passwords Don't Match");
+    confpass.setCustomValidity("Password not matched");
   } else {
     confpass.setCustomValidity('');
   }

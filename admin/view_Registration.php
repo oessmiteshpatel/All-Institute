@@ -1,4 +1,4 @@
-<title>All-Institute | Register list</title>
+<title>ALL-Institute | Registered Users</title>
 <?php
 include 'side_bar.php';
 include 'header.php';
@@ -158,7 +158,7 @@ include 'footer.php';
 <script>
        $('#customers2').dataTable( {
     "oLanguage": {
-      "sLengthMenu": "Show _MENU_ of Users",
+      "sLengthMenu": "Show _MENU_ Of Users",
       "sInfo": "Showing _START_ to _END_ of _TOTAL_ Users"
     }
 });

@@ -5,14 +5,17 @@ session_start();
 $cid=$_REQUEST['cid'];
 //$res=mysql_query("SELECT * FROM tblcourse Where CourseID = '".$_REQUEST['cid']."'");
 // (SELECT GROUP_CONCAT(EmailAddress SEPARATOR ',') FROM tbluser WHERE RoleId = et.Cc && ISActive = 1) AS totalcc
+
+
 $res=mysql_query("SELECT c.* FROM tblcourse as c Where CourseID = '".$_REQUEST['cid']."'");
 //$res=mysql_query("SELECT c.*,i.InsName as Instructor FROM tblcourse as c  INNER JOIN tblmstinstructor as i ON c.InsId=i.InsId where c.CourseID='".$_REQUEST['cid']."'");
 $data=mysql_fetch_array($res);
 if($data['InsId']!=NULL)
 {
-	$ins = mysql_query("SELECT GROUP_CONCAT(InsName SEPARATOR ',')  AS Instructor FROM tblmstinstructor WHERE InsId IN (".$data['InsId'].")");
+	$ins = mysql_query("SELECT GROUP_CONCAT(InsName SEPARATOR ', ')  AS Instructor FROM tblmstinstructor WHERE InsId IN (".$data['InsId'].")");
 $insres=mysql_fetch_array($ins);
 }
+
 
 
 
@@ -38,7 +41,7 @@ $datainstructor=mysql_fetch_array($instructordata);
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>All-Institute | Course detail</title>
+<title>ALL-Institute | Course detail</title>
 <link rel="apple-touch-icon" href="image/favicon-apple.png">
 <link rel="icon" href="image/favicon.png">
 <link rel="pingback" href="http://tritraining.edu.au/xmlrpc.php">
@@ -73,7 +76,9 @@ $datainstructor=mysql_fetch_array($instructordata);
     <!-- Switch Style CSS -->
     <link rel="stylesheet" href="css_new/hover-min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css_new/style.css">
+	<link rel="stylesheet" href="css_new/style.css">
+	
+	<script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script>
     <!-- Modernizr Js -->
     <script src="js_new/modernizr-2.8.3.min.js"></script>
 
@@ -89,6 +94,12 @@ h3.sidebar-title {
   text-align:left;
   
 }
+
+.fontnone
+{
+	text-transform: none !important;
+}
+
 .title-default-left {
     text-transform: capitalize;
     text-align: left;
@@ -336,7 +347,7 @@ h3.sidebar-title
 
 					<!-- Navigation -->
 					<div class="col-md-9 col-sm-9 col-xs-9">
-						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" class="aere-button">Visit AERE</a> </div>
+						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" title="Opens in a new window" class="aere-button">Visit AERE</a> </div>
 						<div class="clearfix"></div>
 						<nav>
 							<div role="navigation" class="navbar navigation post_animation3">
@@ -377,9 +388,27 @@ h3.sidebar-title
 									<header class="article-header wow fadeInUp">
 										<h1 class="page-title">Course Detail</h1>
 									</header>
-
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									
-			</div>						
+									 <div class="alert alert-danger" id="dead_close" style="width:100%;margin:0px 0px 10px 0px;display:none">
+				              <b>Deadline is closed</b>
+				         </div>	
+					 <div class="alert alert-danger" id="reg_already" style="width:100%;margin:0px 0px 10px 0px;display:none">
+				              <b>You are already registered in this course.</b>
+				         </div>
+						 <div class="alert alert-danger" id="reg_close" style="width:100%;margin:0px 0px 10px 0px;display:none">
+				               <b>Registration is closed</b>
+				         </div>
+											
+								   <div class="alert alert-success" id="course_enroll" style="width:100%;margin:0px 0px 10px 0px;display:none">
+				                	    <b> Thank you for registering for this course.</b>
+								   </div>
+									
+										<div class="alert alert-success" id="succes_login_id" style=" margin:0px 0px 10px 0px;display:none">
+												<b>You are login successfully.</b> <br><?php echo $emailpass ?>
+										</div>
+									</div>
+	</div>						
 								
 									
         <div class="courses-page-area5">
@@ -425,7 +454,7 @@ h3.sidebar-title
 								if($selectId>0)
 								{	
 							?>
-										<li><a href="#lecturer" data-toggle="tab" aria-expanded="false" style="text-transform:none;">Instructor(s)</a></li>
+										<li><a href="#lecturer" data-toggle="tab" aria-expanded="false" style="text-transform: none !important;">Instructor(s)</a></li>
 							<?php		
 								}
 								else
@@ -451,7 +480,7 @@ h3.sidebar-title
 													 } else{echo  "Not Available";}?></p>
 													 	<div class="row">
 												<div class="col-lg-6 col-md-6">
-													<h3 class="sidebar-title sidebar-title2">Start Date and Time</h3>
+													<h3 class="sidebar-title sidebar-title2">Start Date <span class="fontnone">and</span> Time</h3>
 													
 													<p><?php
 													if($data['StartDate']!='')
@@ -465,7 +494,8 @@ h3.sidebar-title
 													?>&nbsp;/&nbsp;
 													<?php if($data['StartTime']!='')
 												 {
-													echo $data['StartTime'];
+													$stimes=date("h:i a", strtotime($data['StartTime']));
+													echo $stimes;
 												 }else{echo "Not Available";}
 													?>
 													
@@ -479,26 +509,58 @@ h3.sidebar-title
 												</div>
 												
 												<div class="col-lg-6 col-md-6">
-													<h3 class="sidebar-title sidebar-title2">Instructor(s)</h3>
+													<h3 class="sidebar-title sidebar-title2 fontnone">Instructor(s)</h3>
 													<p><?php if($insres['Instructor']!=''){ echo $insres['Instructor'];}else{echo  "Not Available";}?></p>
-													<h3 class="sidebar-title sidebar-title2">Discussant/Moderator(s)</h3>
+													<h3 class="sidebar-title sidebar-title2 fontnone">Discussant/Moderator(s)</h3>
 													<p><?php  if($data['Instigator']!=''){echo $data['Instigator'];}else{echo  " Not Available";}?></p>
 													<h3 class="sidebar-title sidebar-title2">Total Available Seats</h3>
 													<p>
-													<div id="num"></div>
-													<script>
-												    
-													var num = <?php echo $data['TotalCapacity'] - $data['NoofUserRegistered']; ?>;
+
+<?php
+												 	
+													$date=date('Y-m-d');
+		$cnd=" and (EndDate < '$date' ) ";
+		$res=mysql_query("SELECT c.* FROM tblcourse as c Where CourseID = '".$data['CourseID']."' and (EndDate < '$date')");
+		//$data=mysql_fetch_array($res);
+		$noofrecin=mysql_num_rows($res);
+			if($noofrecin==0)
+			{
+				?>
+
+				<div id="num"></div>
+																	<script>
+																	
+																	var num = <?php echo $data['TotalCapacity'] - $data['NoofUserRegistered']; ?>;
+																	
+																	if(num==0)
+																	{
+																	   num="Not Available";
+																		
+																	}
+																	document.getElementById('num').innerHTML = num;
+																	
+																	
+																	</script>
+				
+								<?php
+			}
+			else
+			{
+				
+				echo "Not Available";
+
+			}		
+?>
+
+
+
+
+
+
+
+
+
 													
-													if(num==0)
-													{
-													   num="Not Available";
-														
-													}
-													document.getElementById('num').innerHTML = num;
-													
-													
-													</script>
 													<?php 
 													// $noofuserreg=$data['NoofUserRegistered'];	
 															// $totcap=$data['TotalCapacity'];
@@ -531,10 +593,10 @@ h3.sidebar-title
                                                     <ul>
                                                         <li>
                                                             <div class="skilled-lecturers-img col-md-3 col-sm-4 col-xs-4">
-                                                                <a href="instructor.php?InsId=<?php echo $datainstructor1['InsId']; ?>"><img src="admin/instructor/<?php  echo $datainstructor1['InsImg'];?>" class="img-responsive" alt="skilled"></a>
+                                                                <a href="instructor.php?InsId=<?php echo $datainstructor1['InsId']; ?>" target="_blank"><img src="admin/instructor/<?php  echo $datainstructor1['InsImg'];?>" class="img-responsive" alt="skilled"></a>
                                                             </div>
                                                             <div class="skilled-lecturers-content col-md-6 col-sm-8 col-xs-8">
-                                                                <h4><a href="instructor.php?InsId=<?php echo $datainstructor1['InsId']; ?>"><?php  echo $datainstructor1['InsName'];?></a></h4>
+                                                                <h4><a href="instructor.php?InsId=<?php echo $datainstructor1['InsId']; ?>" target="_blank"><?php  echo $datainstructor1['InsName'];?></a></h4>
                                                                
                                                             </div>
                                                             
@@ -562,138 +624,7 @@ h3.sidebar-title
                                                 </div>
                                             </div>
 	
-	<!--  Lecturer Code End    -->
-											
-											
-                                         <!--   <div class="tab-pane fade" id="reviews">
-                                                <div class="course-details-comments">
-                                                    <h3 class="sidebar-title">Student Reviews</h3>
-                                                    <div class="media">
-                                                        <a href="#" class="pull-left areview">
-                                                            <img alt="Comments" src="img_new/course/16.jpg" class="media-object areview">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h3><a href="#">Greg Christman</a></h3>
-                                                            <h4>Excellent course!</h4>
-                                                            <p>Rimply dummy text of the printinwhen an unknown printer took eype and scramb relofeletog and typesetting industry. Lorem </p>
-                                                            <div class="replay-area">
-                                                                <ul>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="media">
-                                                        <a href="#" class="pull-left areview">
-                                                            <img alt="Comments" src="img_new/course/17.jpg" class="media-object areview">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h3><a href="#">Lora Ekram</a></h3>
-                                                            <h4>Excellent course!</h4>
-                                                            <p>Rimply dummy text of the printinwhen an unknown printer took eype and scramb relofeletog and typesetting industry. Lorem </p>
-                                                            <div class="replay-area">
-                                                                <ul>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="media">
-                                                        <a href="#" class="pull-left areview">
-                                                            <img alt="Comments" src="img_new/course/18.jpg" class="media-object areview">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h3><a href="#">Mike Jones</a></h3>
-                                                            <h4>Excellent course!</h4>
-                                                            <p>Rimply dummy text of the printinwhen an unknown printer took eype and scramb relofeletog and typesetting industry. Lorem </p>
-                                                            <div class="replay-area">
-                                                                <ul>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="media">
-                                                        <a href="#" class="pull-left areview">
-                                                            <img alt="Comments" src="img_new/course/16.jpg" class="media-object">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <h3><a href="#">Greg Christman</a></h3>
-                                                            <h4>Excellent course!</h4>
-                                                            <p>Rimply dummy text of the printinwhen an unknown printer took eype and scramb relofeletog and typesetting industry. Lorem </p>
-                                                            <div class="replay-area">
-                                                                <ul>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="leave-comments">
-                                                    <h3 class="sidebar-title">Leave A Comment</h3>
-                                                    <div class="row">
-                                                        <div class="contact-form" id="review-form">
-                                                            <form>
-                                                                <fieldset>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <input type="text" placeholder="Name" class="form-control">
-                                                                            <div class="help-block with-errors"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <input type="email" placeholder="Email" class="form-control">
-                                                                            <div class="help-block with-errors"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-12">
-                                                                        <div class="form-group">
-                                                                            <div class="rate-wrapper">
-                                                                                <div class="rate-label">Your Rating:</div>
-                                                                                <div class="rate">
-                                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                                    <div class="rate-item"><i class="fa fa-star" aria-hidden="true"></i></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-12">
-                                                                        <div class="form-group">
-                                                                            <textarea placeholder="Comment" class="textarea form-control" id="form-message" rows="8" cols="20"></textarea>
-                                                                            <div class="help-block with-errors"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-12">
-                                                                        <div class="form-group">
-                                                                            <button type="submit" class="view-all-accent-btn">Post Comment</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </fieldset>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>-->
+
 											
 											
 											
@@ -708,7 +639,7 @@ h3.sidebar-title
 						
 						
                         <div class="related-courses-title-area">
-                            <h3>Related Courses</h3>
+                            <h3>Other Courses You Might Be Interested</h3>
                         </div>
                         <div id="shadow-carousel" class="related-courses-carousel">
                             <div class="rc-carousel" data-loop="true" data-items="3" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="1" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="2" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true" data-r-large-dots="false">
@@ -768,9 +699,24 @@ h3.sidebar-title
 												
 												?>
                                                     <br><span><b> Start Date</b></span></li>
-                                                <li><?php echo $data1['TotalCapacity']; ?>
-                                                    <br><span><b>Seat</b></span></li>
-										<li><?php echo $data1['Time']; ?>
+                                                <li><?php  $noofuserreg=$data1['NoofUserRegistered'];	
+															$totcap=$data1['TotalCapacity'];
+															$setave=$totcap-$noofuserreg; 
+															if($setave!=''){ echo $setave;}else{echo  "Not Available";}?>
+                                                    <br><span><b>Seats</b></span></li>
+
+										<li>
+										
+											 <?php
+													//echo $data1['StartTime'];
+
+												//echo $data1['StartTime']; 										 
+											 	$D=date("h:i a", strtotime($data1['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data1['EndTime']));echo $E;
+											  ?>
+
+										
+
+										
                                                     <br><span><b> Time</b></span></li>
                                             </ul>
                                         </div>
@@ -820,7 +766,7 @@ $ccid=$data['CourseID'];
 						<div class="sidebar" style=" margin:0px 0px 10px 0px">
                             <div class="sidebar-box" >
                                 <div class="sidebar-box-inner">
-                                    <h3 class="sidebar-title">Course Fees</h3>
+                                    <h3 class="sidebar-title">Fee</h3>
                                     <div class="sidebar-course-price">
                                         <p><?php if($data['CourseFees']!='')
 								   {	echo "$";
@@ -850,7 +796,7 @@ $ccid=$data['CourseID'];
 						<div class="sidebar" style="margin:0px 0px 10px 0px">
                             <div class="sidebar-box" >
                                 <div class="sidebar-box-inner">
-                                    <h3 class="sidebar-title">Course video</h3>
+                                    <h3 class="sidebar-title">Video</h3>
                                    <?php 
 								   if($data2['Video']!='')
 								   {
@@ -913,15 +859,33 @@ $ccid=$data['CourseID'];
 		{
 		?>
 			
-				<div class="alert alert-success" id="succes_login_id" style=" margin:0px 0px 10px 0px">
-					<strong>You are login successfully.</strong> <?php echo $emailpass ?>
-				</div>
+			
+
 				<script>
+$(document).ready(function () {
+    if(window.location.href.indexOf("check=0") > -1) {
+        $('#succes_login_id').css('display','block');
+   
+     setTimeout(function() {
+        $('#succes_login_id').css('display','none');
+
+				var my_variable_name = window.location.href;
+        
+        var success = my_variable_name.replace("?check=0", '');
+        
+        window.location.replace(success);
+
+    }, 5000);
+}
+});
+</script>
+
+				<!-- <script>
 setTimeout(function() {
   $('#succes_login_id').fadeOut('hide');
 }, 10000);
 					
-				</script>
+				</script> -->
 			
 			
 				<div class="sidebar-box">
@@ -949,7 +913,9 @@ setTimeout(function() {
 					$enrol=mysql_fetch_array($enr);
 					$reid=$enrol['$RegisterId'];
 					$cid=$enrol['$CourseID'];
-					
+
+					$Instructor= $insres['Instructor'];
+
 					$date=date('Y-m-d');
 					 $cnd=" and (EndDate < '$date' ) ";
 					 $res=mysql_query("SELECT * FROM tblcourse Where CourseID='$cid' $cnd order by StartDate");
@@ -959,18 +925,33 @@ setTimeout(function() {
 					if($edate < $date1 &&  $rec>0)
 					{	
 					?>
-                         <div class="alert alert-danger" style="margin:0px 0px 10px 0px">
-				              <strong>Deadline is closed</strong>
-				         </div>	
 					
+					<script>
+											$( document ).ready(function() {
+												$('#dead_close').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#dead_close').fadeOut('hide');
+												}, 10000);
+										});
+										</script>
+                        
 					<?php	
 					}
 					else if($enrol!=0)
 					{
 					?>
-					    <div class="alert alert-danger" style=" margin:0px 0px 10px 0px">
-				              <strong>You are already registered in this course.</strong>
-				         </div>
+					
+					<script>
+											$( document ).ready(function() {
+												$('#reg_already').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#reg_already').fadeOut('hide');
+												}, 10000);
+										});
+										</script>
+					   
 						
 					
 					<?php
@@ -978,9 +959,17 @@ setTimeout(function() {
 					else if($noofseat>=$totseat)
 					{
 					?>
-                    <div class="alert alert-danger" style="margin:0px 0px 10px 0px">
-				               <strong>Registration is closed</strong>
-				         </div>
+					
+					<script>
+											$( document ).ready(function() {
+												$('#reg_close').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#reg_close').fadeOut('hide');
+												}, 10000);
+										});
+										</script>
+                    
 													
 					<?php	
 					}
@@ -996,15 +985,19 @@ setTimeout(function() {
 						$upd=mysql_query("update tblcourse set NoofUserRegistered='$noofseat2' where CourseID='$cid'");
 						//var_dump($res1);
 						//exit();
+						
 						if($upd)
 						{
+							
 									$cid=$data['CourseID'];
 									$tit=$data['Title'];
-									$Instructor=$data['Instructor'];
+									//$Instructor=$data['Instructor'];
 									$Instigator=$data['Instigator'];
 									$StartDate=$data['StartDate'];
 									$Location=$data['Location'];
-									$Time=$data['Time'];
+									//$Time=$data['StartTime'];
+									
+									$Time=date("h:i a", strtotime($data['StartTime'])); 
 									$IntendedAudience=$data['IntendedAudience'];
 									$MeetingType=$data['MeetingType'];
 									$CourseFees=$data['CourseFees'];
@@ -1024,35 +1017,36 @@ setTimeout(function() {
 									$mail->Password = "W3lc0m3@2018";
 									$mail->SetFrom("myopeneyes3937@gmail.com");
 								//	$mail->AddEmbeddedImage('emailimage/logo.png','logoimg','logo.jpg');
-									$mail->Subject = "AERE Cource $tit";
-									$mail->Body =  "<img src='http://aerexperts.com/image/logo.png' height='80px'   width='180px'> <br><br><br>
-									Dear <b>$fnm,<b><br><br>
+									$mail->Subject = "AERE Course $tit";
+									$mail->Body =  "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
+									Dear <b>$fnm,</b><br><br>
 							
 									Thank you for your interest in the course $tit.We have received your 
 									registration with the following detail:<br><br>
 										
-									<b>First name</b> : $fnm<br>
-									<b>Last name</b> : $lnm<br>
-									<b>Email address</b> : $em<br>
-									<b>Address</b> : $add<br>
-									<b>Phone number</b> : $pno<br>
+									<b>First name</b>: $fnm<br>
+									<b>Last name</b>: $lnm<br>
+									<b>Email Id</b>: $em<br>
+									<b>Address</b>: $add<br>
+									<b>Phone number</b>: $pno<br>
 									<br><br>
 									Here is the course detail again:<br><br>
 									
-									<b>Instructors</b> : $Instructor<br>
-									<b>Instigator</b> : $Instigato<br>
-									<b>Date </b> : $StartDate <br>
-									<b>Location </b> : $Location<br>
-									<b>Venue </b> : $Venue<br>
-									<b>Time </b> : $Time<br>
-									<b>Intended Audience</b> : $IntendedAudience<br>
-									<b>Meeting Type</b> : $MeetingType<br>
-									<b>Fees</b> : $$CourseFees<br><br>
+									<b>Instructors</b>: $Instructor<br>
+									<b>Instigator</b>: $Instigator<br>
+									<b>Date </b>: $StartDate <br>
+									<b>Location </b>: $Location<br>									
+									<b>Start Time </b>: $Time<br>
+									<b>Intended Audience</b>: $IntendedAudience<br>
+									<b>Meeting Type</b>: $MeetingType<br>
+									<b>Fees</b>: $$CourseFees<br><br>
 									
 									If you need to make any changes to this, please do not hesitate to 
-									contact us at Manny@AERExperts.com or simply reply and someone will get back
-									 to you soon.<br><br>
+									contact us at Manny@AERExperts.com.<br><br>
 									
+
+									
+
 									 <b>Thank you,</b><br>
 									<b>AERE Team</b>";
 									$mail->AddAddress($emailpass);
@@ -1080,22 +1074,22 @@ setTimeout(function() {
 									$mail->SetFrom("myopeneyes3937@gmail.com");
 									
 									$mail->Subject = "New registration for course $tit";
-									$mail->Body = "<img src='http://aerexperts.com/image/logo.png' height='80px' width='180px'> <br><br><br>
+									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
 									Hey Team, <br/><br>
 										
-									Someone just registered to take the course : <b>$tit</b><br><br>
+									Someone just registered to take the course: <b>$tit</b><br><br>
 									
-									<b>First name</b> : $fnm<br>
-									<b>Last name</b> : $lnm<br>
-									<b>Email address</b> : $em<br>
-									<b>Address</b> : $add<br>
-									<b>Phone number</b> : $pno<br>
+									<b>First name</b>: $fnm<br>
+									<b>Last name</b>: $lnm<br>
+									<b>Email ID</b>: $em<br>
+									<b>Address</b>: $add<br>
+									<b>Phone number</b>: $pno<br>
 									<br/><br/>
 										
 										
 									<b>Thank You,</b><br/>
-									<b>Your web team </b><br/>";
-									$mail->AddAddress('myopeneyes3937@gmail.com');
+									<b>Our web team </b><br/>";
+									$mail->AddAddress('pooja.patel@theopeneyes.com');
 									if(!$mail->Send())
 									{
 										echo "Mailer Error: " . $mail->ErrorInfo;
@@ -1103,9 +1097,18 @@ setTimeout(function() {
 									else
 									{
 										?>
-								   <div class="alert alert-success" style="margin:0px 0px 10px 0px">
-				                	    <strong> Thank you for registering for this course.</strong>
-								   </div>
+										
+										<script>
+											$( document ).ready(function() {
+												$('#course_enroll').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#course_enroll').fadeOut('hide');
+												}, 10000);
+										});
+											
+										</script>
+									
 										
 									<script>
 										document.getElementById('num').innerHTML = +document.getElementById('num').innerHTML - 1;
@@ -1149,23 +1152,48 @@ setTimeout(function() {
 						<form method="post">
 							<div class="sidebar-box">
 								<div class="sidebar-box-inner">	
-									<input type="submit" onclick="return confirm('Are you sure enroll for this course?')" 
-									<?php if(($enrol!=0 or $noofseat>=$totseat) or $rec > 0){?> disabled <?php }?>  class="btn btn-danger btn-block" value="Enrollment" name="enroll">	
+									<input type="button"  
+									<?php if(($enrol!=0 or $noofseat>=$totseat) or $rec > 0){?> disabled <?php }?>  class="btn btn-danger btn-block" value="Enrollment" id="Evidential_btn">	
 								 </div>
 							</div>
+
+
+							<div class="modal fade bs-example-modal-sm" id="Update_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document" style="margin:20% auto;">
+        <div class="modal-content">
+            <div class="modal-body" >
+              	<p>Are you sure you want to register this course?</p>
+              </div>
+              <div class="modal-footer text-center">
+              	<!--<button type="button" class="next_btn" id="yes_btn" name="update">Yes</button>-->
+				<center><input type="submit"  value="Yes" id="yesbtn" name="enroll" class="btn btn-success"/>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button></center>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	$('#Evidential_btn').click(function () {
+   $("#Update_Modal").modal('show');
+});
+
+</script>
 						</form>	
+
+						
 		<?php		
 		}
 		else 
 		{
 		?>
-						
+
+			
 						
 					 <div class="sidebar">
 		                    <div class="sidebar-box">
                                 <div class="sidebar-box-inner">	
 				
-								 <h3 class="sidebar-title">Sign In Enroll</h3>
+								 <h3 class="sidebar-title">Enroll</h3>
                                     <div class="sidebar-course-price">
                                         
                                         <a href="registration2.php?cid=<?php echo $_REQUEST['cid'];?>">
@@ -1178,16 +1206,26 @@ setTimeout(function() {
 				<?php
 		}	
 	}
+
+	
 	//echo '<pre>'; echo print_r($data); 
 	if($data['CourseID'] && $isactive!="1")
 	{
+		$date=date('Y-m-d');
+		$cnd=" and (EndDate < '$date' ) ";
+		$res=mysql_query("SELECT c.* FROM tblcourse as c Where CourseID = '".$data['CourseID']."' and (EndDate < '$date')");
+		//$data=mysql_fetch_array($res);
+		$noofrecin=mysql_num_rows($res);
+			if($noofrecin==0)
+			{
+
 		?>
 		<br>
 		 <div class="sidebar">
 		                    <div class="sidebar-box sidtop">
                                 <div class="sidebar-box-inner">	
 				
-								 <h3 class="sidebar-title">Sign In Enroll</h3>
+								 <h3 class="sidebar-title">Enroll</h3>
                                     <div class="sidebar-course-price">
                                         
                                         <a href="registration2.php?cid=<?php echo $_REQUEST['cid'];?>">
@@ -1198,6 +1236,22 @@ setTimeout(function() {
 							</div>	
 		                </div>
 						<?php
+			}
+			else
+			{
+			?>
+				<br>
+		 <div class="sidebar">
+		                    <div class="sidebar-box sidtop">
+                                <div class="sidebar-box-inner">	
+				
+								 <h3 class="sidebar-title">The <span class="fontnone">course is ended</span></h3>
+                                   
+								</div>
+							</div>	
+		                </div>
+<?php
+			}
 	}
 	
 	?> 
@@ -1263,7 +1317,7 @@ $(".about-the-quickfacts").stick_in_parent({
     <div id="preloader"></div>
     <!-- Preloader End Here -->
     <!-- jquery-->
-    <script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script>
+   
     
 
     <!-- Plugins js -->

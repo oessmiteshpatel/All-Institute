@@ -15,7 +15,7 @@ $data=mysql_fetch_array($res);
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>All-Institute | Instructor detail</title>
+<title>ALL-Institute | Instructor detail</title>
 <link rel="apple-touch-icon" href="image/favicon-apple.png">
 <link rel="icon" href="image/favicon.png">
 <link rel="pingback" href="http://tritraining.edu.au/xmlrpc.php">
@@ -313,7 +313,7 @@ input.address
 
 					<!-- Navigation -->
 					<div class="col-md-9 col-sm-9 col-xs-9">
-						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" class="aere-button">Visit AERE</a> </div>
+						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" title="Opens in a new window" target="_blank" class="aere-button">Visit AERE</a> </div>
 						<div class="clearfix"></div>
 						<nav>
 							<div role="navigation" class="navbar navigation post_animation3">

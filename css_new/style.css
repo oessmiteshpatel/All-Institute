@@ -584,6 +584,7 @@ ul {
   margin-bottom: 15px;
   text-align: center;
 }
+.related-courses-title-area h3 { width: 80%;}
 @media (min-width: 991px) and (max-width: 1199px) {
   .about-title {
     font-size: 40px;
@@ -598,6 +599,7 @@ ul {
   .about-title {
     font-size: 32px;
   }
+
 }
 @media (min-width: 321px) and (max-width: 479px) {
   .about-title {
@@ -5370,7 +5372,7 @@ ul.course-feature2 li:before {
   margin-right: 2px;
   border-right: 1px solid #909090;
   display: inline-block;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
 }
 .courses-box1 .single-item-wrapper .courses-content-wrapper .courses-info li:last-child {

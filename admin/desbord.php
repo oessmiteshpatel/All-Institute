@@ -1,4 +1,4 @@
-<title>All-Institute | Dashboard</title>
+<title>ALL-Institute | Dashboard</title>
 <?php
 include 'side_bar.php';
 include 'header.php';
@@ -159,7 +159,7 @@ $result4 = mysql_query($query4);
                         
                     </div>
                     <ul class="panel-controls" style="margin-top: 2px;">
-                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                        <!-- <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>-->
                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
 
                     </ul>
@@ -182,7 +182,7 @@ $result4 = mysql_query($query4);
                         
                     </div>
                     <ul class="panel-controls" style="margin-top: 2px;">
-                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                        <!-- <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>-->
                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                                           
                     </ul>

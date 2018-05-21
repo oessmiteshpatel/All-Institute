@@ -1,7 +1,7 @@
 <html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>All-Institute | Add course</title>
+<title>ALL-Institute | Add Course</title>
 
 
 <head>
@@ -460,7 +460,8 @@ $(function () {
                         <tr>
                             <th>&nbsp;</th>
 
-                            <td><input type="submit" name="save" class="btn btn-warning"  value="Save" /></td>
+                            <td><input type="submit" name="save" class="btn btn-success"  value="Save" />
+							</td>
 
                         </tr>
                     </table>

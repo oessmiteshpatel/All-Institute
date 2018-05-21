@@ -1,4 +1,4 @@
-<title>All-Institute | Instructor list</title>
+<title>ALL-Institute | Instructor List</title>
 <?php
 include 'side_bar.php';
 include 'header.php';
@@ -100,7 +100,7 @@ $result = mysql_query($query)or die(mysql_error());
 
 							
 
-							<button type="button" class="btn-md btn-icon btn-link p4" data-toggle="modal" data-target="#myModal" onClick="delete1(<?php echo $row['InsId']; ?>)"> <i class="fa fa-trash-o text-danger" aria-hidden="true"></i></button>
+							<button title="Delete"type="button" class="btn-md btn-icon btn-link p4" data-toggle="modal" data-target="#myModal" onClick="delete1(<?php echo $row['InsId']; ?>)"> <i class="fa fa-trash-o text-danger" aria-hidden="true"></i></button>
 							
 
 						</td>
@@ -119,7 +119,7 @@ $result = mysql_query($query)or die(mysql_error());
     <div class="modal-dialog modal-sm" role="document" style="margin:20% auto;">
         <div class="modal-content">
             <div class="modal-body" >
-              	<p>Are you sure you want to update this record?</p>
+              	<p>Are you sure you want to delete this record?</p>
               </div>
               <div class="modal-footer text-center">
               	<!--<button type="button" class="next_btn" id="yes_btn" name="update">Yes</button>-->
@@ -215,7 +215,7 @@ function delete1(id)
 
        $('#customers2').dataTable( {
     "oLanguage": {
-      "sLengthMenu": "Show _MENU_ Instructors",
+      "sLengthMenu": "Show _MENU_ Of Instructors",
       "sInfo": "Showing _START_ to _END_ of _TOTAL_ Instructors"
     }
 });

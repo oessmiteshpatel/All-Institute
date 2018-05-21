@@ -1,4 +1,4 @@
-<title>All-Institute | Register Course</title>
+<title>ALL-Institute | Register Course</title>
 <?php
 include 'side_bar.php';
 include 'header.php';
@@ -156,7 +156,7 @@ include 'footer.php';
 <script>
        $('#customers2').dataTable( {
     "oLanguage": {
-      "sLengthMenu": "Show _MENU_ of Users",
+      "sLengthMenu": "Show _MENU_ Of Users",
       "sInfo": "Showing _START_ to _END_ of _TOTAL_ Users"
     }
 });

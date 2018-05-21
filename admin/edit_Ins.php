@@ -1,7 +1,7 @@
 <html>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add course</title>
+    <title>ALL-Institute | Edit instructor</title>
 	<head>
 	<link type="text/css" rel="stylesheet" href="slider/owl.carousel.css">
     <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>

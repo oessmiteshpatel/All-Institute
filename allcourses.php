@@ -8,7 +8,7 @@ include("admin/connect.php");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>All-Institute | Courses</title>
+<title>ALL-Institute | Courses</title>
         <link rel="apple-touch-icon" href="image/favicon-apple.png">
         <link rel="icon" href="image/favicon.png">
         <link rel="pingback" href="http://tritraining.edu.au/xmlrpc.php">
@@ -98,7 +98,7 @@ img.wp-smiley, img.emoji {
 
 					<!-- Navigation -->
 					<div class="col-md-9 col-sm-9 col-xs-9">
-						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" class="aere-button">Visit AERE</a> </div>
+						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" title="Opens in a new window" class="aere-button">Visit AERE</a> </div>
 						<div class="clearfix"></div>
 						<nav>
 							<div role="navigation" class="navbar navigation post_animation3">
@@ -148,6 +148,9 @@ img.wp-smiley, img.emoji {
 									<header class="article-header wow fadeInUp">
 										<h1 class="page-title">Courses</h1>
 									</header>
+
+									<div class="alert alert-success" id="register_success" style="display:none; margin:0px 0px 10px 0px;width:100%"> <strong>You are register successfully.</strong> <br>
+            Please make sure to login...! </div>
 									
 	</div>								
 	<!-- NEW CODE HERE  -->								
@@ -247,9 +250,9 @@ img.wp-smiley, img.emoji {
                                         <li ><?php  $noofuserreg=$data['NoofUserRegistered'];	
 															$totcap=$data['TotalCapacity'];
 															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "Close";}?>
+															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
                                             <br><span>  <b> Seats </b></span></li>
-									<li ><?php $D=date("g:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $D=date("g:i a", strtotime($data['EndTime']));echo $D; ?>
+									<li ><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
                                             <br><span> <b>Time</b></span></li>
 										</ul>
                                 </div>
@@ -345,9 +348,9 @@ img.wp-smiley, img.emoji {
                                         <li class="smfont"><?php  $noofuserreg=$data['NoofUserRegistered'];	
 															$totcap=$data['TotalCapacity'];
 															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "Close";}?>
+															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
                                             <br><span>  <b> Seats </b></span></li>
-									<li class="smfont"><?php $D=date("g:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $D=date("g:i a", strtotime($data['EndTime']));echo $D; ?>
+									<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
                                             <br><span> <b>Time</b></span></li>
 										</ul>
                                 </div>
@@ -447,9 +450,9 @@ img.wp-smiley, img.emoji {
                                         <li><?php  $noofuserreg=$data['NoofUserRegistered'];	
 															$totcap=$data['TotalCapacity'];
 															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "Close";}?>
+															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
                                             <br><span>  <b> Seats </b></span></li>
-									<li><?php $D=date("g:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $D=date("g:i a", strtotime($data['EndTime']));echo $D; ?>
+									<li><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
                                             <br><span> <b>Time</b></span></li>
 										</ul>
                                 </div>
@@ -546,9 +549,9 @@ img.wp-smiley, img.emoji {
                                         <li><?php  $noofuserreg=$data['NoofUserRegistered'];	
 															$totcap=$data['TotalCapacity'];
 															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "Close";}?>
+															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
                                             <br><span>  <b> Seats </b></span></li>
-									<li><?php $D=date("g:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $D=date("g:i a", strtotime($data['EndTime']));echo $D; ?>
+									<li><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
                                             <br><span> <b>Time</b></span></li>
 										</ul>
                                 </div>
@@ -590,7 +593,7 @@ img.wp-smiley, img.emoji {
 	$reid=$_SESSION['RegisterId'];
 	if(isset($_SESSION['RegisterId']))
 	{
-		$res=mysql_query("SELECT  tblcourseregistered.createdOn,tblcourse.Title,tblcourse.CourseID,tblcourse.StartDate,tblcourse.Image from tblcourseregistered INNER JOIN tblcourse on tblcourseregistered.CourseID=tblcourse.CourseID where tblcourseregistered.RegisterId='$reid'  ");
+		$res=mysql_query("SELECT  tblcourseregistered.createdOn,tblcourse.Title,tblcourse.CourseID,tblcourse.StartDate,tblcourse.StartTime,tblcourse.EndTime,tblcourse.TotalCapacity,tblcourse.NoofUserRegistered,tblcourse.Image from tblcourseregistered INNER JOIN tblcourse on tblcourseregistered.CourseID=tblcourse.CourseID where tblcourseregistered.RegisterId='$reid'  ");
 		
 		$noofrec=mysql_num_rows($res);
 			if($noofrec>0)
@@ -649,9 +652,9 @@ img.wp-smiley, img.emoji {
                                         <li><?php  $noofuserreg=$data['NoofUserRegistered'];	
 															$totcap=$data['TotalCapacity'];
 															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "Close";}?>
+															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
                                             <br><span>  <b> Seats </b></span></li>
-									<li><?php $D=date("g:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $D=date("g:i a", strtotime($data['EndTime']));echo $D; ?>
+									<li><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
                                             <br><span> <b>Time</b></span></li>
 										</ul>
                                 </div>
@@ -668,16 +671,16 @@ img.wp-smiley, img.emoji {
 		else
 		{
 			?>
-			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 user">
-                        <div class="courses-box1">
-                            <div class="single-item-wrapper">
-                            	<div >
-                                    <center class="nocourse2">   No Course Available..</center>
-									</div>
-                                
-                            </div>
-                        </div>
-                    </div> 
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user">
+			<div class="courses-box1">
+				<div class="single-item-wrapper">
+					<div class="nocourse" >
+						<center >   No Courses are available.</center>
+						</div>
+					
+				</div>
+			</div>
+		</div> 
 		<?php	
 	    }	
 	}
@@ -765,7 +768,7 @@ img.wp-smiley, img.emoji {
 												$tcapacity=$data['TotalCapacity'];
 												$noofreg=$data['NoofUserRegistered'];
 												$status="";
-												 $cdate=date('m/d/Y');
+												$cdate=date('m/d/Y');
 												$ssdate=strtotime($ssdate);
 												$eedate=strtotime($eedate);
 												$cdate=strtotime($cdate);

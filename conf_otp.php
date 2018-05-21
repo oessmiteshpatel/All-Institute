@@ -1,3 +1,24 @@
+
+<script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function () {
+    if(window.location.href.indexOf("check=1") > -1) {
+        $('#otp_email').css('display','block');
+   
+     setTimeout(function() {
+        $('#otp_email').css('display','none');
+
+				var my_variable_name = window.location.href;
+        
+        var success = my_variable_name.replace("?check=1", '');
+        
+        window.location.replace(success);
+
+    }, 5000);
+}
+});
+</script>  
+
 <?php 
 include("admin/connect.php");
 include_once "allfunction.php";
@@ -11,7 +32,7 @@ $data=mysql_fetch_array($res);
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>All-Institute | Conform otp page</title>
+<title>ALL-Institute | Conform otp page</title>
         <link rel="apple-touch-icon" href="image/favicon-apple.png">
         <link rel="icon" href="image/favicon.png">
         <link rel="pingback" href="http://tritraining.edu.au/xmlrpc.php">
@@ -158,7 +179,7 @@ line-height: 1.3333333;
 
 					<!-- Navigation -->
 					<div class="col-md-9 col-sm-9 col-xs-9">
-						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" target="_blank" class="aere-button">Visit AERE</a> </div>
+						<div class="center align-right pull-right"><a href="http://www.aerexperts.com/" title="Opens in a new window" target="_blank" class="aere-button">Visit AERE</a> </div>
 						<div class="clearfix"></div>
 						<nav>
 							<div role="navigation" class="navbar navigation post_animation3">
@@ -193,7 +214,12 @@ line-height: 1.3333333;
 								<article class="cf wrap post-410 team type-team status-publish has-post-thumbnail hentry profile-category-manager" role="article">
 									<br>
 									<header class="article-header wow fadeInUp">
-										<h1 class="page-title">Confirmation Otp</h1>
+                                        <h1 class="page-title">Confirmation Otp</h1>
+                                        
+                                      
+
+
+                                       
 									</header>
 									
 	</div>								
@@ -243,14 +269,65 @@ if(isset($_REQUEST['otpbtn']))
 		{		
 		    $cid=$_REQUEST['cid'];
 		
-	      echo "<script> window.location.href='registration2.php?cid=$cid';</script>"; 
+	      echo "<script> window.location.href='registration2.php?cid=$cid?check=0';</script>"; 
 	
 		}
 	}
 	else
 	{
-		
-		echo "<script>alert('Please check your otp!'); </script>"; 
+		?>
+		<script>
+
+                     $( document ).ready(function() {
+        $('#mail_wrong').attr('style','display:block;');  
+		setTimeout(function() {
+    
+		$('#mail_wrong').fadeOut('hide');
+		}, 5000);
+});
+
+        </script>
+
+        <div class="container">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-danger" id="mail_wrong" style="width:100%;display:none">
+        <strong>Your otp is wrong.</strong>
+   </div>
+   </div>
+</div>				
+
+ <script>
+
+
+
+$(document).ready(function () {
+    if(window.location.href.indexOf("check=0") > -1) {
+        $('#otp_true').css('display','block');
+   
+     setTimeout(function() {
+        $('#otp_true').css('display','none');
+
+				var my_variable_name = window.location.href;
+        
+        var success = my_variable_name.replace("?check=0", '".$_REQUEST['cid']."');
+        
+        window.location.replace(success);
+
+    }, 5000);
+}
+});
+
+//      $( document ).ready(function() {
+//         $('#otp_true').attr('style','display:none;');  
+// 		setTimeout(function() {
+    
+// 		$('#mail_wrong').fadeOut('hide');
+// 		}, 10000);
+// });
+     
+	</script>
+<?php
+		// echo "<script>alert('Please check your otp!'); </script>"; 
 	}
 }
 ?>
@@ -259,17 +336,21 @@ if(isset($_REQUEST['otpbtn']))
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                        
-					     <div class="form-top " >
+                                    <div class="alert alert-success" style="width:100%;display:none;" id="otp_email">
+				                	    <b> Please check your Email Id for confirmation code.</b>
+								    </div>
+								
+					     <div class="form-top">
                                                 <div class="form-top-left">
                                                     <h3>Confirmation code  <i class="fa fa-pencil pull-right"></i></h3>
                                                 </div>
-                                                <p class="clearfix">Please enter code for registration :</p>
+												
+                                                <p class="clearfix">Please enter code for verification:</p>
                                                 <div class="form-top-divider"></div>
+												
 													</div>
 					   							
-											 <div class="alert alert-success success_center">
-				                	    <strong> Please check your mail for Confirmation Code.</strong>
-								   </div>
+										
 												
 			<div class="form-bottom">
 				<form name="f1" id="signupbtn"  method="post" class="registration-form">
@@ -279,12 +360,12 @@ if(isset($_REQUEST['otpbtn']))
 						<div class="form-group">
 							<label class="sr-only" for="firstname">Password</label>
 																<br>
-							<input maxlength="50" name="otp" placeholder="Enter your code" class="firstname form-control"  type="text" required oninvalid="this.setCustomValidity('Please enter the confirmation code you received')" oninput="setCustomValidity('')" minlength="4" pattern="[0-9]+">
+							<input name="otp" placeholder="Enter verification code" class="firstname form-control"  type="text" required oninvalid="this.setCustomValidity('Please enter the confirmation code you received')" oninput="setCustomValidity('')" minlength="4"  maxlength="5" pattern="[0-9]+"/>
 						</div>
 						
 						
 						<div class="form-group">
-							<button type="submit" class="btn" name="otpbtn">Confirmation code</button>
+							<button type="submit" class="btn" name="otpbtn">Verify</button>
                                                                                                                             
 						</div>
 															
@@ -700,6 +781,11 @@ $('#mobile-nav-button').on('click',function(){
 <script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
  
 
+<script>
+		setTimeout(function() {
+		$('#otp_true').fadeOut('hide');
+		}, 10000);
+	</script>
 <script class="init" type="text/javascript">
 $(document).ready(function() {
      $('#example').dataTable( {
@@ -728,7 +814,7 @@ $(".about-the-quickfacts").stick_in_parent({
     <div id="preloader"></div>
     <!-- Preloader End Here -->
     <!-- jquery-->
-    <script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script>
+    
    
     <!-- Plugins js -->
     <script src="js_new/plugins.js" type="text/javascript"></script>

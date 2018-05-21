@@ -1,3 +1,4 @@
+<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
 <?php
 session_start();
 include 'connect.php';
@@ -18,16 +19,19 @@ if(isset($_REQUEST['login']))
    }
  else {
     ?>
-						<center><div class="alert alert-danger" id="wrong" style="width:100%; margin:0px 0px 10px 0px">
-									<strong>Your email or password is wrong!</strong>
-								</div>	  
-						</center>
+						
 	<script>
+		  $( document ).ready(function() {
+            $('#wrong').attr('style','display:block;');
 		setTimeout(function() {
-		$('#wrong').fadeOut('hide');
-		}, 10000);
+            $('#wrong').attr('style','display:none;');  
+            }, 10000);
+});
 					
-	</script>					
+    </script>	
+    
+    
+  
 	<?php
    }
 }   
@@ -35,7 +39,7 @@ if(isset($_REQUEST['login']))
 <html lang="en">
     <head>        
         <!-- META SECTION -->
-        <title>All-Institute</title>            
+        <title>ALL-Institute</title>            
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -59,9 +63,15 @@ if(isset($_REQUEST['login']))
             <div class="login-box animated fadeInDown">
                 <div class="login-logo"></div>
                 <div class="login-body">
-                    <div class="login-title"><strong>Welcome</strong>, to AERE Admin area.
+                    <div class="login-title"><strong>Welcome</strong>, to ALL Institute Admin area.
 					<p>Please be here only if you have admin rights!</p>
-					</div>
+                    </div>
+                    
+                    <center><div class="alert alert-danger" id="wrong" style="width:100%; margin:0px 0px 10px 0px;display:none">
+									<strong>Your username or password is wrong!</strong>
+								</div>	  
+						</center>
+
                     <form action="" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
@@ -94,7 +104,7 @@ if(isset($_REQUEST['login']))
 
         <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
-        <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+        
         <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
         <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>        
         <!-- END PLUGINS -->

@@ -67,6 +67,34 @@ $(".navbar-toggle").click(function() {
 
 					$contact = $_POST[ 'contact' ];
 					$email = $_POST[ 'email' ];
+
+						
+					// $domain_array = array('googlemail.com','gmail.com');
+    // $validemail = is_email($email);
+    // $exists_text = '';
+	// if ($validemail)
+	// {
+        // $exists = email_exists($email);
+        // list($user, $domain) = explode('@', $email);
+		// if (!$exists)
+		// {
+			// if (strpos($user, '+')) 
+			// {
+                // list($username_email, $crap) = explode('+', $user);
+                // $exists = email_exists($username_email . '@' . $domain);
+                // $exists_text = __('User account exists with this email address', 'pw_texts');
+                // $email = strtolower($username_email . '@' . $domain);// Gmail only recognizes lowercase
+            // }
+			// else
+			// {
+					// echo "<script>alert('wrong');</script>";
+			// }
+		
+			// echo "<script>alert('wrong email');</script>";
+		// }
+		// echo "<script>alert('wrong email last');</script>";
+	// }
+
 					$remark = $_POST[ 'remark' ];
 					$code = $_POST[ 'code' ];
 
@@ -83,8 +111,8 @@ $(".navbar-toggle").click(function() {
        </script>";
 						?>
 
-				<div class="alert alert-danger messageclass" id="insert_not_contact_code">
-					<strong>Your record was not inserted because your captcha code is wrong!</strong>
+				<div class="alert alert-danger messageclass" id="insert_not_contact_code" style="width:100%">
+					<strong>Your record was not inserted because your captcha code is wrong.</strong>
 				</div>
 
 
@@ -123,19 +151,20 @@ $(".navbar-toggle").click(function() {
 									$mail->SetFrom("myopeneyes3937@gmail.com");
 									
 									$mail->Subject = "User Visited";
-									$mail->Body = " <img src='http://aerexperts.com/image/logo.png' height='80px' width='180px'> <br><br><br>
+									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
 									Hello, <br/>
 									
-										User Visited  Email :$email<br/>
-										User Visited Name : $fname<br/>
-										User Visited contact Number : $contact<br/>
+										User visited detail<br>
+										Email: $email<br/>
+									    Name: $fname<br/>
+										Contact number: $contact<br/>
 										
-										User Contact :$pno<br/><br/><br/>
+										<br/><br/>
 										
 										Kind Regards, <br/>
 										Thank You,<br/>
 										Our Team <br/>";
-									$mail->AddAddress('myopeneyes3937@gmail.com');
+									$mail->AddAddress('pooja.patel@theopeneyes.com');
 									if(!$mail->Send())
 									{
                    // echo "Mailer Error: " . $mail->ErrorInfo;
@@ -148,8 +177,8 @@ $(".navbar-toggle").click(function() {
                     </script>";
                    ?>
 
-				<div class="alert alert-danger messageclass" id="insert_not_contact">
-					<strong>Your email address is wrong!</strong>
+				<div class="alert alert-danger messageclass" id="insert_not_contact" style="width:100%">
+					<strong>Your Email Id address is wrong.</strong>
 				</div>
 				<script>
 					setTimeout( function () {
@@ -168,7 +197,7 @@ $(".navbar-toggle").click(function() {
        </script>";
 					?>
 
-				<div class="alert alert-success messageclass" id="insert_contact">
+				<div class="alert alert-success messageclass" id="insert_contact" style="width:100%">
 					<strong>Thank you for your note. We will contact you within 3 business days.</strong>
 				</div>
 				<script>
@@ -205,13 +234,13 @@ $(".navbar-toggle").click(function() {
 									<li id="field_6_4" class="gfield field_sublabel_below field_description_below">
 										<label class="gfield_label" for="input_6_2">Phone</label>
 										<div class="ginput_container">
-											<input name="contact" class="large" maxlength="13" placeholder="* Phone number" type="text" pattern="[0-9\-.\s]+" required oninvalid="this.setCustomValidity('Please enter only numeric without any special character')" oninput="setCustomValidity('')">
+											<input name="contact" class="large" maxlength="13" placeholder="* Phone number" type="text" pattern="[0-9\-\s]+" required oninvalid="this.setCustomValidity('Please enter only numeric and only this special character -')" oninput="setCustomValidity('')">
 										</div>
 									</li>
 									<li id="field_6_3" class="gfield gfield_contains_required field_sublabel_below field_description_below">
 										<label class="gfield_label" for="input_6_3">Email<span class="gfield_required">*</span></label>
 										<div class="ginput_container">
-											<input name="email" class="large" placeholder="* Email" type="email" required oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')">
+											<input name="email" class="large" placeholder="* Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="email" required oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')">
 										</div>
 									</li>
 
@@ -226,7 +255,7 @@ $(".navbar-toggle").click(function() {
 								</div>
 								<tr>
 									<div class="ginput_container">
-										<input name="code" id="code" class="large" required placeholder="* Enter below code here" type="text" required oninvalid="this.setCustomValidity('Please type the below code')" oninput="setCustomValidity('')">
+										<input name="code" id="code" class="large" required maxlength="6" placeholder="* Enter below code here" type="text" required oninvalid="this.setCustomValidity('Please type the below code')" oninput="setCustomValidity('')">
 										<?php
 										if ( isset( $errors[ "code" ] ) ) {
 											echo $errors[ "code" ];
@@ -287,6 +316,7 @@ margin-right: 0;">
 		</div>
 	</div>
 </div>
+<div class="clearfix"></div>
 <div class="copyright">
 	<div class="container">
 		<div class="row">
@@ -299,7 +329,7 @@ margin-right: 0;">
 
 <style>
 	.copyright {
-		background: rgba(48, 48, 46, 0.9) none repeat scroll 0 0;
+		background: #444442; margin-top:-1px!important;
 		color: #fff;
 		font-size: 13px;
 		margin: 0;
@@ -316,6 +346,6 @@ margin-right: 0;">
 	.Provided-by {
 		font-size: 14px;
 		line-height: 16px;
-		padding-bottom: 0;
 	}
+	.pull-sm-right{float: right;}
 </style>

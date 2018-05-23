@@ -1023,7 +1023,7 @@ setTimeout(function() {
 									$mail->SetFrom=SETFROM;
 								//	$mail->AddEmbeddedImage('emailimage/logo.png','logoimg','logo.jpg');
 									$mail->Subject = "AERE Course $tit";
-									$mail->Body =  "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
+									$mail->Body =  "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
 									Hello <b>$fnm,</b><br><br>
 							
 									Thank you for your interest in the course $tit.We have received your 
@@ -1079,7 +1079,7 @@ setTimeout(function() {
 									$mail->SetFrom=SETFROM;
 									
 									$mail->Subject = "New registration for course $tit";
-									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
+									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
 									Hey Team, <br/><br>
 										
 									Someone just registered to take the course: <b>$tit</b><br><br>

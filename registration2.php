@@ -752,7 +752,7 @@ setTimeout(function() {
 		$mail->Password=USERPASSWORD;
 		$mail->SetFrom=SETFROM;
 		$mail->Subject = "AERE Registration Verification Code: $otp";
-		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
+		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
 		Hello $fnm, <br/><br/>
 		
 				 Here is your AERE Registration Verification Code: <b>$otp</b><br><br>
@@ -898,7 +898,7 @@ setTimeout(function() {
 		$mail->Password=USERPASSWORD;
 		$mail->SetFrom=SETFROM;
 		$mail->Subject = "AERE Password for Email ID";
-		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
+		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
 		    Hello $fnam, <br/><br/>
 			
 		

@@ -106,7 +106,7 @@ $(".navbar-toggle").click(function() {
 					//$arr = array("blue","red","green","yellow");
 					$m=str_replace("'","\'",$remark);
 
-					$insert = mysql_query( "insert into tblcontact(Fname,Contact,Email,Remark)
+					$insert = mysql_query( "insert into tblcontact(FirstName,Contact,Email,Remark)
 						values('$fname','$contact','$email','$m')" );
 
 					//var_dump($insert);
@@ -134,7 +134,7 @@ $(".navbar-toggle").click(function() {
 									$mail->SetFrom=SETFROM;
 									
 									$mail->Subject = "All-Institute user visited details";
-									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
+									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
 									Hello, <br/><br>
 									
 										Please find below details for user visited All-Institute site.<br><br>

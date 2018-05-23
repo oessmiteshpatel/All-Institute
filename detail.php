@@ -1,6 +1,7 @@
 <?php 
 
 include("admin/connect.php"); 
+$FROMNAME=FROMNAME;
 $USERNAME=USERNAME;
  $USERPASSWORD=USERPASSWORD;
  $SETFROM=SETFROM;
@@ -1016,14 +1017,14 @@ setTimeout(function() {
 									$mail->Host = "smtp.gmail.com";
 									$mail->Port = 465; // or 587
 									$mail->IsHTML(true);
-									$mail->FromName="AERE"; 
+									$mail->FromName=FROMNAME; 
 									$mail->Username=USERNAME;
 									$mail->Password=USERPASSWORD;
 									$mail->SetFrom=SETFROM;
 								//	$mail->AddEmbeddedImage('emailimage/logo.png','logoimg','logo.jpg');
 									$mail->Subject = "AERE Course $tit";
 									$mail->Body =  "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
-									Dear <b>$fnm,</b><br><br>
+									Hello <b>$fnm,</b><br><br>
 							
 									Thank you for your interest in the course $tit.We have received your 
 									registration with the following detail:<br><br>
@@ -1036,16 +1037,16 @@ setTimeout(function() {
 									<br><br>
 									Here is the course detail again:<br><br>
 									
-									<b>Instructors</b>: $Instructor<br>
-									<b>Instigator</b>: $Instigator<br>
-									<b>Date </b>: $StartDate <br>
-									<b>Location </b>: $Location<br>									
-									<b>Start Time </b>: $Time<br>
+									<b>Instructor(s)</b>: $Instructor<br>
+									<b>Discussant/Moderator(s)</b>: $Instigator<br>
+									<b>Date</b>: $StartDate <br>
+									<b>Location</b>: $Location<br>									
+									<b>Start Time</b>: $Time<br>
 									<b>Intended Audience</b>: $IntendedAudience<br>
 									<b>Meeting Type</b>: $MeetingType<br>
 									<b>Fees</b>: $$CourseFees<br><br>
 									
-									If you need to make any changes to this, please do not hesitate to 
+									If you need to make any changes to this, please do not hesitate to
 									contact us at Manny@AERExperts.com.<br><br>
 									
 
@@ -1072,7 +1073,7 @@ setTimeout(function() {
 									$mail->Host = "smtp.gmail.com";
 									$mail->Port = 465; // or 587
 									$mail->IsHTML(true);
-									$mail->FromName="AERE"; 
+									$mail->FromName=FROMNAME; 
 									$mail->Username=USERNAME;
 									$mail->Password=USERPASSWORD;
 									$mail->SetFrom=SETFROM;
@@ -1092,7 +1093,7 @@ setTimeout(function() {
 										
 										
 									Thank You,<br/>
-									<b>Our web team </b><br/>";
+									<b>Our web Team </b><br/>";
 									$mail->AddAddress($SETTO);
 									if(!$mail->Send())
 									{

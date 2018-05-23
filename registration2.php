@@ -21,6 +21,7 @@ $(document).ready(function () {
 
 
 include("admin/connect.php");
+$FROMNAME=FROMNAME;
  $USERNAME=USERNAME;
  $USERPASSWORD=USERPASSWORD;
  $SETFROM=SETFROM;
@@ -508,7 +509,7 @@ input.address
                             </div>
                             <div class="form-group col-md-6">
                               <label class="sr-only" for="email">Email</label>
-                              <input name="email" placeholder="What's your email address?" class="email form-control" id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required oninvalid="this.setCustomValidity('Please enter your Email')" oninput="setCustomValidity('')">
+                              <input name="email" placeholder="What's your email address?" class="email form-control" id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50" required oninvalid="this.setCustomValidity('Please enter your Email')" oninput="setCustomValidity('')">
                             </div>
 							 <div class="form-group col-md-6">
                               <label class="sr-only" for="Phone">Phone</label>
@@ -746,17 +747,17 @@ setTimeout(function() {
 		$mail->Host = "smtp.gmail.com";
 		$mail->Port = 465; // or 587
 		$mail->IsHTML(true);
-		$mail->FromName="AERE";
+		$mail->FromName=FROMNAME;
 		$mail->Username=USERNAME;
 		$mail->Password=USERPASSWORD;
 		$mail->SetFrom=SETFROM;
-		$mail->Subject = "AERE Confirmation Email ID";
+		$mail->Subject = "AERE Registration Verification Code: $otp";
 		$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/logo.png' style='height:80px; width:180px;' > <br><br><br>
-		     Dear $fnm, <br/><br/>
+		Hello $fnm, <br/><br/>
 		
-				Here is your AERE Registration Verification Code: <b>$otp</b><br><br>
+				 Here is your AERE Registration Verification Code: <b>$otp</b><br><br>
 			
-				If you need to make any changes to this, please do not hesitate to contact us at Manny@AERExperts.com.
+				 If you need to make any changes to this, please do not hesitate to contact us at Manny@AERExperts.com. 
 			<br><br>
 			Thank you,<br>
 			<b>AERE Team</b>";
@@ -892,7 +893,7 @@ setTimeout(function() {
 		$mail->Host = "smtp.gmail.com";
 		$mail->Port = 465; // or 587
 		$mail->IsHTML(true);
-		$mail->FromName="AERE"; 
+		$mail->FromName=FROMNAME; 
 		$mail->Username=USERNAME;
 		$mail->Password=USERPASSWORD;
 		$mail->SetFrom=SETFROM;

@@ -199,29 +199,6 @@ $(".navbar-toggle").click(function() {
 
 					}
 
-					else
-					{
-						echo " <script>
-						$('html, body').animate({
-							scrollTop: $('#footer').offset().top
-							}, 2000);
-						
-									
-						</script>";
-										?>
-
-									<div class="alert alert-danger messageclass" id="insert_not_rec" style="width:100%">
-										<strong>Your record was not inserted.</strong>
-									</div>
-									<script>
-										setTimeout( function () {
-											$( '#insert_not_rec' ).fadeOut( 'hide' );
-										}, 10000 );
-									</script>
-									<?php
-
-					}
-
 
 
 		}

@@ -42,7 +42,7 @@ if (!isset($_SESSION['user'])) {
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <a href="desbord.php" class="sidebarlogo" style="padding:5px;"><img src="assets/images/logo.png" width="90" absalign="middle"/></a>
+                        <a href="dashboard.php" class="sidebarlogo" style="padding:5px;"><img src="assets/images/logo.png" width="90" absalign="middle"/></a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
@@ -51,8 +51,8 @@ if (!isset($_SESSION['user'])) {
                         </a>
                     </li>
 
-                    <li class=" <?php echo ($activePage == "desbord" ? "active" : ""); ?>">
-                        <a href="desbord.php"><span class="fa fa-home"></span> <span class="xn-text">Dashboard</span></a>
+                    <li class=" <?php echo ($activePage == "dashboard" ? "active" : ""); ?>">
+                        <a href="dashboard.php"><span class="fa fa-home"></span> <span class="xn-text">Dashboard</span></a>
 
                     </li>
                     <li class=" <?php echo ($activePage == "view_Registration" ? "active" : ""); ?>">

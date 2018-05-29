@@ -14,7 +14,7 @@ if(isset($_REQUEST['login']))
    {
        $_SESSION['user']=$un;
        //header('location:view_Registration.php');
-       header('location:desbord.php');
+       header('location:dashboard.php');
        
    }
  else {

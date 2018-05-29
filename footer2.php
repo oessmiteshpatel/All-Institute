@@ -5,6 +5,18 @@
 	}
 </style>
 <script type='text/javascript' src="js/jquery-2.1.1.min.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119991718-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119991718-1');
+</script>
+
+
 <script>
 $(".navbar-toggle").click(function() {  
     $(this).toggleClass("active_toggle");   

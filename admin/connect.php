@@ -4,9 +4,11 @@
  session_start();
  // but I strongly suggest you to use PDO or MySQLi.
 //$webstatus="developement";  //production, developement,local
- // $webstatus="QA";  //production, developement,local
+  $webstatus="QA";  //production, developement,local
  //$webstatus="local";  //production, developement,local
- $webstatus="production";  //production, developement,local
+ //$webstatus="production";  //production, developement,local
+
+ 
 if($webstatus=="production"){
     // not valid
 	define('DBHOST', 'PRDAERECourses.db.11797364.5bf.hostedresource.net');
@@ -47,7 +49,7 @@ if($webstatus=="production"){
 	define('USERNAME', 'noreply.allinstitute@gmail.com');
 	define('USERPASSWORD', '@ere1234');
 	define('SETFROM', 'noreply.allinstitute@gmail.com');
-	define('SETTO', 'noreply.allinstitute@gmail.com');
+	define('SETTO', 'tmehta@theopeneyes.com');
 }
  
  $conn = mysql_connect(DBHOST,DBUSER,DBPASS);

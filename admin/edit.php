@@ -3,8 +3,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ALL-Institute | Edit course</title>
 	<head>
+
+    <script src="js/ajax/libs/jquery/jquery-1.12.4.js"></script>
 	<link type="text/css" rel="stylesheet" href="slider/owl.carousel.css">
-    <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+   
 			<style>
 .slider{display:block; position:relative; padding:0 30px; width:760px; float:right;}
 .owl-carousel .owl-item .owl-item{width:100%; text-align:center; display:block;}
@@ -43,6 +45,7 @@
 	</head>
 
     <?php
+    session_start();
 	error_reporting(0);
     include 'side_bar.php';
     include 'header.php';
@@ -87,7 +90,17 @@ if (isset($_POST['update']))
 	//$path="admin/upload/$Image";
 	move_uploaded_file($p1,"upload/".$_FILES['Image']['name']);
     
-	$Video = mysql_real_escape_string($_REQUEST['Video']);
+    $Video = mysql_real_escape_string($_REQUEST['Video']);
+    
+    $anndate = date_create($_POST['AnnDate']);
+    $AnnDate = date_format($anndate, 'Y-m-d');
+
+    $enrstartdate = date_create($_POST['EnrStartDate']);
+    $EnrStartDate = date_format($enrstartdate, 'Y-m-d');
+
+    $enrendDate = date_create($_POST['EnrEndDate']);
+    $EnrEndDate = date_format($enrendDate, 'Y-m-d');
+
     $cdate = date_create($_POST['Course_start_date']);
     $Course_start_date = date_format($cdate, 'Y-m-d');
     
@@ -130,7 +143,7 @@ if (isset($_POST['update']))
 	
 	if($Image!='')
 	{
-    $update_query = "update `tblcourse` set `Title`='$Title',`OfferedBy`='$OfferedBy', `Summary`='$Summary', `Image`='$Image',`Video`='$Video',
+   $update_query = "update `tblcourse` set `Title`='$Title',`OfferedBy`='$OfferedBy', `Summary`='$Summary', `Image`='$Image',`Video`='$Video',`AnnDate`='$AnnDate',`EnrStartDate`='$EnrStartDate',`EnrEndDate`='$EnrEndDate',
 	`CourseStartDate`='$Course_start_date',`StartDate`='$StartDate',`EndDate`='$EndDate',`Location`='$Location',`StartTime`='$SSTime',`EndTime`='$EETime',`IntendedAudience`='$IntendedAudience',
 `MeetingType`='$MeetingType',`CourseFees`='$CourseFees',`TotalCapacity` ='$TotalCapacity',`Instigator`='$Instigator',`InsId`='$InsName',`IsStatus`='$IsStatus' where `CourseID`='$demo'";
 			 
@@ -138,28 +151,42 @@ if (isset($_POST['update']))
 	else if($Image_2!='')
 	{
 			$update_query = "update `tblcourse` set `Title`='$Title',`OfferedBy`='$OfferedBy', `Summary`='$Summary', 
-	`Image`='$Image_2',`Video`='$Video',`CourseStartDate`='$Course_start_date',`StartDate`='$StartDate',`EndDate`='$EndDate',`Location`='$Location',`StartTime`='$SSTime',`EndTime`='$EETime',`IntendedAudience`='$IntendedAudience',
+	`Image`='$Image_2',`Video`='$Video',`AnnDate`='$AnnDate',`EnrStartDate`='$EnrStartDate',`EnrEndDate`='$EnrEndDate',`CourseStartDate`='$Course_start_date',`StartDate`='$StartDate',`EndDate`='$EndDate',`Location`='$Location',`StartTime`='$SSTime',`EndTime`='$EETime',`IntendedAudience`='$IntendedAudience',
 `MeetingType`='$MeetingType',`CourseFees`='$CourseFees',`TotalCapacity` ='$TotalCapacity',`Instigator`='$Instigator',`InsId`='$InsName',`IsStatus`='$IsStatus' where `CourseID`='$demo'";
 	}
 	
 	
 	else
 	{
-		$update_query = "update `tblcourse` set `Title`='$Title',`OfferedBy`='$OfferedBy', `Summary`='$Summary', `Video`='$Video',
+		$update_query = "update `tblcourse` set `Title`='$Title',`OfferedBy`='$OfferedBy', `Summary`='$Summary', `Video`='$Video',`AnnDate`='$AnnDate',`EnrStartDate`='$EnrStartDate',`EnrEndDate`='$EnrEndDate',
 	`CourseStartDate`='$Course_start_date',`StartDate`='$StartDate',`EndDate`='$EndDate',`Location`='$Location',`StartTime`='$SSTime',`EndTime`='$EETime',`IntendedAudience`='$IntendedAudience',
 `MeetingType`='$MeetingType',`CourseFees`='$CourseFees',`TotalCapacity` ='$TotalCapacity',`Instigator`='$Instigator',`InsId`='$InsName',`IsStatus`='$IsStatus' where `CourseID`='$demo'";
 		
-	}		
+    }	
+    	
     $z = mysql_query($update_query) or die(mysql_error());
     if ($z) 
 	{
+        $_SESSION['msg']=1;
         echo "<script>window.location.replace('edit.php?CourseID=$demo?check=0');</script>";
 			// echo "<script>alert('Record updated!'); 
 						// window.location.href='view_Course.php';
 				  // </script>";
 	?>  
 					
-						
+		<script>
+
+            
+										// 	$( document ).ready(function() {
+										// 		$('#update_rec').attr('style','display:block;');  
+										// 		setTimeout(function() {
+											
+										// 		$('#update_rec').fadeOut('hide');
+										// 		}, 10000);
+										// });
+										
+
+        </script>				
 	<?php
     } 
 	else
@@ -360,13 +387,59 @@ $(function () {
                                     </div>
                                 </td>
                             </tr>-->
+
+
+
                             <tr>
+                            <th>*Announcement Date: </th>
+                                    <?php
+       
+                                        $anndate = date_create($row['AnnDate']);
+                                        $AnnDate = date_format($anndate, 'm/d/Y');
+
+                                        $enrstartdate = date_create($row['EnrStartDate']);
+                                        $EnrStartDate = date_format($enrstartdate, 'm/d/Y');
+
+                                        $enrendDate = date_create($row['EnrEndDate']);
+                                        $EnrEndDate = date_format($enrendDate, 'm/d/Y');  
+
+                                    ?>
+                            <td>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input type="text" name="AnnDate" value="<?php echo $AnnDate; ?>" id="AnnDate"  class="form-control" placeholder="Select Announcement Date "/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>*Enrollment Start Date: </th>
+
+                            <td>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input type="text" name="EnrStartDate" value="<?php echo $EnrStartDate; ?>" id="EnrStartDate"  class="form-control" placeholder="Select Enrollment Start Date "/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>*Enrollment End Date: </th>
+
+                            <td>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    <input type="text" name="EnrEndDate" value="<?php echo $EnrEndDate; ?>" id="EnrEndDate"  class="form-control" placeholder="Select Enrollment End Date "/>
+                                </div>
+                            </td>
+                        </tr>                
+
+                            <tr>
+                            
                                 <th>*Start Date : </th>
                                          <?php
-                                          $sdate = date_create($row['StartDate']);
+
+
+                                            $sdate = date_create($row['StartDate']);
                                             $StartDate = date_format($sdate, 'm/d/Y');
-
-
 
                                             $edate = date_create($row['EndDate']);
                                             $EndDate = date_format($edate, 'm/d/Y');
@@ -566,8 +639,135 @@ include 'footer.php';
 ?>
 <!-- START PLUGINS -->
 
-<script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>                
+
+  <script src="js/ajax/libs/jquery/jquery-ui.js"></script>
+
+    <script>
+// $(function () 
+// {
+//     $("#StartDate").datepicker({ dateFormat: 'mm/dd/yyyy'});
+//     $("#EndDate").datepicker({ dateFormat: 'mm/dd/yyyy' });
+//         $("#CoursDate").datepicker({ dateFormat: 'mm/dd/yyyy' });
+//          $("#AnnDate").datepicker({ dateFormat: 'mm/dd/yyyy',startDate: new Date() });
+    
+//     $("#EnrStartDate").datepicker({ dateFormat: 'mm/dd/yyyy',minDate:new Date() });
+//         $("#EnrEndDate").datepicker({ dateFormat: 'mm/dd/yyyy' });
+// });
+
+
+$(function () {
+            $("#AnnDate").datepicker({minDate: new Date(),
+                numberOfMonths: 1,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#EnrStartDate").datepicker("option", "minDate", dt);
+                }
+            });
+            $("#EnrStartDate").datepicker({
+                numberOfMonths: 1,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#EnrEndDate").datepicker("option", "minDate", dt);
+                    $("#AnnDate").datepicker("option", "maxDate", dt);
+                }
+            });
+
+            $("#EnrEndDate").datepicker({
+                numberOfMonths: 1,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#StartDate").datepicker("option", "minDate", dt);
+                    $("#EnrStartDate").datepicker("option", "maxDate", dt);
+                }
+            });
+
+            $("#StartDate").datepicker({
+                numberOfMonths: 1,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#EndDate").datepicker("option", "minDate", dt);
+                    $("#EnrEndDate").datepicker("option", "maxDate", dt);
+                }
+            });
+
+            $("#EndDate").datepicker({
+                numberOfMonths: 1,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate());
+                    $("#EndDate").datepicker("option", "maxDate", dt);
+                    $("#StartDate").datepicker("option", "maxDate", dt);
+                }
+            });
+
+        });
+
+
+
+
+
+
+</script>
+
+<!-- <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script> -->
+
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script> 
+<!-- THIS PAGE PLUGINS -->
+<script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
+<script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+
+<!-- <script type="text/javascript" src="js/plugins/bootstrap/bootstrap-datepicker.js"></script> -->
+<!-- <script type="text/javascript" src="js/plugins/bootstrap/bootstrap-timepicker.min.js"></script> -->
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-file-input.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+
+<script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>  
+
+
+
+<script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/tableExport.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/jquery.base64.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/html2canvas.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/jspdf/jspdf.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/base64.js"></script>    
+
+
+<!-- END PAGE PLUGINS -->
+
+<!-- START TEMPLATE -->
+
+
+
+<script type="text/javascript" src="js/plugins.js"></script>        
+<script type="text/javascript" src="js/actions.js"></script>    
+
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+
+
+
+<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+<!-- <script type="text/javascript" src="nicEdit-latest.js"></script> -->
+<script type="text/javascript">
+//<![CDATA[
+    bkLib.onDomLoaded(function () {
+
+        new nicEditor({fullPanel: true, maxHeight: 200}).panelInstance('area1');
+    });
+    //]]>
+</script>
+
+
+
 <!-- END PLUGINS -->
 <script type="text/javascript" src="slider/owl.carousel.js"></script> 
 <script>
@@ -754,55 +954,8 @@ $(function() {
 
 
 </script>
-<!-- THIS PAGE PLUGINS -->
-<script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
-<script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-
-<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-timepicker.min.js"></script>
-<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
-<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-file-input.js"></script>
-<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-select.js"></script>
-<script type="text/javascript" src="js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
-
-<script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>  
 
 
-
-<script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/tableExport.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/jquery.base64.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/html2canvas.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/jspdf/jspdf.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/base64.js"></script>    
-
-
-<!-- END PAGE PLUGINS -->
-
-<!-- START TEMPLATE -->
-
-
-
-<script type="text/javascript" src="js/plugins.js"></script>        
-<script type="text/javascript" src="js/actions.js"></script>    
-
-
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
-
-
-
-<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
-<!-- <script type="text/javascript" src="nicEdit-latest.js"></script> -->
-<script type="text/javascript">
-//<![CDATA[
-    bkLib.onDomLoaded(function () {
-
-        new nicEditor({fullPanel: true, maxHeight: 200}).panelInstance('area1');
-    });
-    //]]>
-</script>
 
 <!-- END PRELOADS -->                      
 
@@ -843,6 +996,25 @@ $(function() {
 							//minlength: 1
 
                         },	
+
+                        'AnnDate': {
+
+required: true,
+
+
+},
+'EnrStartDate': {
+
+required: true,
+
+
+},
+'EnrEndDate': {
+
+required: true,
+
+
+},
 
 
                         'OfferedBy': {
@@ -961,6 +1133,21 @@ $(function() {
 
                         },
 
+                        'AnnDate': {
+
+required: "The course announcement date is mandatory!",
+
+},
+'EnrStartDate': {
+
+required: "The course enrollment start date is mandatory!",
+
+},
+'EnrEndDate': {
+
+required: "The course enrollment end date is mandatory!",
+
+},
 						
                         'CoursDate': {
 
@@ -1050,13 +1237,21 @@ $(function() {
 
 //]]>
 </script>
-<script>
+<!-- <script>
     $(function () {
         $("#StartDate").datepicker({dateFormat: 'mm/dd/yyyy'});
         $("#EndDate").datepicker({dateFormat: 'mm/dd/yyyy'});
         $("#CoursDate").datepicker({dateFormat: 'mm/dd/yyyy'});
+        $("#AnnDate").datepicker({ dateFormat: 'mm/dd/yyyy' });
+        $("#EnrStartDate").datepicker({ dateFormat: 'mm/dd/yyyy' });
+        $("#EnrEndDate").datepicker({ dateFormat: 'mm/dd/yyyy' });
     });
-</script>
+</script> -->
+
+
+
+
+
 </html>
 
 <?php ob_end_flush(); ?>

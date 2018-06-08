@@ -34,12 +34,12 @@ $result = mysql_query($query)or die(mysql_error());
                     <th>Sr#</th>
                     
                    
-                    <th> First Name </th>
-                    <th>Last Name</th>
+                    <th width="145"> First Name </th>
+                    <th width="145">Last Name</th>
                     <th>Email</th>
                     <th>Address</th>
-                    <th>Phone</th>
-                    <th>Is Active?</th>
+                    <th width="145">Phone</th>
+                    <th width="100">Is Active?</th>
                     <th> Action </th>
                    
                     
@@ -158,7 +158,7 @@ include 'footer.php';
 <script>
        $('#customers2').dataTable( {
     "oLanguage": {
-      "sLengthMenu": "Show _MENU_ Of Users",
+      "sLengthMenu": "Show _MENU_ Users per page",
       "sInfo": "Showing _START_ to _END_ of _TOTAL_ Users"
     }
 });

@@ -14,7 +14,7 @@ $(document).ready(function () {
         
         window.location.replace(success);
 
-    }, 5000);
+    }, 10000);
 }
 });
 </script>  
@@ -214,7 +214,7 @@ line-height: 1.3333333;
 								<article class="cf wrap post-410 team type-team status-publish has-post-thumbnail hentry profile-category-manager" role="article">
 									<br>
 									<header class="article-header wow fadeInUp">
-                                        <h1 class="page-title">Confirmation Otp</h1>
+                                        <h1 class="page-title">Verification Code</h1>
                                         
                                       
 
@@ -283,7 +283,7 @@ if(isset($_REQUEST['otpbtn']))
 		setTimeout(function() {
     
 		$('#mail_wrong').fadeOut('hide');
-		}, 5000);
+		}, 10000);
 });
 
         </script>
@@ -313,7 +313,7 @@ $(document).ready(function () {
         
         window.location.replace(success);
 
-    }, 5000);
+    }, 10000);
 }
 });
 
@@ -337,12 +337,12 @@ $(document).ready(function () {
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                        
                                     <div class="alert alert-success" style="width:100%;display:none;" id="otp_email">
-				                	    <b> Please check your Email Id for confirmation code.</b>
+				                	    <b> Please check your Email Id for verification code.</b>
 								    </div>
 								
 					     <div class="form-top">
                                                 <div class="form-top-left">
-                                                    <h3>Confirmation code  <i class="fa fa-pencil pull-right"></i></h3>
+                                                    <h3>Verification code  <i class="fa fa-pencil pull-right"></i></h3>
                                                 </div>
 												
                                                 <p class="clearfix">Please enter code for verification:</p>

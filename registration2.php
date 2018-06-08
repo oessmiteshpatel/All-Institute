@@ -13,7 +13,7 @@ $(document).ready(function () {
         
         window.location.replace(success);
 
-    }, 5000);
+    }, 10000);
 }
 });
 </script>
@@ -406,18 +406,7 @@ input.address
 			
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-			<div class="alert alert-warning" id="user_not_active" style="width:100%;margin:0px 0px 10px 0px;display:none"> <b>Please contact to Admin.</b> <br>
-            You are currently not activated.</div>
-
-			<div class="alert alert-danger" id="mail_wrong" style="width:100%; margin:0px 0px 10px 0px;display:none"><strong>Your Email ID is not existing.</strong></div>	 
-
-			<div class="alert alert-success" id="register_success2" style="width:100%;margin:15px 0px 10px 0px;display:none"><b>You are register successsfully.</b></div>
-			
-			<div class="alert alert-danger" id="answer_sign" style="width:100%; margin:0px 0px 10px 0px; display:none;"> <strong>Your Email ID or Password is wrong.</strong> <br>
-            Please try again to login. </div>
-			
-  <div class="alert alert-danger" id="already_exist" style="width:100%;margin:15px 0px 10px 0px;display:none"> <strong>Your Email ID is already exist.</strong>
-           </div>
+		
 
 </div>
     </header>
@@ -443,6 +432,24 @@ input.address
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="tab-content">
+
+									<div class="alert alert-danger" id="answer_sign" style="width:100%; margin:0px 0px 10px 0px;display:none"> <strong>Your Email ID or Password is wrong.</strong> <br>
+            Please try again to login. </div>
+
+						<div class="alert alert-warning" id="user_not_active" style="width:100%;margin:0px 0px 10px 0px;display:none"> <b>Please contact to Admin.</b> <br>
+            You are currently not activated.</div>
+
+			<div class="alert alert-danger" id="mail_wrong" style="width:100%; margin:0px 0px 10px 0px;display:none"><strong>Your Email ID is not existing.</strong></div>	 
+
+			<div class="alert alert-success" id="register_success2" style="width:100%;margin:15px 0px 10px 0px;display:none"><b>You are registered successfully.</b></div>
+			<div class="alert alert-success" id="check_mail" style="width:100%; margin:0px 0px 10px 0px;display:none;">
+												<b>Your Password is sent to your Email ID. Please check your Email.</b>
+											</div>
+		
+			
+  <div class="alert alert-danger" id="already_exist" style="width:100%;margin:15px 0px 10px 0px;display:none"> <strong>Your Email ID is already exist.</strong>
+           </div>
+
                     <div class="tab-pane fade active in" id="description">
                       <div class="form-top signIn">
                         <div class="form-top-left">
@@ -467,7 +474,7 @@ input.address
                             <label class="sr-only"  for="form-password">Type your password</label>
 								
 							  <input name="pass1" placeholder="Type your password" id="pass1" class="form-control" required
-							   type="password" oninvalid="this.setCustomValidity('Please enter your password')" oninput="setCustomValidity('')" maxlength="30" minlength="8" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,30})">
+							   type="password" oninvalid="this.setCustomValidity('Please enter your password')" oninput="setCustomValidity('')" maxlength="30" minlength="8">
 							
                         </div>
 
@@ -556,7 +563,7 @@ input.address
                           <div class="form-top-left">
                             <h3>Forgot Password? <i class="fa fa-pencil pull-right"></i></h3>
                           </div>
-                          <p class="clearfix">Type your email to recover your password:</p>
+                          <p class="clearfix">Type your email id to get your password:</p>
                           <div class="form-top-divider"></div>
                         </div>
                         <div class="form-bottom forgot"  >
@@ -589,11 +596,11 @@ input.address
             <div class="rc-carousel" data-loop="true" data-items="3" data-margin="15" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="1" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="2" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true" data-r-large-dots="false">
               <?php
 $date=date('Y-m-d');											
-							$cnd=" AND StartDate > '$date' ";
+							$cnd=" AND EnrStartDate > '$date' ";
 							
-							$cnd2= " AND '$date' BETWEEN  StartDate AND EndDate ";
+							$cnd2= " AND '$date' BETWEEN  EnrStartDate AND EndDate ";
 											
-			              $res=mysql_query("SELECT * FROM tblcourse Where CourseID!='$cid' and IsStatus = 1 AND (StartDate > '$date' OR '$date' BETWEEN  StartDate AND EndDate) order by StartDate ");
+			              $res=mysql_query("SELECT * FROM tblcourse Where CourseID!='$cid' and IsStatus = 1 AND (EnrStartDate <= '$date' OR '$date' BETWEEN  EnrStartDate AND EndDate) order by StartDate ");
 							
 			$noofrec=mysql_num_rows($res);
 						if($noofrec>0)
@@ -634,32 +641,41 @@ $date=date('Y-m-d');
 											</li>
                                        
 										</ul>
-                    <ul class="courses-info smallfonts">
-											<li><?php // echo $data['StartDate'];
-											
-											$endDate = date('m/d/Y', strtotime($data['StartDate']));  
-									   
-											echo  $endDate;
+                    <ul class="courses-info smallfonts four_block">
 
-											?>
-											
-											<br>
-                        <span><b> Start Date</b></span></li>
-											<li><?php  $noofuserreg=$data['NoofUserRegistered'];	
-															$totcap=$data['TotalCapacity'];
-															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "Not Available";}?> <br>
-                        <span><b>Seats</b></span></li>
-											<li>
-											<?php
-													//echo $data1['StartTime'];
-
-												//echo $data1['StartTime']; 										 
-											 	$D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E;
+											<li class="smfont"><?php
+											  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 											  ?>
-											 <br>
-                        <span><b> Time</b></span></li>
-                    </ul>
+													&nbsp;-&nbsp;
+											  <?php
+											  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
+											   ?>
+													<br><span> <b> Enrollment Duration</b></span></li>
+		
+											   <li class="smfont">
+											   <?php
+											  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+											   
+											   ?>
+													<br><span> <b> Course Date </b></span></li>
+																						</ul>
+		
+												
+		
+												<ul class="courses-info smallfonts four_block">
+												<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> - <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
+													<br><span> <b>Time</b></span></li>
+												
+												<li class="smfont"><?php  $noofuserreg=$data['NoofUserRegistered'];	
+																	$totcap=$data['TotalCapacity'];
+																	$setave=$totcap-$noofuserreg; 
+																	if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
+													<br><span>  <b> Seats </b></span></li>
+											
+												
+												</ul>
+
+
                   </div>
                 </div>
               </div>
@@ -820,10 +836,10 @@ setTimeout(function() {
 								session_start();
 								$_SESSION['Email']=$emailpass;
 								$_SESSION['RegisterId']=$regid;
-								
+								$_SESSION['check']=1;
 									echo "<script> 
 								
-										window.location.href='detail.php?cid=$cid?check=0';
+										window.location.href='detail.php?cid=$cid';
 															</script>";
 							}
 							else if($isactive=='0')
@@ -852,6 +868,10 @@ setTimeout(function() {
           <!--<div class="alert alert-danger" style="width:262px; margin:0px 0px 10px 0px"> <strong>Your Email-Id or Password is wrong.</strong> <br>
             Please try again to login...! </div>
           <br>-->
+				
+										
+										
+									
 <script>
 $("#answer_sign").css({ display: "block" });
 </script>
@@ -859,7 +879,8 @@ $("#answer_sign").css({ display: "block" });
 setTimeout(function() {
   $('#answer_sign').fadeOut('hide');
 }, 10000);
-					
+
+													
 				</script>
           <?php								
 															
@@ -933,10 +954,25 @@ setTimeout(function() {
 		
 		else
 		{
-			//echo "Message has been sent";
-			 echo "<script>window.location='forgotpass.php?check=0';</script>";
-			//header("location:forgotpass.php");
-			
+		
+			// echo "<script>window.location='forgotpass.php?check=0';</script>";
+			// echo "<script>window.location='registration2.php?check=0';</script>";
+			?>
+			<script>
+											// setTimeout( function () {
+												// $( '#pass_corr' ).fadeOut( 'hide' );
+											// }, 10000 );
+											
+											$( document ).ready(function() {
+												$('#check_mail').attr('style','display:block;');  
+												setTimeout(function() {
+										//		window.location.href="allcourses.php";
+												$('#check_mail').fadeOut('hide');
+												}, 10000);
+										});
+											
+										</script>
+			<?php
 		}
 		
 		
@@ -1015,7 +1051,31 @@ $setave=$totcap-$noofuserreg;
 ?>
             <div class="sidebar-box">
               <div class="sidebar-box-inner">
-                <h3 class="sidebar-title">Start Date <span class="fontnone">and</span> Time</h3>
+							<h3 class="sidebar-title sidebar-title2">Enrollment Duration</h3>
+							<div class="sidebar-course-price">
+							<p><?php
+													if($data['EnrStartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "Not Available";}
+													?>&nbsp;&nbsp;to&nbsp;
+												<?php
+													if($data['EnrEndDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "Not Available";}
+													?>
+													</p>
+                </div>
+                <h3 class="sidebar-title">Course Date <span class="fontnone">and</span> Time</h3>
                 <div class="sidebar-course-price">
                   <p><?php  $endDate = date('m/d/Y', strtotime($data['StartDate']));  
 									   

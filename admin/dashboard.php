@@ -13,14 +13,15 @@ $row = mysql_fetch_array($result);
 //current cous
 
 $date = date('Y-m-d');
-
-$cnd = " AND '$date' >  StartDate AND EndDate > '$date' AND TotalCapacity!=NoofUserRegistered ";
+$cnd= " AND '$date' BETWEEN  EnrStartDate AND EndDate ";
+//$cnd = " AND '$date' >  StartDate AND EndDate > '$date' AND TotalCapacity!=NoofUserRegistered ";
 $query1 = "SELECT COUNT(*) as totalCount FROM tblcourse where IsStatus = 1 $cnd";
 $result1 = mysql_query($query1);
  $row1 = mysql_fetch_array($result1);
 
 //completed
-$cnd = " and (EndDate < '$date' or TotalCapacity=NoofUserRegistered) ";
+//$cnd = " and (EndDate < '$date' or TotalCapacity=NoofUserRegistered) ";
+$cnd=" and (EndDate < '$date' ) ";
 $query2 = "SELECT COUNT(*) as totalCount FROM tblcourse where IsStatus = 1 $cnd";
 $result2 = mysql_query($query2);
  $row2 = mysql_fetch_array($result2);
@@ -28,7 +29,8 @@ $result2 = mysql_query($query2);
 //print_r($row2);
 //die();
 //upcoming
-$cnd = " and StartDate > '$date' ";
+//$cnd = " and StartDate > '$date' ";
+$cnd=" and AnnDate <= '$date' and (EnrStartDate > '$date') ";
 $query3 = "SELECT COUNT(*) as totalCount FROM tblcourse where IsStatus = 1 $cnd";
 $result3 = mysql_query($query3);
  $row3 = mysql_fetch_array($result3);

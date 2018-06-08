@@ -186,10 +186,10 @@ img.wp-smiley, img.emoji {
 				<!--All cource -->
 				
 				<?php
-			$cnd= " AND 1=1 ";
+			$cnd= " AND  1=1 ";
 			$date=date('Y-m-d');
-								
-			$res=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 ORDER BY StartDate ASC")	;
+		//	and (EnrStartDate > '$date')
+			$res=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 and AnnDate <= '$date'  ORDER BY StartDate ASC")	;
 											$noofrec=mysql_num_rows($res);
 											if($noofrec>0)
 											{	 
@@ -240,21 +240,39 @@ img.wp-smiley, img.emoji {
                                        
 										</ul>
                                    
-                                    <ul class="courses-info smallfonts">
-									   
-									   <li ><?php
-									  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
-									   
-									   ?>
-                                            <br><span> <b> Start Date </b></span></li>
-                                        <li ><?php  $noofuserreg=$data['NoofUserRegistered'];	
-															$totcap=$data['TotalCapacity'];
-															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
-                                            <br><span>  <b> Seats </b></span></li>
-									<li ><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
-                                            <br><span> <b>Time</b></span></li>
-										</ul>
+										<ul class="courses-info smallfonts four_block">
+
+										<li class="smfont"><?php
+										  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+										  ?>
+												&nbsp;-&nbsp;
+										  <?php
+										  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
+										   ?>
+												<br><span> <b> Enrollment Duration</b></span></li>
+	
+										   <li class="smfont">
+										   <?php
+										  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										   
+										   ?>
+												<br><span> <b> Course Date </b></span></li>
+																					</ul>
+	
+											
+	
+											<ul class="courses-info smallfonts four_block">
+											<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> - <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
+												<br><span> <b>Time</b></span></li>
+											
+											<li class="smfont"><?php  $noofuserreg=$data['NoofUserRegistered'];	
+																$totcap=$data['TotalCapacity'];
+																$setave=$totcap-$noofuserreg; 
+																if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
+												<br><span>  <b> Seats </b></span></li>
+										
+											
+											</ul>
                                 </div>
                             </div>
                         </div>
@@ -288,7 +306,7 @@ img.wp-smiley, img.emoji {
         
 			<?php
 			$date=date('Y-m-d');
-			$cnd= " AND '$date' BETWEEN  StartDate AND EndDate ";
+			$cnd= " AND '$date' BETWEEN  EnrStartDate AND EndDate ";
 												
 			$res=mysql_query("SELECT * FROM tblcourse Where IsStatus = 1 $cnd order by StartDate ASC");
 				$noofrec=mysql_num_rows($res);
@@ -338,21 +356,40 @@ img.wp-smiley, img.emoji {
                                        
 										</ul>
                                    
-                                    <ul class="courses-info smallfonts">
-									   
-                                       <li class="smfont"><?php
+                                    <ul class="courses-info smallfonts four_block">
+
+									<li class="smfont"><?php
+									  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+									  ?>
+											&nbsp;-&nbsp;
+									  <?php
+									  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
+									   ?>
+                                            <br><span> <b> Enrollment Duration</b></span></li>
+
+                                       <li class="smfont">
+									   <?php
 									  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
 									   
 									   ?>
-                                            <br><span> <b> Start Date </b></span></li>
+                                            <br><span> <b> Course Date </b></span></li>
+                                        										</ul>
+
+										
+
+										<ul class="courses-info smallfonts four_block">
+										<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> - <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
+                                            <br><span> <b>Time</b></span></li>
+										
                                         <li class="smfont"><?php  $noofuserreg=$data['NoofUserRegistered'];	
 															$totcap=$data['TotalCapacity'];
 															$setave=$totcap-$noofuserreg; 
 															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
                                             <br><span>  <b> Seats </b></span></li>
-									<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
-                                            <br><span> <b>Time</b></span></li>
+									
+                                        
 										</ul>
+
                                 </div>
 								
                             </div>
@@ -389,10 +426,10 @@ img.wp-smiley, img.emoji {
         
 		<?php
 			$date=date('Y-m-d');											
-			$cnd=" and StartDate > '$date' ";
-			$date=date('Y-m-d');
+			$cnd=" and AnnDate <= '$date' and (EnrStartDate > '$date') ";
+			
                         
-			$res=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 $cnd order by StartDate ASC");
+			$res=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 $cnd order by AnnDate ASC");
 				$noofrec=mysql_num_rows($res);
 			if($noofrec>0)
 			{	 
@@ -440,21 +477,40 @@ img.wp-smiley, img.emoji {
                                        
 										</ul>
                                    
-                                    <ul class="courses-info smallfonts">
-									   
-                                       <li><?php
-									  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
-									   
-									   ?>
-                                            <br><span> <b> Start Date </b></span></li>
-                                        <li><?php  $noofuserreg=$data['NoofUserRegistered'];	
-															$totcap=$data['TotalCapacity'];
-															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
-                                            <br><span>  <b> Seats </b></span></li>
-									<li><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
-                                            <br><span> <b>Time</b></span></li>
-										</ul>
+										<ul class="courses-info smallfonts four_block">
+
+										<li class="smfont"><?php
+										  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+										  ?>
+												&nbsp;-&nbsp;
+										  <?php
+										  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
+										   ?>
+												<br><span> <b> Enrollment Duration</b></span></li>
+	
+										   <li class="smfont">
+										   <?php
+										  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										   
+										   ?>
+												<br><span> <b> Course Date </b></span></li>
+																					</ul>
+	
+											
+	
+											<ul class="courses-info smallfonts four_block">
+											<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> - <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
+												<br><span> <b>Time</b></span></li>
+											
+											<li class="smfont"><?php  $noofuserreg=$data['NoofUserRegistered'];	
+																$totcap=$data['TotalCapacity'];
+																$setave=$totcap-$noofuserreg; 
+																if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
+												<br><span>  <b> Seats </b></span></li>
+										
+											
+											</ul>
+
                                 </div>
                             </div>
                         </div>
@@ -539,21 +595,40 @@ img.wp-smiley, img.emoji {
                                        
 										</ul>
                                    
-                                    <ul class="courses-info smallfonts">
-									   
-                                       <li><?php
-									  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
-									   
-									   ?>
-                                            <br><span> <b> Start Date </b></span></li>
-                                        <li><?php  $noofuserreg=$data['NoofUserRegistered'];	
-															$totcap=$data['TotalCapacity'];
-															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
-                                            <br><span>  <b> Seats </b></span></li>
-									<li><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
-                                            <br><span> <b>Time</b></span></li>
-										</ul>
+										
+										<ul class="courses-info smallfonts four_block">
+
+										<li class="smfont"><?php
+										  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+										  ?>
+												&nbsp;-&nbsp;
+										  <?php
+										  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
+										   ?>
+												<br><span> <b> Enrollment Duration</b></span></li>
+	
+										   <li class="smfont">
+										   <?php
+										  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										   
+										   ?>
+												<br><span> <b> Course Date </b></span></li>
+																					</ul>
+	
+											
+	
+											<ul class="courses-info smallfonts four_block">
+											<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> - <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
+												<br><span> <b>Time</b></span></li>
+											
+											<li class="smfont"><?php  $noofuserreg=$data['NoofUserRegistered'];	
+																$totcap=$data['TotalCapacity'];
+																$setave=$totcap-$noofuserreg; 
+																if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
+												<br><span>  <b> Seats </b></span></li>
+										
+											
+											</ul>
                                 </div>
                             </div>
                         </div>
@@ -571,7 +646,7 @@ img.wp-smiley, img.emoji {
                         <div class="courses-box1">
                             <div class="single-item-wrapper">
                             	<div class="nocourse" >
-                                    <center >   No Courses are available.</center>
+                                    <center class="nocourse2" >   No Courses are available.</center>
 									</div>
                                 
                             </div>
@@ -642,21 +717,39 @@ img.wp-smiley, img.emoji {
                                        
 										</ul>
                                    
-                                    <ul class="courses-info">
-									   
-                                       <li><?php
-									  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
-									   
-									   ?>
-                                            <br><span> <b> Start Date </b></span></li>
-                                        <li><?php  $noofuserreg=$data['NoofUserRegistered'];	
-															$totcap=$data['TotalCapacity'];
-															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
-                                            <br><span>  <b> Seats </b></span></li>
-									<li><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
-                                            <br><span> <b>Time</b></span></li>
-										</ul>
+										<ul class="courses-info smallfonts four_block">
+
+										<li class="smfont"><?php
+										  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+										  ?>
+												&nbsp;-&nbsp;
+										  <?php
+										  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
+										   ?>
+												<br><span> <b> Enrollment Duration</b></span></li>
+	
+										   <li class="smfont">
+										   <?php
+										  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										   
+										   ?>
+												<br><span> <b> Course Date </b></span></li>
+																					</ul>
+	
+											
+	
+											<ul class="courses-info smallfonts four_block">
+											<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> - <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
+												<br><span> <b>Time</b></span></li>
+											
+											<li class="smfont"><?php  $noofuserreg=$data['NoofUserRegistered'];	
+																$totcap=$data['TotalCapacity'];
+																$setave=$totcap-$noofuserreg; 
+																if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
+												<br><span>  <b> Seats </b></span></li>
+										
+											
+											</ul>
                                 </div>
                             </div>
                         </div>
@@ -675,7 +768,7 @@ img.wp-smiley, img.emoji {
 			<div class="courses-box1">
 				<div class="single-item-wrapper">
 					<div class="nocourse" >
-						<center >   No Courses are available.</center>
+						<center class="nocourse2" >   No Courses are available.</center>
 						</div>
 					
 				</div>

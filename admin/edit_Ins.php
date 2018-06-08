@@ -102,7 +102,8 @@ if (isset($_POST['update']))
 	{
         //echo $demo;
       echo "<script>window.location.replace('edit_Ins.php?InsId=$demo?check=0');</script>";
-     
+    // echo "<script>window.location.replace('view_Instructor.php');</script>";
+      
         ?>
 						
 					

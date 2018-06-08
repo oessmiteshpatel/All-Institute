@@ -33,10 +33,10 @@ $result = mysql_query($query)or die(mysql_error());
         <table id="customers2" class="table datatable">
             <thead>
                 <tr>
-                    <th width="10">InsId</th>
-                    <th width="5">Instructor Name </th>
+                    <th width="80">Sr#</th>
+                    <th width="150">Instructor Name </th>
 
-                    <th width="330">About</th>
+                    <th width="">About</th>
                    
 					
 
@@ -215,7 +215,7 @@ function delete1(id)
 
        $('#customers2').dataTable( {
     "oLanguage": {
-      "sLengthMenu": "Show _MENU_ Of Instructors",
+      "sLengthMenu": "Show _MENU_ Instructors per page",
       "sInfo": "Showing _START_ to _END_ of _TOTAL_ Instructors"
     }
 });

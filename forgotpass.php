@@ -15,7 +15,7 @@ $(document).ready(function () {
         
         window.location.replace(success);
 
-    }, 5000);
+    }, 10000);
 }
 });
 </script>

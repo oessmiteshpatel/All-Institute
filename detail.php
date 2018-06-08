@@ -1,6 +1,7 @@
 <?php 
 
 include("admin/connect.php"); 
+error_reporting(0);
 $FROMNAME=FROMNAME;
 $USERNAME=USERNAME;
  $USERPASSWORD=USERPASSWORD;
@@ -276,6 +277,8 @@ h3.sidebar-title
 .noinstructor{background: #ccc;color: #000;font-size: 20px;text-align: center;padding: 50px 20px;}
 
 .sidtop{margin-top:-30px;}
+
+.sidtop-enroll {margin-top:10px !important;}
 /*ul 
 {
     margin: 1em 0px !important;
@@ -395,22 +398,15 @@ h3.sidebar-title
 									</header>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									
-									 <div class="alert alert-danger" id="dead_close" style="width:100%;margin:0px 0px 10px 0px;display:none">
-				              <b>Deadline is closed</b>
-				         </div>	
-					 <div class="alert alert-danger" id="reg_already" style="width:100%;margin:0px 0px 10px 0px;display:none">
-				              <b>You are already registered in this course.</b>
-				         </div>
-						 <div class="alert alert-danger" id="reg_close" style="width:100%;margin:0px 0px 10px 0px;display:none">
-				               <b>Registration is closed</b>
-				         </div>
+									 
+						
 											
 								   <div class="alert alert-success" id="course_enroll" style="width:100%;margin:0px 0px 10px 0px;display:none">
-				                	    <b> Thank you for registering for this course.</b>
+				                	    <b> Thank you for enroll for this course.</b>
 								   </div>
 									
 										<div class="alert alert-success" id="succes_login_id" style=" margin:0px 0px 10px 0px;display:none">
-												<b>You are login successfully.</b> <br><?php echo $emailpass ?>
+												<b>You are logged in successfully.</b> <br><?php echo $emailpass ?>
 										</div>
 									</div>
 	</div>						
@@ -485,7 +481,41 @@ h3.sidebar-title
 													 } else{echo  "Not Available";}?></p>
 													 	<div class="row">
 												<div class="col-lg-6 col-md-6">
-													<h3 class="sidebar-title sidebar-title2">Start Date <span class="fontnone">and</span> Time</h3>
+													<h3 class="sidebar-title sidebar-title2">Enrollment Duration</h3>
+													
+													<p><?php
+													if($data['EnrStartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "Not Available";}
+													?>&nbsp;&nbsp;to&nbsp;
+												<?php
+													if($data['EnrEndDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "Not Available";}
+													?>
+													</p>
+													<h3 class="sidebar-title sidebar-title2">Location</h3>
+													<p><?php if($data['Location']!='')
+												 { echo $data['Location'];}else{echo  "Not Available";}?></p>
+													<h3 class="sidebar-title sidebar-title2">Intended Audience</h3>
+													<p><?php  if($data['IntendedAudience']!=''){ echo $data['IntendedAudience'];}else{echo  "Not Available";}?></p>
+													<h3 class="sidebar-title sidebar-title2">Meeting Type</h3>
+													<p><?php  if($data['MeetingType']!=''){ echo $data['MeetingType'];}else{echo  "Not Available";}?></p>
+
+												</div>
+												
+												<div class="col-lg-6 col-md-6">
+												<h3 class="sidebar-title sidebar-title2">Course Date <span class="fontnone">and</span> Time</h3>
 													
 													<p><?php
 													if($data['StartDate']!='')
@@ -505,15 +535,7 @@ h3.sidebar-title
 													?>
 													
 													</p>
-													<h3 class="sidebar-title sidebar-title2">Location</h3>
-													<p><?php if($data['Location']!='')
-												 { echo $data['Location'];}else{echo  "Not Available";}?></p>
-													<h3 class="sidebar-title sidebar-title2">Intended Audience</h3>
-													<p><?php  if($data['IntendedAudience']!=''){ echo $data['IntendedAudience'];}else{echo  "Not Available";}?></p>
-													
-												</div>
-												
-												<div class="col-lg-6 col-md-6">
+
 													<h3 class="sidebar-title sidebar-title2 fontnone">Instructor(s)</h3>
 													<p><?php if($insres['Instructor']!=''){ echo $insres['Instructor'];}else{echo  "Not Available";}?></p>
 													<h3 class="sidebar-title sidebar-title2 fontnone">Discussant/Moderator(s)</h3>
@@ -651,11 +673,11 @@ h3.sidebar-title
 							
 							<?php
 							$date=date('Y-m-d');											
-							$cnd=" AND StartDate > '$date' ";
+							$cnd=" AND EnrStartDate > '$date' ";
 							
-							$cnd2= " AND '$date' BETWEEN  StartDate AND EndDate ";
+							$cnd2= " AND '$date' BETWEEN  EnrStartDate AND EndDate ";
 											
-			              $res=mysql_query("SELECT * FROM tblcourse Where CourseID!='$cid' and IsStatus = 1 AND (StartDate > '$date' OR '$date' BETWEEN  StartDate AND EndDate) order by StartDate ");
+			              $res=mysql_query("SELECT * FROM tblcourse Where CourseID!='$cid' and IsStatus = 1 AND (EnrStartDate <= '$date' OR '$date' BETWEEN  EnrStartDate AND EndDate) order by StartDate ");
 							$noofrec=mysql_num_rows($res);
 							if($noofrec>0)
 							{	
@@ -695,35 +717,40 @@ h3.sidebar-title
 											</li>
                                        
 										</ul>
-										   
-                                            <ul class="courses-info smallfonts">
-												<li><?php //echo $data1['StartDate'];
-												 $endDate = date('m/d/Y', strtotime($data1['StartDate']));  
-									   
-												 echo  $endDate;
-												
-												?>
-                                                    <br><span><b> Start Date</b></span></li>
-                                                <li><?php  $noofuserreg=$data1['NoofUserRegistered'];	
-															$totcap=$data1['TotalCapacity'];
-															$setave=$totcap-$noofuserreg; 
-															if($setave!=''){ echo $setave;}else{echo  "Not Available";}?>
-                                                    <br><span><b>Seats</b></span></li>
+										<ul class="courses-info smallfonts four_block">
 
-										<li>
-										
-											 <?php
-													//echo $data1['StartTime'];
+<li class="smfont"><?php
+  echo $endDate = date('m/d/Y', strtotime($data1['EnrStartDate']));  
+  ?>
+		&nbsp;-&nbsp;
+  <?php
+  echo $endDate = date('m/d/Y', strtotime($data1['EnrEndDate']));
+   ?>
+		<br><span> <b> Enrollment Duration</b></span></li>
 
-												//echo $data1['StartTime']; 										 
-											 	$D=date("h:i a", strtotime($data1['StartTime']));echo $D; ?> to <?php $E=date("h:i a", strtotime($data1['EndTime']));echo $E;
-											  ?>
+   <li class="smfont">
+   <?php
+  echo $endDate = date('m/d/Y', strtotime($data1['StartDate']));  
+   
+   ?>
+		<br><span> <b> Course Date </b></span></li>
+											</ul>
 
-										
+	
 
-										
-                                                    <br><span><b> Time</b></span></li>
-                                            </ul>
+	<ul class="courses-info smallfonts four_block">
+	<li class="smfont"><?php $D=date("h:i a", strtotime($data1['StartTime']));echo $D; ?> - <?php $E=date("h:i a", strtotime($data1['EndTime']));echo $E; ?>
+		<br><span> <b>Time</b></span></li>
+	
+	<li class="smfont"><?php  $noofuserreg=$data1['NoofUserRegistered'];	
+						$totcap=$data1['TotalCapacity'];
+						$setave=$totcap-$noofuserreg; 
+						if($setave!=''){ echo $setave;}else{echo  "N/A";}?>
+		<br><span>  <b> Seats </b></span></li>
+
+	
+	</ul>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -735,7 +762,7 @@ h3.sidebar-title
 					
                             <div class="single-item-wrapper">
                             	<div class="nocourse" >
-                                    <center class="nocourse2">   No Course Available..</center>
+                                    <center class="nocourse2">   No Course Available.</center>
 									</div>
                                 
                             </div>
@@ -863,27 +890,37 @@ $ccid=$data['CourseID'];
 		if($isactive=="1")
 		{
 		?>
-			
-			
 
-				<script>
-$(document).ready(function () {
-    if(window.location.href.indexOf("check=0") > -1) {
-        $('#succes_login_id').css('display','block');
-   
-     setTimeout(function() {
-        $('#succes_login_id').css('display','none');
+									<script>
+									<?php
+					if(isset($_GET['cid']))
+					{
 
-				var my_variable_name = window.location.href;
-        
-        var success = my_variable_name.replace("?check=0", '');
-        
-        window.location.replace(success);
+						?>
+					var check = <?php echo $_SESSION['check'];?> 
+						
+						<?php
+						unset($_SESSION['check']);
+					}
+					?>
+					$(document).ready(function () {
+						if(check==1) {
+							//if(cid){
+							$('#succes_login_id').css('display','block');
+					
+						setTimeout(function() {
+							$('#succes_login_id').css('display','none');
 
-    }, 5000);
-}
-});
-</script>
+									var my_variable_name = window.location.href;
+							
+							var success = my_variable_name.replace("?check=0", '');
+							
+							//window.location.replace(success);
+
+						}, 10000);
+					}
+					});
+					</script>
 
 				<!-- <script>
 setTimeout(function() {
@@ -892,16 +929,16 @@ setTimeout(function() {
 					
 				</script> -->
 			
-			
-				<div class="sidebar-box">
-                    <div class="sidebar-box-inner">	
-						<a href="logout.php"><button type="submit" class="btn btn-danger btn-block" name="signinbtn">Logout</button></a>
-					</div>
-				</div>
+					<br>
+						<div class="sidebar-box">
+							<div class="sidebar-box-inner">	
+								<a href="logout.php"><button type="submit" class="btn btn-danger btn-block" name="signinbtn">Logout</button></a>
+							</div>
+						</div>
 						
 		
 					
-		<?php
+			<?php
 								   
 				$selcourse=mysql_query("select * from tblcourse where CourseID='$cid'");
 				$res1=mysql_fetch_array($selcourse);
@@ -931,7 +968,7 @@ setTimeout(function() {
 					{	
 					?>
 					
-					<script>
+										<script>
 											$( document ).ready(function() {
 												$('#dead_close').attr('style','display:block;');  
 												setTimeout(function() {
@@ -946,8 +983,7 @@ setTimeout(function() {
 					else if($enrol!=0)
 					{
 					?>
-					
-					<script>
+										<script>
 											$( document ).ready(function() {
 												$('#reg_already').attr('style','display:block;');  
 												setTimeout(function() {
@@ -965,7 +1001,7 @@ setTimeout(function() {
 					{
 					?>
 					
-					<script>
+										<script>
 											$( document ).ready(function() {
 												$('#reg_close').attr('style','display:block;');  
 												setTimeout(function() {
@@ -978,7 +1014,6 @@ setTimeout(function() {
 													
 					<?php	
 					}
-
 					else
 					{
 					
@@ -1045,13 +1080,8 @@ setTimeout(function() {
 									<b>Intended Audience</b>: $IntendedAudience<br>
 									<b>Meeting Type</b>: $MeetingType<br>
 									<b>Fees</b>: $$CourseFees<br><br>
-									
 									If you need to make any changes to this, please do not hesitate to
 									contact us at Manny@AERExperts.com.<br><br>
-									
-
-									
-
 									Thank you,<br>
 									<b>AERE Team</b>";
 									$mail->AddAddress($emailpass);
@@ -1064,202 +1094,396 @@ setTimeout(function() {
 									{
 										
 										
-									require_once('email/class.phpmailer.php');
-									$mail = new PHPMailer(); // create a new object
-									$mail->IsSMTP(); // enable SMTP
-									$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
-									$mail->SMTPAuth = true; // authentication enabled
-									$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
-									$mail->Host = "smtp.gmail.com";
-									$mail->Port = 465; // or 587
-									$mail->IsHTML(true);
-									$mail->FromName=FROMNAME; 
-									$mail->Username=USERNAME;
-									$mail->Password=USERPASSWORD;
-									$mail->SetFrom=SETFROM;
-									
-									$mail->Subject = "New registration for course $tit";
-									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
-									Hey Team, <br/><br>
-										
-									Someone just registered to take the course: <b>$tit</b><br><br>
-									
-									<b>First name</b>: $fnm<br>
-									<b>Last name</b>: $lnm<br>
-									<b>Email ID</b>: $em<br>
-									<b>Address</b>: $add<br>
-									<b>Phone number</b>: $pno<br>
-									<br/><br/>
-										
-										
-									Thank You,<br/>
-									<b>Our web Team </b><br/>";
-									$mail->AddAddress($SETTO);
-									if(!$mail->Send())
-									{
-										echo "Mailer Error: " . $mail->ErrorInfo;
-									}
-									else
-									{
-										?>
-										
-										<script>
-											$( document ).ready(function() {
-												$('#course_enroll').attr('style','display:block;');  
-												setTimeout(function() {
+												require_once('email/class.phpmailer.php');
+												$mail = new PHPMailer(); // create a new object
+												$mail->IsSMTP(); // enable SMTP
+												$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+												$mail->SMTPAuth = true; // authentication enabled
+												$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+												$mail->Host = "smtp.gmail.com";
+												$mail->Port = 465; // or 587
+												$mail->IsHTML(true);
+												$mail->FromName=FROMNAME; 
+												$mail->Username=USERNAME;
+												$mail->Password=USERPASSWORD;
+												$mail->SetFrom=SETFROM;
+												
+												$mail->Subject = "New registration for course $tit";
+												$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
+												Hey Team, <br/><br>	
+												Someone just registered to take the course: <b>$tit</b><br><br>
+												<b>First name</b>: $fnm<br>
+												<b>Last name</b>: $lnm<br>
+												<b>Email ID</b>: $em<br>
+												<b>Address</b>: $add<br>
+												<b>Phone number</b>: $pno<br>
+												<br/><br/>	
+												Thank You,<br/>
+												<b>Our web Team </b><br/>";
+												$mail->AddAddress($SETTO);
+												if(!$mail->Send())
+												{
+													echo "Mailer Error: " . $mail->ErrorInfo;
+												}
+												else
+												{
+													?>
+													
+													<script>
+														$( document ).ready(function() {
+															$('#course_enroll').attr('style','display:block;');  
+															setTimeout(function() {
+														
+															$('#course_enroll').fadeOut('hide');
+															}, 10000);
+													});	
+													</script>
+												
+													
+													<script>
+														document.getElementById('num').innerHTML = +document.getElementById('num').innerHTML - 1;
+													</script>
+												<?php
+													
+												}
 											
-												$('#course_enroll').fadeOut('hide');
-												}, 10000);
-										});
-											
-										</script>
-									
-										
-									<script>
-										document.getElementById('num').innerHTML = +document.getElementById('num').innerHTML - 1;
-									</script>
-							<?php
-										
-									}
-										
-										
-										
 									}												
 						}
 					}
 																									
 				}			 
 				?>          
-						 <?php 
-									 // $date=date('Y-m-d');
-									 // $cnd=" and (EndDate < '$date' ) ";
-									 // $res=mysql_query("SELECT * FROM tblcourse Where CourseID='$cid' $cnd order by StartDate");
-		
-									 // $rec=mysql_num_rows($res);
-									
-									
-									$enr=mysql_query("select * from tblcourseregistered where CourseID='$cid' && RegisterId='$regid' ");			
-									$enrol=mysql_fetch_array($enr);
-									
-									?>
-						 <?php if($enrol!=0 or $noofseat>=$totseat){?>  
-						<!--	<div class="alert alert-danger" id="deadline_close_id" style="width:262px; margin:0px 0px 10px 0px">
-				              <strong>Deadline is closed</strong>
-				         </div>	-->
-				<script>
-setTimeout(function() {
-  $('#deadline_close_id').fadeOut('hide');
-}, 10000);
+				<?php 
+						// $date=date('Y-m-d');
+						// $cnd=" and (EndDate < '$date' ) ";
+						// $res=mysql_query("SELECT * FROM tblcourse Where CourseID='$cid' $cnd order by StartDate");
+
+						// $rec=mysql_num_rows($res);
 					
-				</script>
-						 <?php }?>
+					
+					$enr=mysql_query("select * from tblcourseregistered where CourseID='$cid' && RegisterId='$regid' ");			
+					$enrol=mysql_fetch_array($enr);				
+					if($enrol!=0 or $noofseat>=$totseat)
+					{
+					?>  
+				<!--	<div class="alert alert-danger" id="deadline_close_id" style="width:262px; margin:0px 0px 10px 0px">
+						<strong>Deadline is closed</strong>
+					</div>	-->
+					<script>
+						setTimeout(function() {
+						$('#deadline_close_id').fadeOut('hide');
+						}, 10000);
+					
+					</script>
+				  <?php
+				   }?>
+
+				<?php
+				
+				
+				    $date=date('Y-m-d');
+				    $cnd=" and  ('$date' BETWEEN EnrStartDate and EnrEndDate) ";
+					$res_new=mysql_query("SELECT * FROM tblcourse Where  IsStatus = 1 and CourseID='$cid' and  (EndDate < '$date' ) order by StartDate ASC");	
+					$logme=mysql_fetch_array($res_new);	
+					//$CourseID=$logme['CourseID'];
+					$resann2=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 and CourseID = '".$data['CourseID']."' and (EnrStartDate > '$date')  order by AnnDate ASC");
+					$ANN=mysql_fetch_array($resann2);
+					$recann2=mysql_num_rows($resann2);
+					//$ANND=$ANN['EnrStartDate'];
+					
+					$resann3=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 and CourseID = '".$data['CourseID']."' and (EnrEndDate < '$date')  order by AnnDate ASC");
+					$ANN=mysql_fetch_array($resann3);
+					$recann3=mysql_num_rows($resann3);
+
+
+					$noofrec_new=mysql_num_rows($res_new);
+					if($noofrec_new>0)
+					{
+					?>
+					 <!-- <div class="alert alert-danger" id="dead_close" style="width:100%;margin:0px 0px 10px 0px;display:none">
+				              <b>This course is expired.</b>
+				         </div>					 -->
+							<div class="sidebar">
+									<div class="sidebar-box sidtop1">
+										<div class="sidebar-box-inner">	
+						
+										<h3 class="sidebar-title">The <span class="fontnone">course is ended</span></h3>
+										
+										</div>
+									</div>	
+								</div>
+					<?php
+					 } 
+					 else if($recann2>0)
+					 {
+
+								
+									?>
+										<br>
+											<div class="sidebar sidtop-enroll">
+													<div class="sidebar-box sidtop">
+													<div class="sidebar-box-inner">	
+							
+														<h3 class="sidebar-title"><span class="fontnone">Course will start soon</span></h3>
+											
+													</div>
+												</div>	
+												</div>
+									<?php	
 						 
+
+					 }
+					 else if($recann3>0)
+					 {
+
+								
+									?>
+										<br>
+											<div class="sidebar sidtop-enroll">
+													<div class="sidebar-box sidtop">
+													<div class="sidebar-box-inner">	
+							
+														<h3 class="sidebar-title"><span class="fontnone">Enrollment is ended</span></h3>
+											
+													</div>
+												</div>	
+												</div>
+									<?php	
+						 
+
+					 }
+					else
+					{
+					?>
+						<div class="alert alert-danger" id="dead_close" style="width:100%;margin:0px 0px 10px 0px;display:none">
+							<b>This course is expired.</b>
+						</div>	
+						<div class="alert alert-danger" id="reg_already" style="width:100%;margin:0px 0px 10px 0px;display:none">
+							<b>You are already enrolled for this course.</b>
+						</div>
+						<div class="alert alert-danger" id="reg_close" style="width:100%;margin:0px 0px 10px 0px;display:none">
+							<b>There is no seats available for this course.</b>
+						</div>
+
 						<form method="post">
 							<div class="sidebar-box">
 								<div class="sidebar-box-inner">	
+								
 									<input type="button"  
-									<?php if(($enrol!=0 or $noofseat>=$totseat) or $rec > 0){?> disabled <?php }?>  class="btn btn-danger btn-block" value="Enrollment" id="Evidential_btn">	
-								 </div>
+									<?php 
+									if(($enrol!=0 or $noofseat>=$totseat) or $rec > 0)
+									{
+									?> 
+									disabled
+									<?php 
+									}
+									?>
+									class="btn btn-danger btn-block" value="Enroll" id="Evidential_btn">	
+								</div>
 							</div>
 
-
-							<div class="modal fade bs-example-modal-sm" id="Update_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document" style="margin:20% auto;">
-        <div class="modal-content">
-            <div class="modal-body" >
-              	<p>Are you sure you want to register this course?</p>
-              </div>
-              <div class="modal-footer text-center">
-              	<!--<button type="button" class="next_btn" id="yes_btn" name="update">Yes</button>-->
-				<center><input type="submit"  value="Yes" id="yesbtn" name="enroll" class="btn btn-success"/>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button></center>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-	$('#Evidential_btn').click(function () {
-   $("#Update_Modal").modal('show');
-});
-
-</script>
-						</form>	
-
-						
-		<?php		
-		}
-		else 
-		{
-		?>
-
-			
-						
-					 <div class="sidebar">
-		                    <div class="sidebar-box">
-                                <div class="sidebar-box-inner">	
-				
-								 <h3 class="sidebar-title">Enroll</h3>
-                                    <div class="sidebar-course-price">
-                                        
-                                        <a href="registration2.php?cid=<?php echo $_REQUEST['cid'];?>">
-										<button type="submit" class="btn btn-danger btn-block">Sign In</button></a>
-                                        
-                                    </div>
+											
+								<div class="modal fade bs-example-modal-sm" id="Update_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog modal-sm" role="document" style="margin:20% auto;">
+									<div class="modal-content">
+										<div class="modal-body" >
+											<p>Are you sure you want to enroll this course?</p>
+										</div>
+										<div class="modal-footer text-center">
+											<!--<button type="button" class="next_btn" id="yes_btn" name="update">Yes</button>-->
+											<center><input type="submit"  value="Yes" id="yesbtn" name="enroll" class="btn btn-success"/>
+											<button type="button" class="btn btn-danger" data-dismiss="modal">No</button></center>
+										</div>
+									</div>
 								</div>
-							</div>	
-		                </div>
+							</div>
+								<script>
+									$('#Evidential_btn').click(function () {
+								$("#Update_Modal").modal('show');
+								});
+
+								</script>
+					</form>	
+					<?php 
+					} 
+					?>	
+
+
+
+
+
+					<?php		
+				}
+				else 
+				{
+				?>
+						<div class="sidebar">
+								<div class="sidebar-box">
+									<div class="sidebar-box-inner">	
+					
+									<h3 class="sidebar-title">Enroll</h3>
+										<div class="sidebar-course-price">
+											
+											<a href="registration2.php?cid=<?php echo $_REQUEST['cid'];?>">
+											<button type="submit" class="btn btn-danger btn-block">Sign In</button></a>
+											
+										</div>
+									</div>
+								</div>	
+							</div>
 				<?php
-		}	
+				}	
 	}
 
-	
-	//echo '<pre>'; echo print_r($data); 
-	if($data['CourseID'] && $isactive!="1")
-	{
-		$date=date('Y-m-d');
-		$cnd=" and (EndDate < '$date' ) ";
-		$res=mysql_query("SELECT c.* FROM tblcourse as c Where CourseID = '".$data['CourseID']."' and (EndDate < '$date')");
-		//$data=mysql_fetch_array($res);
-		$noofrecin=mysql_num_rows($res);
-			if($noofrecin==0)
-			{
 
-		?>
-		<br>
-		 <div class="sidebar">
-		                    <div class="sidebar-box sidtop">
-                                <div class="sidebar-box-inner">	
-				
-								 <h3 class="sidebar-title">Enroll</h3>
-                                    <div class="sidebar-course-price">
-                                        
-                                        <a href="registration2.php?cid=<?php echo $_REQUEST['cid'];?>">
-										<button type="submit" class="btn btn-danger btn-block">Sign In</button></a>
-                                        
-                                    </div>
-								</div>
-							</div>	
-		                </div>
-						<?php
-			}
-			else
-			{
-			?>
-				<br>
-		 <div class="sidebar">
-		                    <div class="sidebar-box sidtop">
-                                <div class="sidebar-box-inner">	
-				
-								 <h3 class="sidebar-title">The <span class="fontnone">course is ended</span></h3>
-                                   
-								</div>
-							</div>	
-		                </div>
-<?php
-			}
-	}
-	
-	?> 
+
+					 $date=date('Y-m-d');
+					 $cnd=" and (EndDate < '$date' ) ";
+					 $res=mysql_query("SELECT * FROM tblcourse Where CourseID='$cid' $cnd order by StartDate");
+
+					 $rec=mysql_num_rows($res);
+					
+					if($edate < $date1 &&  $rec>0)
+					{	
+					?>
+					
+										<script>
+											$( document ).ready(function() {
+												$('#dead_close').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#dead_close').fadeOut('hide');
+												}, 10000);
+										});
+										</script>
+                        
+					<?php	
+					}
+					else if($enrol!=0)
+					{
+					?>
+										<script>
+											$( document ).ready(function() {
+												$('#reg_already').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#reg_already').fadeOut('hide');
+												}, 10000);
+										});
+										</script>	
+					<?php
+					}
+					else if($noofseat>=$totseat)
+					{
+					?>
+					
+					<script>
+											$( document ).ready(function() {
+												$('#reg_close').attr('style','display:block;');  
+												setTimeout(function() {
+											
+												$('#reg_close').fadeOut('hide');
+												}, 10000);
+										});
+										</script>
+                    
+													
+					<?php	
+					}
+
+					
+					
+					
+					
+					error_reporting(0);
+					//echo '<pre>'; echo print_r($data); 
+					if($data['CourseID'] && $isactive!="1")
+					{
+
+						
+								$date=date('Y-m-d');											
+								//$cnd=" and AnnDate >= '$date' and (EnrStartDate > '$date') ";
+							
+										
+								$resann=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 and CourseID = '".$data['CourseID']."' and (EnrStartDate > '$date')  order by AnnDate ASC");
+								$ANN=mysql_fetch_array($resann);
+								$recann=mysql_num_rows($resann);
+								$ANND=$ANN['EnrStartDate'];
+								if($recann)
+								{
+
+									?>
+										<br>
+											<div class="sidebar">
+													<div class="sidebar-box sidtop">
+													<div class="sidebar-box-inner">	
+							
+														<h3 class="sidebar-title"><span class="fontnone">Course will start soon</span></h3>
+											
+													</div>
+												</div>	
+												</div>
+									<?php
+
+								}
+								else
+								{
+
+
+									$date=date('Y-m-d');
+									$cnd=" and (EndDate < '$date' ) ";
+									$res=mysql_query("SELECT c.* FROM tblcourse as c Where CourseID = '".$data['CourseID']."' and (EndDate < '$date')");
+									//$data=mysql_fetch_array($res);
+									$noofrecin=mysql_num_rows($res);
+									if($noofrecin==0)
+									{
+			
+									?>
+									<br>
+										<div class="sidebar">
+											<div class="sidebar-box sidtop">
+													<div class="sidebar-box-inner">	
+							
+													<h3 class="sidebar-title">Enroll</h3>
+															<div class="sidebar-course-price">
+													
+															<a href="registration2.php?cid=<?php echo $_REQUEST['cid'];?>">
+																<button type="submit" class="btn btn-danger btn-block">Sign In</button></a>
+													
+															</div>
+												</div>
+											</div>	
+										</div>
+									<?php
+									}
+									else
+									{
+									?>
+										<br>
+											<div class="sidebar">
+													<div class="sidebar-box sidtop">
+													<div class="sidebar-box-inner">	
+							
+														<h3 class="sidebar-title">The <span class="fontnone">course is ended</span></h3>
+											
+													</div>
+												</div>	
+												</div>
+									<?php
+									}
+								}
+		
+						
+
+
+						}
+					?> 
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>

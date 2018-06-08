@@ -52,30 +52,31 @@ if (!isset($_SESSION['user'])) {
                     </li>
 
                     <li class=" <?php echo ($activePage == "dashboard" ? "active" : ""); ?>">
-                        <a href="dashboard.php"><span class="fa fa-home"></span> <span class="xn-text">Dashboard</span></a>
+                        <a href="dashboard.php"><span class="fa fa-home" title="Dashboard"></span> <span class="xn-text">Dashboard</span></a>
 
                     </li>
                     <li class=" <?php echo ($activePage == "view_Registration" ? "active" : ""); ?>">
-                        <a href="view_Registration.php"><span class="fa fa-users"></span> <span class="xn-text">Registered Users</span></a>
+                        <a href="view_Registration.php"><span class="fa fa-users" title="Registered Users"></span> <span class="xn-text">Registered Users</span></a>
 
                     </li>
                     <li class=" <?php echo ($activePage == "view_CourseRegistered" ? "active" : ""); ?>">
-                        <a href="view_CourseRegistered.php"><span class="fa fa-list"></span> <span class="xn-text">Users per Course</span></a>
+                        <a href="view_CourseRegistered.php"><span class="fa fa-list" title="Users per Course"></span> <span class="xn-text">Users per Course</span></a>
                     </li>
-                    <li class="xn-openable <?php echo ($activePage == "view_Course" ? "active" : ""); ?> <?php echo ($activePage == "add_Course" ? "active" : ""); ?>" >
-                        <a href="#"><span class="fa fa-plus"></span> <span class="xn-text"> All about courses</span></a>
+                    
+                    <li class="xn-openable <?php echo ($activePage == "view_Course" ? "active" : ""); ?> <?php echo ($activePage == "add_Course" ? "active" : ""); ?> <?php echo ($activePage == "edit" ? "active" : ""); ?>" >
+                        <a href="#"><span class="fa fa-plus" title="All about courses"></span> <span class="xn-text"> All about courses</span></a>
 
                         <ul>
-                            <li class="<?php echo ($activePage == "view_Course" ? "active" : ""); ?>"><a href="view_Course.php"><span class="fa fa-list"></span> List of Courses</a></li>
-                            <li class="<?php echo ($activePage == "add_Course" ? "active" : ""); ?>"><a href="add_Course.php"><span class="fa fa-plus"></span> Add Course</a></li>
+                            <li class="<?php echo ($activePage == "view_Course" ? "active" : ""); ?>"><a href="view_Course.php"><span class="fa fa-list" title="List of Courses"></span> List of Courses</a></li>
+                            <li class="<?php echo ($activePage == "add_Course" ? "active" : ""); ?>"><a href="add_Course.php"><span class="fa fa-plus" title="Add Course"></span> Add Course</a></li>
                         </ul>
                     </li>
-					<li class="xn-openable <?php echo ($activePage == "view_Instructor" ? "active" : ""); ?> <?php echo ($activePage == "add_Instructor" ? "active" : ""); ?>" >
-                        <a href="#"><span class="fa fa-plus"></span> <span class="xn-text"> All about Instructor</span></a>
+					<li class="xn-openable <?php echo ($activePage == "view_Instructor" ? "active" : ""); ?> <?php echo ($activePage == "add_Instructor" ? "active" : ""); ?> <?php echo ($activePage == "edit_Ins" ? "active" : ""); ?>" >
+                        <a href="#"><span class="fa fa-plus" title="All about Instructor"></span> <span class="xn-text"> All about Instructor</span></a>
 
                         <ul>
-                            <li class="<?php echo ($activePage == "view_Instructor" ? "active" : ""); ?>"><a href="view_Instructor.php"><span class="fa fa-list"></span> List of Instructor</a></li>
-                            <li class="<?php echo ($activePage == "add_Instructor" ? "active" : ""); ?>"><a href="add_Instructor.php"><span class="fa fa-plus"></span> Add Instructor</a></li>
+                            <li class="<?php echo ($activePage == "view_Instructor" ? "active" : ""); ?>"><a href="view_Instructor.php"><span class="fa fa-list" title="List of Instructor"></span> List of Instructor</a></li>
+                            <li class="<?php echo ($activePage == "add_Instructor" ? "active" : ""); ?>"><a href="add_Instructor.php"><span class="fa fa-plus" title="Add Instructor"></span> Add Instructor</a></li>
                         </ul>
                     </li>
               <!--

@@ -156,6 +156,9 @@ h1, .h1 {
     font-weight: bold!important;
     line-height: 1.1;
 }
+.four_block{margin: 0px -10px 8px!important; height: auto!important;}
+.four_block li:first-child{width: 58%;}
+.four_block li:last-child{width: 38%;}
 
 @media screen and (max-width:1300px){
 	#main{ min-height: 0;}

@@ -36,9 +36,9 @@ $result = mysql_query($query)or die(mysql_error());
                     <th width="80">Sr#</th>
                     <th width="280">Course title </th>
 
-                    <th width="100">Start Enrollment Date</th>
-                    <th width="100">End Enrollment Date</th>
-					 <th width="80">Time</th>
+                    <th width="100">Course Start Date</th>
+                    <th width="100">Course End Date</th>
+					 <th width="50">Time</th>
                     <th>Location</th>
                    
                    
@@ -60,11 +60,11 @@ $result = mysql_query($query)or die(mysql_error());
 				{
 
                     $IsStatus = $row['IsStatus'];
-					$D=date("H:i:s", strtotime($row['StartTime']));
+					
                     ?>
                     <tr>
                        <?php //echo $i; ?>
-						<td><?php echo $row['CourseID']; ?></td>
+						<td><?php echo $i; ?></td>
                         <td width="280"><?php echo $row['Title']; ?></td>
 
                         <?php $sdate = date_create($row['StartDate']); ?>
@@ -72,7 +72,8 @@ $result = mysql_query($query)or die(mysql_error());
 
                         <?php $edate = date_create($row['EndDate']); ?>
                         <td><?php echo date_format($edate, 'm/d/Y') ?></td>
-						 <td><?php echo $D; ?></td>
+						 <td><?php $stimes=date("h:i a", strtotime($data['StartTime']));
+													echo $stimes; ?></td>
                         <td width="100"><?php echo $row['Location']; ?></td>
                        
 
@@ -219,7 +220,7 @@ function delete1(id)
 
        $('#customers2').dataTable( {
     "oLanguage": {
-      "sLengthMenu": "Show _MENU_ Of Courses",
+      "sLengthMenu": "Show _MENU_ Courses per page",
       "sInfo": "Showing _START_ to _END_ of _TOTAL_ Courses"
     }
 });

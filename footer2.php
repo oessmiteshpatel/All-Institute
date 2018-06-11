@@ -16,7 +16,6 @@
   gtag('config', 'UA-119991718-1');
 </script>
 
-
 <script>
 $(".navbar-toggle").click(function() {  
     $(this).toggleClass("active_toggle");   

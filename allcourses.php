@@ -11,45 +11,45 @@ include("admin/connect.php");
 <title>ALL-Institute | Courses</title>
         <link rel="apple-touch-icon" href="image/favicon-apple.png">
         <link rel="icon" href="image/favicon.png">
-        <link rel="pingback" href="http://tritraining.edu.au/xmlrpc.php">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link type="text/css" media="screen" rel="stylesheet" href="css/awwwards.css" />
-        <link type="text/css" media="screen" rel="stylesheet" href="css/fastfonts.css" />
+        <!--<link rel="pingback" href="http://tritraining.edu.au/xmlrpc.php">-->
+        <!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
+    	<!-- <link type="text/css" media="screen" rel="stylesheet" href="css/awwwards.css" />-->
+        <!--<link type="text/css" media="screen" rel="stylesheet" href="css/fastfonts.css" />-->
 		
 		
 		
 		 <!-- Normalize CSS -->
-		 <link rel="stylesheet" href="css_new/all_ins.css">	
+		 <!--<link rel="stylesheet" href="css_new/all_ins.css">	-->
 
-    <link rel="stylesheet" href="css_new/normalize.css">
+    <!--<link rel="stylesheet" href="css_new/normalize.css">-->
     <!-- Main CSS -->
-    <link rel="stylesheet" href="css_new/main.css">
+    <!--<link rel="stylesheet" href="css_new/main.css">-->
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css_new/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="css_new/bootstrap.min.css">-->
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="css_new/animate.min.css">
+    <!--<link rel="stylesheet" href="css_new/animate.min.css">-->
     <!-- Font-awesome CSS-->
     <link rel="stylesheet" href="css_new/font-awesome.min.css">
     <!-- Owl Caousel CSS -->
-    <link rel="stylesheet" href="vendor/OwlCarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="vendor/OwlCarousel/owl.theme.default.min.css">
+    <!--<link rel="stylesheet" href="vendor/OwlCarousel/owl.carousel.min.css">-->
+    <!--<link rel="stylesheet" href="vendor/OwlCarousel/owl.theme.default.min.css">-->
     <!-- Main Menu CSS -->
-    <link rel="stylesheet" href="css_new/meanmenu.min.css">
+    <!--<link rel="stylesheet" href="css_new/meanmenu.min.css">-->
     <!-- nivo slider CSS -->
-    <link rel="stylesheet" href="vendor/slider/css/nivo-slider.css" type="text/css" />
-    <link rel="stylesheet" href="vendor/slider/css/preview.css" type="text/css" media="screen" />
+    <!--<link rel="stylesheet" href="vendor/slider/css/nivo-slider.css" type="text/css" />-->
+    <!--<link rel="stylesheet" href="vendor/slider/css/preview.css" type="text/css" media="screen" />-->
     <!-- Datetime Picker Style CSS -->
-    <link rel="stylesheet" href="css_new/jquery.datetimepicker.css">
+    <!--<link rel="stylesheet" href="css_new/jquery.datetimepicker.css">-->
     <!-- Magic popup CSS -->
-    <link rel="stylesheet" href="css_new/magnific-popup.css">
+    <!--<link rel="stylesheet" href="css_new/magnific-popup.css">-->
     <!-- Switch Style CSS -->
     <link rel="stylesheet" href="css_new/hover-min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css_new/style.css">
     <!-- Modernizr Js -->
-    <script src="js_new/modernizr-2.8.3.min.js"></script>
+    <!--<script src="js_new/modernizr-2.8.3.min.js"></script>-->
 		
-		
+	<script src="js_new/main.js" type="text/javascript" defer></script>
       
         <style type="text/css">
 img.wp-smiley, img.emoji {
@@ -69,19 +69,19 @@ img.wp-smiley, img.emoji {
 	margin-top:13px; 
 }
 </style>
-        <link rel='stylesheet' id='ajax-load-more-css'  href='css/ajax-load-more.css' type='text/css' media='all' />
-        <link rel='stylesheet' id='rs-plugin-settings-css'  href='css/settings.css' type='text/css' media='all' />
+        <!--<link rel='stylesheet' id='ajax-load-more-css'  href='css/ajax-load-more.css' type='text/css' media='all' />-->
+        <!--<link rel='stylesheet' id='rs-plugin-settings-css'  href='css/settings.css' type='text/css' media='all' />-->
         <style id='rs-plugin-settings-inline-css' type='text/css'>
 
 </style>
-        <link rel='stylesheet' id='cpsh-shortcodes-css'  href='css/shortcodes.css' type='text/css' media='all' />
+        <!--<link rel='stylesheet' id='cpsh-shortcodes-css'  href='css/shortcodes.css' type='text/css' media='all' />-->
         <link rel='stylesheet' id='bones-boot-css'  href='css/bootstrap.min.css' type='text/css' media='all' />
-        <link rel='stylesheet' id='bones-magnafic-css'  href='css/magnific-popup.css' type='text/css' media='all' />
-        <link rel='stylesheet' id='bones-animate-css'  href='css/animate.css' type='text/css' media='all' />
+        <!--<link rel='stylesheet' id='bones-magnafic-css'  href='css/magnific-popup.css' type='text/css' media='all' />
+        <link rel='stylesheet' id='bones-animate-css'  href='css/animate.css' type='text/css' media='all' />-->
         <link rel='stylesheet' id='bones-stylesheet-css'  href='css/style.css' type='text/css' media='all' />
-        <link rel='stylesheet' id='bones-icons-css'  href='css/icons.css' type='text/css' media='all' />
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-        <link rel='stylesheet' id='googleFonts-css'  href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' type='text/css' media='all' />
+        <!--<link rel='stylesheet' id='bones-icons-css'  href='css/icons.css' type='text/css' media='all' />-->
+		<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">-->
+        <!--<link rel='stylesheet' id='googleFonts-css'  href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' type='text/css' media='all' />-->
         </head>
 
         <body class="home page page-id-2 page-template page-template-page-home single single-team page-template-page-home-php desktop">
@@ -908,10 +908,10 @@ img.wp-smiley, img.emoji {
         </div>
 		
 		
-<link rel='stylesheet' id='gforms_reset_css-css'  href='css/formreset.min.css' type='text/css' media='all' />
+<!--<link rel='stylesheet' id='gforms_reset_css-css'  href='css/formreset.min.css' type='text/css' media='all' />-->
 <link rel='stylesheet' id='gforms_formsmain_css-css'  href='css/formsmain.min.css' type='text/css' media='all' />
-<link rel='stylesheet' id='gforms_ready_class_css-css'  href='css/readyclass.min.css' type='text/css' media='all' />
-<link rel='stylesheet' id='gforms_browsers_css-css'  href='css/browsers.min.css' type='text/css' media='all' />
+<!--<link rel='stylesheet' id='gforms_ready_class_css-css'  href='css/readyclass.min.css' type='text/css' media='all' />-->
+<!--<link rel='stylesheet' id='gforms_browsers_css-css'  href='css/browsers.min.css' type='text/css' media='all' />-->
 
 
         <script type="text/javascript">
@@ -928,13 +928,13 @@ $('#mobile-nav-button').on('click',function(){
    $('.menu-main').removeClass('none');
 });
 </script>
-<script type='text/javascript' src='js/magnific-popup.js'></script> 
-<script type='text/javascript' src='js/wow.min.js'></script> 
-<script type='text/javascript' src='js/scripts.min.js'></script> 
-<script type='text/javascript' src='js/jquery.sticky-kit.js'></script> 
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<!--<script type='text/javascript' src='js/magnific-popup.js'></script> -->
+<!--<script type='text/javascript' src='js/wow.min.js'></script> -->
+<!--<script type='text/javascript' src='js/scripts.min.js'></script> -->
+<!--<script type='text/javascript' src='js/jquery.sticky-kit.js'></script> -->
+<!--<script src="//code.jquery.com/jquery-1.12.4.js"></script>-->
+<!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
+<!--<script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
  
 
 <script class="init" type="text/javascript">
@@ -962,44 +962,44 @@ $(".about-the-quickfacts").stick_in_parent({
 </script>
 
 <!-- Preloader Start Here -->
-<div id="preloader"></div>
+<!--<div id="preloader"></div>-->
 <!-- Preloader End Here --> 
 <!-- jquery--> 
-<script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script> 
+<!--<script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script> -->
 <!-- Plugins js --> 
-<script src="js_new/plugins.js" type="text/javascript"></script> 
+<!--<script src="js_new/plugins.js" type="text/javascript"></script> -->
 <!-- Bootstrap js --> 
-<script src="js_new/bootstrap.min.js" type="text/javascript"></script> 
+<!--<script src="js_new/bootstrap.min.js" type="text/javascript"></script> -->
 <!-- WOW JS --> 
 <script src="js_new/wow.min.js"></script> 
 <!-- Nivo slider js --> 
-<script src="vendor/slider/js/jquery.nivo.slider.js" type="text/javascript"></script> 
-<script src="vendor/slider/home.js" type="text/javascript"></script> 
+<!--<script src="vendor/slider/js/jquery.nivo.slider.js" type="text/javascript"></script> -->
+<!--<script src="vendor/slider/home.js" type="text/javascript"></script> -->
 <!-- Owl Cauosel JS --> 
-<script src="vendor/OwlCarousel/owl.carousel.min.js" type="text/javascript"></script> 
+<!--<script src="vendor/OwlCarousel/owl.carousel.min.js" type="text/javascript"></script> -->
 <!-- Meanmenu Js --> 
 <script src="js_new/jquery.meanmenu.min.js" type="text/javascript"></script> 
 <!-- Srollup js --> 
 <script src="js_new/jquery.scrollUp.min.js" type="text/javascript"></script> 
 <!-- jquery.counterup js --> 
-<script src="js_new/jquery.counterup.min.js"></script> 
-<script src="js_new/waypoints.min.js"></script> 
+<!--<script src="js_new/jquery.counterup.min.js"></script> -->
+<!--<script src="js_new/waypoints.min.js"></script> -->
 <!-- Countdown js --> 
-<script src="js_new/jquery.countdown.min.js" type="text/javascript"></script> 
+<!--<script src="js_new/jquery.countdown.min.js" type="text/javascript"></script> -->
 <!-- Isotope js --> 
 <script src="js_new/isotope.pkgd.min.js" type="text/javascript"></script> 
 <!-- Select2 Js --> 
-<script src="js_new/select2.min.js" type="text/javascript"></script> 
+<!--<script src="js_new/select2.min.js" type="text/javascript"></script> -->
 <!-- Nouislider Js --> 
-<script src="vendor/noUiSlider/nouislider.min.js" type="text/javascript"></script> 
+<!--<script src="vendor/noUiSlider/nouislider.min.js" type="text/javascript"></script> -->
 <!-- Validator js --> 
-<script src="js_new/validator.min.js" type="text/javascript"></script> 
+<!--<script src="js_new/validator.min.js" type="text/javascript"></script> -->
 <!-- Magic Popup js --> 
-<script src="js_new/jquery.magnific-popup.min.js" type="text/javascript"></script> 
+<!--<script src="js_new/jquery.magnific-popup.min.js" type="text/javascript"></script> -->
 <!-- Custom Js --> 
 
-<script src="js_new/main.js" type="text/javascript"></script> 
-<script src="js/jquery-1.12.4-jquery.min.js"></script> 
+ 
+<!--<script src="js/jquery-1.12.4-jquery.min.js"></script> -->
 
 
 </body>

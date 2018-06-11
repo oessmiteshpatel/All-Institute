@@ -167,11 +167,15 @@ if (isset($_POST['update']))
     $z = mysql_query($update_query) or die(mysql_error());
     if ($z) 
 	{
-        $_SESSION['msg']=1;
-        echo "<script>window.location.replace('edit.php?CourseID=$demo?check=0');</script>";
-			// echo "<script>alert('Record updated!'); 
-						// window.location.href='view_Course.php';
-				  // </script>";
+       
+        session_start();
+        
+        $_SESSION['check']=1;
+
+        // echo "<script>window.location.replace('edit.php?CourseID=$demo?check=0');</script>";
+			echo "<script>
+						window.location.href='view_Course.php';
+				  </script>";
 	?>  
 					
 		<script>
@@ -210,7 +214,7 @@ $('#update_rec_not').fadeOut('hide');
 }
 ?>
 
-<script>
+<!-- <script>
 $(document).ready(function () {
     if(window.location.href.indexOf("check=0") > -1) {
         $('#update_rec').css('display','block');
@@ -227,7 +231,7 @@ $(document).ready(function () {
     }, 5000);
 }
 });
-</script>
+</script> -->
     <div class="page-content-wrap">
         <div class="row">
             <div class="col-md-12">
@@ -249,10 +253,7 @@ $(document).ready(function () {
                         </div>
                     <?php } ?>	
                     <script src="js/index.js"></script>
-                    <center><div class="alert alert-success" id="update_rec" style="width:100%; margin:0px 0px 10px 0px; display:none;">
-									<strong>Your record was updated successfully!</strong>
-								</div>	  
-						</center>
+                   
                     <form name="form_register" id='form_register' method="post" class="my_frm"  enctype="multipart/form-data" >
                         <input type="hidden" name="rupdate" value="<?php echo $row['CourseID']; ?>" required>     
                         <table class="table">

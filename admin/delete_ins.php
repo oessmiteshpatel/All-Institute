@@ -20,9 +20,14 @@ unlink("instructor/".$r2['InsImg']);
 //header("location:view_Course.php");
 if($result)
 {
-	echo "<script>
-			window.location.href='view_Instructor.php#rec_delete';
-	</script>";
+	// echo "<script>
+	// 		window.location.href='view_Instructor.php#rec_delete';
+	// </script>";
+	session_start();
+        
+        $_SESSION['check']=3;
+    
+    echo "<script>window.location.replace('view_Instructor.php');</script>";
 }
 
 ?> 

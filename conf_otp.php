@@ -1,6 +1,42 @@
-
+<?php
+    session_start();
+?>
 <script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script>
+
 <script>
+									<?php
+					if(isset($_GET['cid']))
+					{
+
+						?>
+					var check = <?php echo $_SESSION['check'];?> 
+						
+						<?php
+						unset($_SESSION['check']);
+					}
+					?>
+					$(document).ready(function () {
+						if(check==1) {
+							//if(cid){
+							$('#otp_email').css('display','block');
+					
+						setTimeout(function() {
+							$('#otp_email').css('display','none');
+
+									var my_variable_name = window.location.href;
+							
+							var success = my_variable_name.replace("?check=0", '');
+							
+							//window.location.replace(success);
+
+						}, 10000);
+					}
+					});
+					</script>
+
+
+
+<!-- <script>
 $(document).ready(function () {
     if(window.location.href.indexOf("check=1") > -1) {
         $('#otp_email').css('display','block');
@@ -17,7 +53,7 @@ $(document).ready(function () {
     }, 10000);
 }
 });
-</script>  
+</script>   -->
 
 <?php 
 include("admin/connect.php");
@@ -268,8 +304,8 @@ if(isset($_REQUEST['otpbtn']))
 		if($upd)
 		{		
 		    $cid=$_REQUEST['cid'];
-		
-	      echo "<script> window.location.href='registration2.php?cid=$cid?check=0';</script>"; 
+			$_SESSION['check']=2;
+	      echo "<script> window.location.href='registration2.php?cid=$cid';</script>"; 
 	
 		}
 	}

@@ -30,6 +30,7 @@ if($webstatus=="production"){
 	define('USERPASSWORD', 'W3lc0m3@2018');
 	define('SETFROM', 'myopeneyes3937@gmail.com');
 	define('SETTO', 'pooja.patel@theopeneyes.com');
+	define('SETTOCC', 'narayan@uciny.com');
 }else if($webstatus=="developement"){
 	define('DBHOST', 'DevAERECourses.db.11797364.2d8.hostedresource.net');
 	define('DBUSER', 'DevAERECourses');

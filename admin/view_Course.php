@@ -9,7 +9,15 @@ $query = "SELECT * FROM `tblcourse` ";
 
 $result = mysql_query($query)or die(mysql_error());
 ?>
-
+	<center><div class="alert alert-success" id="insert_rec" style="width:100%; display:none; margin:0px 0px 10px 0px">
+									<strong>Your record was inserted successfully!</strong>
+								</div>	  
+						</center>
+ <center><div class="alert alert-success" id="update_rec" style="width:100%; margin:0px 0px 10px 0px; display:none;">
+									<strong>Your record was updated successfully!</strong>
+								</div>	  
+						</center>
+                        
 <center><div class="alert alert-danger" id="rec_delete" style="width:1200px;display:none; margin:0px 0px 10px 0px; fonnt-size:20px"><strong>Your record was deleted! </strong> 
             </div>  
 						</center>
@@ -182,7 +190,101 @@ include 'footer.php';
 
 
 
+<script>
+									<?php
+					if(isset($_SESSION['check']))
+					{
 
+						?>
+					var check = <?php echo $_SESSION['check'];?> 
+						
+						<?php
+						unset($_SESSION['check']);
+					}
+					?>
+					$(document).ready(function () {
+						if(check==1) {
+							//if(cid){
+							$('#update_rec').css('display','block');
+					
+						setTimeout(function() {
+							$('#update_rec').css('display','none');
+
+									var my_variable_name = window.location.href;
+							
+							var success = my_variable_name.replace("?check=0", '');
+							
+							//window.location.replace(success);
+
+						}, 10000);
+					}
+					});
+					</script>
+
+<script>
+
+
+									<?php
+					if(isset($_SESSION['check']))
+					{
+
+						?>
+					var check = <?php echo $_SESSION['check'];?> 
+						
+						<?php
+						unset($_SESSION['check']);
+					}
+					?>
+					$(document).ready(function () {
+						if(check==2) {
+							//if(cid){
+							$('#insert_rec').css('display','block');
+					
+						setTimeout(function() {
+							$('#insert_rec').css('display','none');
+
+									var my_variable_name = window.location.href;
+							
+							var success = my_variable_name.replace("?check=0", '');
+							
+							//window.location.replace(success);
+
+						}, 10000);
+					}
+					});
+					</script>
+<script>
+
+
+<?php
+if(isset($_SESSION['check']))
+{
+
+?>
+var check = <?php echo $_SESSION['check'];?> 
+
+<?php
+unset($_SESSION['check']);
+}
+?>
+$(document).ready(function () {
+if(check==3) {
+//if(cid){
+$('#rec_delete').css('display','block');
+
+setTimeout(function() {
+$('#rec_delete').css('display','none');
+
+var my_variable_name = window.location.href;
+
+var success = my_variable_name.replace("?check=0", '');
+
+//window.location.replace(success);
+
+}, 10000);
+}
+});
+</script>
 
 
 

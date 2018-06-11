@@ -101,8 +101,12 @@ if (isset($_POST['update']))
     if ($z) 
 	{
         //echo $demo;
-      echo "<script>window.location.replace('edit_Ins.php?InsId=$demo?check=0');</script>";
-    // echo "<script>window.location.replace('view_Instructor.php');</script>";
+
+        session_start();
+        
+        $_SESSION['check']=1;
+    //   echo "<script>window.location.replace('edit_Ins.php?InsId=$demo?check=0');</script>";
+    echo "<script>window.location.replace('view_Instructor.php');</script>";
       
         ?>
 						
@@ -172,10 +176,7 @@ $(document).ready(function () {
                         </div>
                     <?php } ?>	
                     <script src="js/index.js"></script>
-                    <center><div class="alert alert-success" id="update_rec" style="width:100%; margin:0px 0px 10px 0px; display:none;">
-									<strong>Your record was updated successfully!</strong>
-								</div>	  
-						</center>
+                   
                     <form name="form_instructor" id='form_instructor' method="post" class="my_frm"  enctype="multipart/form-data" >
                         <input type="hidden" name="rupdate" value="<?php echo $row['InsId']; ?>" required>     
                         <table class="table">

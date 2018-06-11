@@ -20,9 +20,16 @@ unlink("upload/".$r2['Image']);
 //header("location:view_Course.php");
 if($result)
 {
-	echo "<script>
-			window.location.href='view_Course.php#rec_delete';
-	</script>";
+	// echo "<script>
+	// 		window.location.href='view_Course.php#rec_delete';
+	// </script>";
+	session_start();
+        
+	$_SESSION['check']=3;
+
+echo "<script>window.location.replace('view_Course.php');</script>";
+
+
 }
 
 ?> 

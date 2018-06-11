@@ -10,6 +10,15 @@ $query = "SELECT * FROM `tblmstinstructor` ";
 $result = mysql_query($query)or die(mysql_error());
 ?>
 
+<center><div class="alert alert-success" id="insert_rec" style="width:100%;display:none; margin:0px 0px 10px 0px">
+									<strong>Your record was inserted successfully!</strong>
+								</div>	  
+						</center>
+
+ <center><div class="alert alert-success" id="update_rec" style="width:100%; margin:0px 0px 10px 0px; display:none;">
+									<strong>Your record was updated successfully!</strong>
+								</div>	  
+						</center>
 <center><div class="alert alert-danger" id="rec_delete" style="width:1200px;display:none; margin:0px 0px 10px 0px; fonnt-size:20px"><strong>Your record was deleted! </strong> 
             </div>  
 						</center>
@@ -59,7 +68,7 @@ $result = mysql_query($query)or die(mysql_error());
                     ?>
                     <tr>
                        <?php //echo $i; ?>
-						<td><?php echo $row['InsId']; ?></td>
+						<td><?php echo $i; ?></td>
                         <td width="280"><?php echo $row['InsName']; ?></td>
 
                         <?php //$sdate = date_create($row['StartDate']); ?>
@@ -176,6 +185,116 @@ include 'footer.php';
 <script src="js/jquery.bvalidator-yc.js"></script>
 
 
+<script>
+									<?php
+					if(isset($_SESSION['check']))
+					{
+
+						?>
+					var check = <?php echo $_SESSION['check'];?> 
+						
+						<?php
+						unset($_SESSION['check']);
+					}
+					?>
+					$(document).ready(function () {
+						if(check==1) {
+							//if(cid){
+							$('#update_rec').css('display','block');
+					
+						setTimeout(function() {
+							$('#update_rec').css('display','none');
+
+									var my_variable_name = window.location.href;
+							
+							var success = my_variable_name.replace("?check=0", '');
+							
+							//window.location.replace(success);
+
+						}, 10000);
+					}
+					});
+					
+</script>
+
+<script>
+
+
+									<?php
+					if(isset($_SESSION['check']))
+					{
+
+						?>
+					var check = <?php echo $_SESSION['check'];?> 
+						
+						<?php
+						unset($_SESSION['check']);
+					}
+					?>
+					$(document).ready(function () {
+						if(check==2) {
+							//if(cid){
+							$('#insert_rec').css('display','block');
+					
+						setTimeout(function() {
+							$('#insert_rec').css('display','none');
+
+									var my_variable_name = window.location.href;
+							
+							var success = my_variable_name.replace("?check=0", '');
+							
+							//window.location.replace(success);
+
+						}, 10000);
+					}
+					});
+					</script>
+
+
+<script>
+
+
+									<?php
+					if(isset($_SESSION['check']))
+					{
+
+						?>
+					var check = <?php echo $_SESSION['check'];?> 
+						
+						<?php
+						unset($_SESSION['check']);
+					}
+					?>
+					$(document).ready(function () {
+						if(check==3) {
+							//if(cid){
+							$('#rec_delete').css('display','block');
+					
+						setTimeout(function() {
+							$('#rec_delete').css('display','none');
+
+									var my_variable_name = window.location.href;
+							
+							var success = my_variable_name.replace("?check=0", '');
+							
+							//window.location.replace(success);
+
+						}, 10000);
+					}
+					});
+					</script>
+
+
+<!-- <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
+<audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio> -->
+<!-- END PRELOADS -->                      
+
+
+<!-- START THIS PAGE PLUGINS-->        
+
+<!-- END THIS PAGE PLUGINS-->  
+
+<!-- START TEMPLATE -->
 
 
 
@@ -195,14 +314,18 @@ include 'footer.php';
 
 
 <script>
-$(document).ready(function () {
-	if (window.location.href.indexOf('view_Instructor.php#rec_delete') > -1) 
-	{
-		//alert('found it');
-		$('#rec_delete').attr('style','display:inline-block;');
-		setTimeout(function(){ window.location.href='view_Instructor.php'; }, 3000);
-	}
-});
+// $(document).ready(function () {
+// 	if (window.location.href.indexOf('view_Instructor.php#rec_delete') > -1) 
+// 	{
+// 		//alert('found it');
+// 		$('#rec_delete').attr('style','display:inline-block;');
+// 		setTimeout(function(){ window.location.href='view_Instructor.php'; }, 3000);
+// 	}
+// });
+
+
+
+
 function delete1(id)
 { //alert(id);
 	
@@ -228,16 +351,6 @@ function delete1(id)
 			
             
 </script>
-<script>
-setTimeout(function() {
-	$('#delete_rec').click(function () {
-   $("#rec_delete").fadeOut('hide');
-});
-
-}, 10000);
-
-		
-					
-</script>
+z
 </body>
 </html>

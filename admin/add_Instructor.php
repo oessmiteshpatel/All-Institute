@@ -126,18 +126,19 @@ if(isset($_POST['save']))
 	
 	  if($res)
 	  {
-		 ?>
-						<center><div class="alert alert-success" id="insert_rec" style="width:100%; margin:0px 0px 10px 0px">
-									<strong>Your record was inserted successfully!</strong>
-								</div>	  
-						</center>
-	<script>
-		setTimeout(function() {
-		$('#insert_rec').fadeOut('hide');
-		}, 10000);
+		session_start();
+        
+        $_SESSION['check']=2;
+    
+    echo "<script>window.location.replace('view_Instructor.php');</script>";
+
+	// <!-- <script>
+	// 	setTimeout(function() {
+	// 	$('#insert_rec').fadeOut('hide');
+	// 	}, 10000);
 					
-	</script>					
-	<?php
+	// </script>					 -->
+	
 	  }
 	  else
 	  {

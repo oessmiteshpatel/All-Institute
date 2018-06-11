@@ -1,5 +1,8 @@
+<?php
+		session_start();
+?>
 <script src="js/jquery-1.12.4-jquery.min.js"></script> 
-<script>
+<!-- <script>
 $(document).ready(function () {
     if(window.location.href.indexOf("check=0") > -1) {
         $('#register_success2').css('display','block');
@@ -16,7 +19,40 @@ $(document).ready(function () {
     }, 10000);
 }
 });
-</script>
+</script> -->
+<script>
+									<?php
+					if(isset($_GET['cid']))
+					{
+
+						?>
+					var check = <?php echo $_SESSION['check'];?> 
+						
+						<?php
+						unset($_SESSION['check']);
+					}
+					?>
+					$(document).ready(function () {
+						if(check==2) {
+							//if(cid){
+							$('#register_success2').css('display','block');
+					
+						setTimeout(function() {
+							$('#register_success2').css('display','none');
+
+									var my_variable_name = window.location.href;
+							
+							var success = my_variable_name.replace("?check=0", '');
+							
+							//window.location.replace(success);
+
+						}, 10000);
+					}
+					});
+					</script>
+
+
+
 <?php 
 
 
@@ -787,7 +823,8 @@ setTimeout(function() {
 		{
 			$cid=$_REQUEST['cid'];
 			//echo "Message has been sent";
-			echo"<script>window.location='conf_otp.php?cid=$cid?check=1';</script>";
+			$_SESSION['check']=1;
+			echo"<script>window.location='conf_otp.php?cid=$cid';</script>";
 			
 			
 			

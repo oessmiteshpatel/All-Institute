@@ -77,6 +77,7 @@ $(".navbar-toggle").click(function() {
 				$USERPASSWORD=USERPASSWORD;
 				$SETFROM=SETFROM;
 				$SETTO=SETTO;
+				$SETTOCC=SETTOCC;
 
 				if ( isset( $_POST[ 'send' ] ) ) {
 					$fname = $_POST[ 'fname' ];
@@ -145,6 +146,7 @@ $(".navbar-toggle").click(function() {
 									$mail->Password=USERPASSWORD;
 									$mail->SetFrom=SETFROM;
 									
+
 									$mail->Subject = "All-Institute user visited details";
 									$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
 									Hello, <br/><br>
@@ -162,6 +164,7 @@ $(".navbar-toggle").click(function() {
 										Thank You,<br/>
 										<b>Our web Team</b> <br/>";
 									$mail->AddAddress($SETTO);
+									$mail->AddCC($SETTOCC);
 									if(!$mail->Send())
 									{
                    // echo "Mailer Error: " . $mail->ErrorInfo;

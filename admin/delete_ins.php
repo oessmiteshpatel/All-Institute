@@ -10,26 +10,47 @@
 error_reporting(0);
 include 'connect.php';
 $delete=$_GET['InsId'];
+$ins_id=(string)$delete;
 
-$qq=mysql_query("select * FROM `tblmstinstructor` WHERE InsId='$delete'");
-$r2=mysql_fetch_array($qq);
+//$resdepend=mysql_query("SELECT InsId FROM tblmstinstructor where InsId='$delete'");
+$resdepend=mysql_query("SELECT InsId FROM tblcourse where FIND_IN_SET($ins_id,InsId)");	
+//exit;
 
-$result=mysql_query("DELETE FROM `tblmstinstructor` WHERE InsId='$delete'");
-unlink("instructor/".$r2['InsImg']);	
+//$rdepen=mysql_fetch_array($resdepend);
+$noofrec=mysql_num_rows($resdepend);
+
+
 
 //header("location:view_Course.php");
-if($result)
+if($noofrec>0 )
 {
-	// echo "<script>
-	// 		window.location.href='view_Instructor.php#rec_delete';
-	// </script>";
 	session_start();
         
-        $_SESSION['check']=3;
-    
-    echo "<script>window.location.replace('view_Instructor.php');</script>";
-}
+	$_SESSION['check']=4;
 
+	echo "<script>window.location.replace('view_Instructor.php');</script>";
+
+}
+else
+{
+	$qq=mysql_query("select * FROM `tblmstinstructor` WHERE InsId='$delete'");
+	$r2=mysql_fetch_array($qq);
+	
+	$result=mysql_query("DELETE FROM `tblmstinstructor` WHERE InsId='$delete'");
+	unlink("instructor/".$r2['InsImg']);	
+	
+		if($result)
+		{
+			// echo "<script>
+			// 		window.location.href='view_Instructor.php#rec_delete';
+			// </script>";
+			session_start();
+				
+				$_SESSION['check']=3;
+			
+			echo "<script>window.location.replace('view_Instructor.php');</script>";
+		}
+}
 ?> 
 <body>
 

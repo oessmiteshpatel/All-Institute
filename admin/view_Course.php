@@ -9,6 +9,10 @@ $query = "SELECT * FROM `tblcourse` ";
 
 $result = mysql_query($query)or die(mysql_error());
 ?>
+    <center><div class="alert alert-danger" id="coursedepend_rec" style="width:100%; display:none; margin:0px 0px 10px 0px">
+									<strong>You can not delete this course!</strong>
+								</div>	  
+						</center>
 	<center><div class="alert alert-success" id="insert_rec" style="width:100%; display:none; margin:0px 0px 10px 0px">
 									<strong>Your record was inserted successfully!</strong>
 								</div>	  
@@ -286,6 +290,39 @@ var success = my_variable_name.replace("?check=0", '');
 });
 </script>
 
+
+<script>
+
+
+<?php
+if(isset($_SESSION['check']))
+{
+
+?>
+var check = <?php echo $_SESSION['check'];?> 
+
+<?php
+unset($_SESSION['check']);
+}
+?>
+$(document).ready(function () {
+if(check==4) {
+//if(cid){
+$('#coursedepend_rec').css('display','block');
+
+setTimeout(function() {
+$('#coursedepend_rec').css('display','none');
+
+var my_variable_name = window.location.href;
+
+var success = my_variable_name.replace("?check=0", '');
+
+//window.location.replace(success);
+
+}, 10000);
+}
+});
+</script>
 
 
 

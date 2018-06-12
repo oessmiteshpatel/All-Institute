@@ -1655,6 +1655,7 @@ h2.sidebar-title:before {
   top: 0;
   width: 100%;
   z-index: 9999999;
+  background-size: 184px;
 }
 .inner-page-banner-area {
   text-align: left;

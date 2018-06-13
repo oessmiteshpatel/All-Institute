@@ -589,7 +589,10 @@ img.wp-smiley, img.emoji {
                                        <li>
 											
                                            
-											<?php echo $data['Title'];?><br>
+									   <?php if($data['Title']!='')
+												 {
+													 echo $data['Title'];
+													 } else{echo  "N/A";}?><br>
 											
 											</li>
                                        
@@ -599,26 +602,50 @@ img.wp-smiley, img.emoji {
 										<ul class="courses-info smallfonts four_block">
 
 										<li class="smfont"><?php
-										  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
-										  ?>
+													if($data['EnrStartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
 												&nbsp;-&nbsp;
-										  <?php
-										  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
-										   ?>
+												<?php
+													if($data['EnrEndDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
 												<br><span> <b> Enrollment Duration</b></span></li>
 	
 										   <li class="smfont">
 										   <?php
-										  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										 // echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
 										   
 										   ?>
+										   <?php
+													if($data['StartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
 												<br><span> <b> Course Date </b></span></li>
 																					</ul>
 	
 											
 	
 											<ul class="courses-info smallfonts four_block">
-											<li class="smfont"><?php $D=date("h:i a", strtotime($data['StartTime']));echo $D; ?> - <?php $E=date("h:i a", strtotime($data['EndTime']));echo $E; ?>
+											<li class="smfont"><?php if($data['StartTime']!=''){$D=date("h:i a", strtotime($data['StartTime']));echo $D; }else{echo "N/A";}?> - <?php if($data['EndTime']!=''){ $E=date("h:i a", strtotime($data['EndTime']));echo $E; }else{echo "N/A";}?>
 												<br><span> <b>Time</b></span></li>
 											
 											<li class="smfont"><?php  $noofuserreg=$data['NoofUserRegistered'];	

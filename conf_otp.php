@@ -327,7 +327,7 @@ if(isset($_REQUEST['otpbtn']))
         <div class="container">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="alert alert-danger" id="mail_wrong" style="width:100%;display:none">
-        <strong>Your otp is wrong.</strong>
+        <strong>Your verification code is wrong.</strong>
    </div>
    </div>
 </div>				

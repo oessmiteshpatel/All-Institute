@@ -26,11 +26,11 @@ if($webstatus=="production"){
 	define('DBPASS', '');
 	define('DBNAME', 'aere');
 	define('FROMNAME', 'AERE - All Institute Learning Institute');
-	define('USERNAME', 'myopeneyes3937@gmail.com');
-	define('USERPASSWORD', 'W3lc0m3@2018');
-	define('SETFROM', 'myopeneyes3937@gmail.com');
+	define('USERNAME', 'noreply.allinstitute@gmail.com');
+	define('USERPASSWORD', '@ere1234');
+	define('SETFROM', 'noreply.allinstitute@gmail.com');
 	define('SETTO', 'pooja.patel@theopeneyes.com');
-	define('SETTOCC', 'narayan@uciny.com');
+	
 }else if($webstatus=="developement"){
 	define('DBHOST', 'DevAERECourses.db.11797364.2d8.hostedresource.net');
 	define('DBUSER', 'DevAERECourses');
@@ -51,6 +51,7 @@ if($webstatus=="production"){
 	define('USERPASSWORD', '@ere1234');
 	define('SETFROM', 'noreply.allinstitute@gmail.com');
 	define('SETTO', 'tmehta@theopeneyes.com');
+	define('SETTOCC', 'narayan@uciny.com');
 }
  
  $conn = mysql_connect(DBHOST,DBUSER,DBPASS);

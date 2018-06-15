@@ -13,14 +13,6 @@
 
 <?php
 include("admin/connect.php"); 
-
-$FROMNAME=FROMNAME;
-$USERNAME=USERNAME;
-$USERPASSWORD=USERPASSWORD;
-$SETFROM=SETFROM;
-$SETTO=SETTO;
-
-
 $res1=mysql_query("SELECT RegisterId FROM tblcourseregistered group by RegisterId");
 	
 while($r1=mysql_fetch_array($res1))
@@ -65,21 +57,17 @@ while($r1=mysql_fetch_array($res1))
 				$mail->Host = "smtp.gmail.com";
 				$mail->Port = 465; // or 587
 				$mail->IsHTML(true);
-			//	$mail->FromName="AERE"; 
-			//	$mail->Username = "myopeneyes3937@gmail.com";
-			//	$mail->Password = "W3lc0m3@2018";
-			//	$mail->SetFrom("myopeneyes3937@gmail.com");
-				$mail->FromName=FROMNAME; 
-				$mail->Username=USERNAME;
-				$mail->Password=USERPASSWORD;
-				$mail->SetFrom=SETFROM;
+				$mail->FromName="AERE"; 
+				$mail->Username = "myopeneyes3937@gmail.com";
+				$mail->Password = "W3lc0m3@2018";
+				$mail->SetFrom("myopeneyes3937@gmail.com");
 				$mail->Subject = "AERE course reminding you are already registered";
-				$mail->Body = "<img src='http://allinstitute-dev.demobyopeneyes.com/image/emaillogo.jpg' style='height:80px; width:180px;' > <br><br><br>
+				$mail->Body = "<img src='http://aerexperts.com/image/logo.png' height='80px' width='180px'> <br><br><br>
 					Dear $FirstName, <br/><br/>
 				
-					Here your are registered for: <b>$Title</b><br><br>
+					Here your are registered for:- <b>$Title</b><br><br>
 					
-					Your course start will be at: $StartDate<br><br>
+					Your course start will be at:- $StartDate<br><br>
 					
 					If you need to make any changes to this, please do not hesitate to 
 					contact us at Manny@AERExperts.com or simply reply and someone will get back

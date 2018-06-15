@@ -501,7 +501,7 @@ input.address
                             <label class="sr-only" for="email1">Type your email address</label>
                             <br>
                        
-                          <input name="email1" placeholder="What's your email address?" class="email form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required oninvalid="this.setCustomValidity('Please enter your email')" oninput="setCustomValidity('')">
+                          <input name="email1" placeholder="What's your email address?" class="email form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required oninvalid="this.setCustomValidity('Please enter your valid email')" oninput="setCustomValidity('')">
 						  </div>
 
 							
@@ -543,16 +543,16 @@ input.address
                             <div class="form-group col-md-6">
                               <label class="sr-only" for="firstname">First name</label>
                               <br>
-                              <input maxlength="50" name="firstname" placeholder="What's your first name?" class="firstname form-control" 
+                              <input maxlength="50" pattern="[a-z\-\s]+" name="firstname" placeholder="What's your first name?" class="firstname form-control" 
 							  id="firstname" type="text" required oninvalid="this.setCustomValidity('Please enter your first name')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group col-md-6">
                               <label class="sr-only" for="lastname">Last name</label>
-                              <input maxlength="50"  name="lastname" placeholder="What's your last name?" class="lastname form-control add" id="lastname" type="text" required oninvalid="this.setCustomValidity('Please enter your last name')" oninput="setCustomValidity('')">
+                              <input maxlength="50" pattern="[a-z\-\s]+"  name="lastname" placeholder="What's your last name?" class="lastname form-control add" id="lastname" type="text" required oninvalid="this.setCustomValidity('Please enter your last name')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group col-md-6">
                               <label class="sr-only" for="email">Email</label>
-                              <input name="email" placeholder="What's your email address?" class="email form-control" id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50" required oninvalid="this.setCustomValidity('Please enter your Email')" oninput="setCustomValidity('')">
+                              <input name="email" placeholder="What's your email address?" class="email form-control" id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50" required oninvalid="this.setCustomValidity('Please enter your valid email')" oninput="setCustomValidity('')">
                             </div>
 							 <div class="form-group col-md-6">
                               <label class="sr-only" for="Phone">Phone</label>

@@ -835,7 +835,17 @@ $ccid=$data['CourseID'];
 									 ?>
 									 <a href="https://www.youtube.com/watch?v='.'$data2['Video']'">
 									  <div class="youtube-popup">
-                                       <iframe width="100%" height="150" src="<?php echo 'http://www.youtube.com/embed/'.$data2['Video'];?>" frameborder="0" allowfullscreen></iframe>
+										  <?php 
+
+if(strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad')) {
+?>
+
+<object width="100%" height="150"><param name="movie" value="<?php echo 'https://www.youtube.com/embed/'.$data2['Video'];?>" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed type="application/x-shockwave-flash" width="100%" height="150" src="<?php echo 'https://www.youtube.com/embed/'.$data2['Video'];?>" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+
+<?php } else {  ?>
+      <iframe width="100%" height="150" src="<?php echo 'https://www.youtube.com/embed/'.$data2['Video'];?>" frameborder="0" allowfullscreen></iframe>
+<?php  }  ?>
+                                      
 									   <div>
 									</a>	   
 									   </div>

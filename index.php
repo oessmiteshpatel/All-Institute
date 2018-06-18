@@ -1,5 +1,7 @@
 <?php
 include( "admin/connect.php" );
+session_start();
+$MODE=MODE;
 include_once "allfunction.php";
 ?>
 
@@ -68,6 +70,7 @@ include_once "allfunction.php";
 </head>
 
 <body class="home page page-id-2 page-template page-template-page-home page-template-page-home-php desktop">
+<div class="<?php echo $MODE; ?>"></div>
 	<div id="container">
 		<header id="header_new">
 			<div class="container">

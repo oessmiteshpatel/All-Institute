@@ -159,6 +159,7 @@ h1, .h1 {
 .four_block{margin: 0px -10px 8px!important; height: auto!important;}
 .four_block li:first-child{width: 58%;}
 .four_block li:last-child{width: 38%;}
+.homepage-article .m-all{padding:0 15px!important;}
 
 @media screen and (max-width:1300px){
 	#main{ min-height: 0;}
@@ -201,8 +202,18 @@ h1, .h1 {
 	.courses-box1 .single-item-wrapper .courses-content-wrapper .courses-info li{font-size: 12px!important;}
 	.pull-sm-right{float:left!important;}
 	.course-details-inner .course-details-tab-area .course-details-skilled-lecturers ul li .skilled-lecturers-details a{ line-height: 7px; padding: 10px;}
+	.course-details-tab-btn {
+    margin: 0 !important;
+}
+	.homepage-article .paragraph-content {
+    padding: 0;
+    text-align: center;
+}
 }
 @media screen and (max-width:500px){
 	p{font-size: 13px!important;}
 	.bg_img{min-height: 200px !important; height: 200px!important;}
+}
+@media screen and (max-width:480px){
+	.owl-carousel .owl-item img{height: auto!important;}
 }

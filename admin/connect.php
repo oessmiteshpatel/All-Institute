@@ -3,9 +3,9 @@
  error_reporting( ~E_DEPRECATED & ~E_NOTICE );
  session_start();
  // but I strongly suggest you to use PDO or MySQLi.
-//$webstatus="developement";  //production, developement,local
- // $webstatus="QA";  //production, developement,local
- $webstatus="local";  //production, developement,local
+   $webstatus="developement";  //production, developement,local
+  //$webstatus="QA";  //production, developement,local
+ //$webstatus="local";  //production, developement,local
 // $webstatus="production";  //production, developement,local
 
  
@@ -20,6 +20,7 @@ if($webstatus=="production"){
 	define('USERPASSWORD', '@ere1234');
 	define('SETFROM', 'noreply.allinstitute@gmail.com');
 	define('SETTO', 'noreply.allinstitute@gmail.com');
+	//define('MODE','.promode');
 }else if($webstatus=="local"){
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
@@ -30,7 +31,7 @@ if($webstatus=="production"){
 	define('USERPASSWORD', '@ere1234');
 	define('SETFROM', 'noreply.allinstitute@gmail.com');
 	define('SETTO', 'pooja.patel@theopeneyes.com');
-	
+	define('MODE','locmode');
 }else if($webstatus=="developement"){
 	define('DBHOST', 'DevAERECourses.db.11797364.2d8.hostedresource.net');
 	define('DBUSER', 'DevAERECourses');
@@ -41,6 +42,7 @@ if($webstatus=="production"){
 	define('USERPASSWORD', '@ere1234');
 	define('SETFROM', 'noreply.allinstitute@gmail.com');
 	define('SETTO', 'noreply.allinstitute@gmail.com');
+	define('MODE','devmode');
 }else if($webstatus=="QA"){
 	define('DBHOST', 'QAAERECourses.db.11797364.a8d.hostedresource.net');
 	define('DBUSER', 'QAAERECourses');
@@ -52,6 +54,7 @@ if($webstatus=="production"){
 	define('SETFROM', 'noreply.allinstitute@gmail.com');
 	define('SETTO', 'tmehta@theopeneyes.com');
 	define('SETTOCC', 'narayan@uciny.com');
+	define('MODE','qamode');
 }
  
  $conn = mysql_connect(DBHOST,DBUSER,DBPASS);

@@ -959,7 +959,8 @@ $('#mobile-nav-button').on('click',function(){
 <!--<script type='text/javascript' src='js/wow.min.js'></script> -->
 <!--<script type='text/javascript' src='js/scripts.min.js'></script> -->
 <!--<script type='text/javascript' src='js/jquery.sticky-kit.js'></script> -->
-<!--<script src="//code.jquery.com/jquery-1.12.4.js"></script>-->
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="js_new/bootstrap.min.js" type="text/javascript"></script> 
 <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
 <!--<script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
  
@@ -996,7 +997,7 @@ $(".about-the-quickfacts").stick_in_parent({
 <!-- Plugins js --> 
 <!--<script src="js_new/plugins.js" type="text/javascript"></script> -->
 <!-- Bootstrap js --> 
-<!--<script src="js_new/bootstrap.min.js" type="text/javascript"></script> -->
+
 <!-- WOW JS --> 
 <script src="js_new/wow.min.js"></script> 
 <!-- Nivo slider js --> 
@@ -1026,8 +1027,7 @@ $(".about-the-quickfacts").stick_in_parent({
 <!-- Custom Js --> 
 
  
-<!--<script src="js/jquery-1.12.4-jquery.min.js"></script> -->
-
+<!--<script src="js/jquery-1.12.4-jquery.min.js"></script>-->
 
 </body>
 </html>

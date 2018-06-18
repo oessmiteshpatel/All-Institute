@@ -339,7 +339,7 @@ $(function () {
                             <td>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-image"></i></div>
-                                    <div class="row"><div class="col-md-6 col-sm-6 padd_left"><input type="text" readonly value="https://www.youtube.com/watch?v=" class="form-control" placeholder="Add Video url" style=" border-radius:0 4px 4px 0;"/></div><div class="col-md-6 col-sm-6 padd_right" ><input type="text" name="Video" id="Video11" class="form-control" placeholder="Add video id" data-toggle="tooltip" data-placement="top" data-html="true" title="Enter Video ID (For Example) <br>https://www.youtube.com/watch?v=<span style='border:1px solid #fff;'>DG0C3Tntl1M</span>" style=" border-radius:4px;"/></div><div>
+                                    <div class="row"><div class="col-md-6 col-sm-6 padd_left"><input type="text" readonly value="https://www.youtube.com/watch?v=" class="form-control" placeholder="Add Video url" style=" border-radius:0 4px 4px 0;"/></div><div class="col-md-6 col-sm-6 padd_right padding_video" ><input type="text" name="Video" id="Video11" class="form-control" placeholder="Add video id" data-toggle="tooltip" data-placement="top" data-html="true" title="Enter Video ID (For Example) <br>https://www.youtube.com/watch?v=<span style='border:1px solid #fff;'>DG0C3Tntl1M</span>" style=" border-radius:4px;"/></div><div>
                                 </div>
                             </td>
                        </tr>

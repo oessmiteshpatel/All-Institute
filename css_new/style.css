@@ -1551,7 +1551,7 @@ h2.sidebar-title:before {
 @media only screen and (max-width: 480px) {
   .owl-controls .owl-prev {
     left: -15px;
-    top: 50%;
+    top: 25%;
     transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
@@ -1592,7 +1592,7 @@ h2.sidebar-title:before {
 @media only screen and (max-width: 480px) {
   .owl-controls .owl-next {
     right: -20px;
-    top: 50%;
+    top: 25%;
     transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -webkit-transform: translateY(-50%);

@@ -878,7 +878,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 	line-height: 50px;
 	padding: 0 12px;
 	margin-bottom: 14px;
-	font-size: 1em;
+	font-size: 14px;
 	color: #30353c;
 	border-radius: 0!important;
 	vertical-align: middle;
@@ -4929,4 +4929,36 @@ line-height: 1.3333333;
     line-height: 18px;
     padding: 3px;
     width: auto;
+}
+
+
+
+.locmode {
+    background-color: #05e42a;
+    width: 5px;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.devmode
+{
+    background-color:darkred;
+    width: 5px;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+.qamode
+{
+    background-color:darkgoldenrod;
+    width: 5px;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    height: 100%;
 }

@@ -22,6 +22,7 @@ input[type="radio"], input[type="checkbox"] {
     position: relative;
     top: 2px;
 }
+.padding_video{padding-right: 0!important;}
 
 
 @media screen and (max-width:1100px){
@@ -42,7 +43,24 @@ input[type="radio"], input[type="checkbox"] {
     padding: 5px !important;
     width: 100%;}
 }
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (max-width:900px) { _::-webkit-full-page-media, _:future, :root , .my_frm th,.my_frm td {
+    display: table-row;
+    padding: 5px !important;
+    width: 100%;} 
+	
+	.my_frm tr {
+    display: table;
+    width: 100%;
+	} 
+}
+
 @media screen and (max-width:768px){
 	.padd_left{padding:0!important;}
 	.padd_right{padding:0!important;}
+	.dataTables_length,.dataTables_filter{width: 100%;}
+	.dataTables_filter label{float: left; padding-top: 5px;}
+	.dataTables_paginate { float: left; text-align: left;}
+	.padding_video{padding: 0 10px 0 0!important;}
+	.padding_video input {border-radius: 0 5px 5px 0!important;}
+	
 }

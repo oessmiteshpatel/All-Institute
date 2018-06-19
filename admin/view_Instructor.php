@@ -3,7 +3,8 @@
 include 'side_bar.php';
 include 'header.php';
 include 'connect.php';
-
+session_start();
+$MODE=MODE;
 
 $query = "SELECT * FROM `tblmstinstructor` ";
 
@@ -27,6 +28,8 @@ $result = mysql_query($query)or die(mysql_error());
             </div>  
 						</center>
 <div class="panel panel-default">
+<div class="<?php echo $MODE; ?>"></div>
+
     <div class="panel-heading">                                
         <h3 class="panel-title"><b>List of Instructors</b> </h3>   
 

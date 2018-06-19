@@ -1,6 +1,8 @@
 <?php 
 
 include("admin/connect.php"); 
+session_start();
+$MODE=MODE;
 error_reporting(0);
 $FROMNAME=FROMNAME;
 $USERNAME=USERNAME;
@@ -342,6 +344,7 @@ h3.sidebar-title
         </head>
 
         <body class="home page page-id-2 page-template page-template-page-home single single-team page-template-page-home-php desktop">
+		<div class="<?php echo $MODE; ?>"></div>
 <div id="container">
           <div id="custom-content-popup" class="white-popup mfp-hide"> </div>
          <header id="header_new">
@@ -677,7 +680,8 @@ h3.sidebar-title
 							
 							$cnd2= " AND '$date' BETWEEN  EnrStartDate AND EndDate ";
 											
-			              $res=mysql_query("SELECT * FROM tblcourse Where CourseID!='$cid' and IsStatus = 1 AND (EnrStartDate <= '$date' OR '$date' BETWEEN  EnrStartDate AND EndDate) order by StartDate ");
+					   //   $res=mysql_query("SELECT * FROM tblcourse Where CourseID!='$cid' and IsStatus = 1 AND (EnrStartDate <= '$date' OR ('$date' BETWEEN  EnrStartDate AND EndDate)) order by StartDate ");
+					   $res=mysql_query("SELECT * FROM tblcourse Where CourseID!='$cid' and IsStatus = 1 AND ((EnrStartDate IS NULL and '$date' < EndDate) or ('$date' BETWEEN EnrStartDate AND EndDate)) order by StartDate ");
 							$noofrec=mysql_num_rows($res);
 							if($noofrec>0)
 							{	
@@ -719,22 +723,46 @@ h3.sidebar-title
 										</ul>
 										<ul class="courses-info smallfonts four_block">
 
-<li class="smfont"><?php
-  echo $endDate = date('m/d/Y', strtotime($data1['EnrStartDate']));  
-  ?>
-		&nbsp;-&nbsp;
-  <?php
-  echo $endDate = date('m/d/Y', strtotime($data1['EnrEndDate']));
-   ?>
-		<br><span> <b> Enrollment Duration</b></span></li>
-
-   <li class="smfont">
-   <?php
-  echo $endDate = date('m/d/Y', strtotime($data1['StartDate']));  
-   
-   ?>
-		<br><span> <b> Course Date </b></span></li>
-											</ul>
+										<li class="smfont"><?php
+													if($data1['EnrStartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data1['EnrStartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
+												
+												<?php
+													if($data1['EnrEndDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data1['EnrEndDate']));  
+									   
+									   echo  $endDate;
+												 }
+													?>
+												<br><span> <b> Enrollment Duration</b></span></li>
+	
+										   <li class="smfont">
+										   <?php
+										 // echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										   
+										   ?>
+										   <?php
+													if($data1['StartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data1['StartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
+												<br><span> <b> Course Date </b></span></li>
+																					</ul>
 
 	
 
@@ -760,9 +788,9 @@ h3.sidebar-title
 						}else
 						{?>
 					
-                            <div class="single-item-wrapper">
-                            	<div class="nocourse" >
-                                    <center class="nocourse2">   No Course Available.</center>
+                            <div class="single-item-wrapper" >
+                            	<div class="nocourse">
+                                    <center class="nocourse2">No Courses are available</center>
 									</div>
                                 
                             </div>

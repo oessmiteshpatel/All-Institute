@@ -3,6 +3,8 @@
 include 'side_bar.php';
 include 'header.php';
 include 'connect.php';
+session_start();
+$MODE=MODE;
 //include 'functions.php';
 //$q = "SELECT * FROM `tbl_1year` ";
 
@@ -13,6 +15,7 @@ $result = mysql_query($query)or die(mysql_error());
 
 
 <div class="panel panel-default">
+<div class="<?php echo $MODE; ?>"></div>
     <div class="panel-heading">                                
         <h3 class="panel-title"> <b>List of registration for all courses</b> </h3>   
 

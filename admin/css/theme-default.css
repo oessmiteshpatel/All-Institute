@@ -7346,3 +7346,34 @@ li.ext_zip {
 .x-navigation-minimized .xn-logo{
 display:none;
 }
+
+
+.locmode {
+  background-color: #05e42a;
+  width: 5px;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.devmode
+{
+  background-color:darkred;
+  width: 5px;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.qamode
+{
+  background-color:darkgoldenrod;
+  width: 5px;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  height: 100%;
+}

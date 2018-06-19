@@ -2,6 +2,7 @@
 <?php
 session_start();
 include 'connect.php';
+$MODE=MODE;
 include 'functions.php';
 if(isset($_REQUEST['login']))
 {
@@ -58,8 +59,9 @@ if(isset($_REQUEST['login']))
        
     </head>
     <body>
+
         <div class="login-container">
-        
+        <div class="<?php echo $MODE; ?>"></div>
             <div class="login-box animated fadeInDown">
                 <div class="login-logo"></div>
                 <div class="login-body">

@@ -1,5 +1,8 @@
 <?php
+    include("admin/connect.php");
     session_start();
+    $MODE=MODE;
+
 ?>
 <script src="js_new/jquery-2.2.4.min.js" type="text/javascript"></script>
 
@@ -56,7 +59,7 @@ $(document).ready(function () {
 </script>   -->
 
 <?php 
-include("admin/connect.php");
+
 include_once "allfunction.php";
 $res=mysql_query("SELECT * FROM tblcourse Where CourseID = '".$_REQUEST['cid']."'");
 $data=mysql_fetch_array($res);
@@ -202,6 +205,7 @@ line-height: 1.3333333;
         </head>
 
         <body class="home page page-id-2 page-template page-template-page-home single single-team page-template-page-home-php desktop">
+        <div class="<?php echo $MODE; ?>"></div>
 <div id="container">
           <div id="custom-content-popup" class="white-popup mfp-hide"> </div>
           <header id="header_new">

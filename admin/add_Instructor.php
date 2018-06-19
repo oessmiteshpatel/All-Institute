@@ -76,6 +76,8 @@ $(document).ready(function(){
 include 'side_bar.php';
 include 'header.php';
 include 'connect.php';
+session_start();
+$MODE=MODE;
 include 'functions.php';
  error_reporting(0);
 if(isset($_POST['save'])) 
@@ -163,6 +165,7 @@ if(isset($_POST['save']))
 ?>
 
 <div class="page-content-wrap">
+<div class="<?php echo $MODE; ?>"></div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">

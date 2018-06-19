@@ -1,5 +1,8 @@
 <?php 
 include("admin/connect.php");
+session_start();
+$MODE=MODE;
+
 // include_once "allfunction.php";
 ?>
 <html class="no-js" lang="">
@@ -85,6 +88,7 @@ img.wp-smiley, img.emoji {
         </head>
 
         <body class="home page page-id-2 page-template page-template-page-home single single-team page-template-page-home-php desktop">
+		<div class="<?php echo $MODE; ?>"></div>
 <div id="container">
 	
 	<header id="header_new">
@@ -189,7 +193,7 @@ img.wp-smiley, img.emoji {
 			$cnd= " AND  1=1 ";
 			$date=date('Y-m-d');
 		//	and (EnrStartDate > '$date')
-			$res=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 and AnnDate <= '$date'  ORDER BY StartDate ASC")	;
+			$res=mysql_query("SELECT * FROM tblcourse where IsStatus = 1 and (AnnDate IS NULL or AnnDate <= '$date') ORDER BY StartDate ASC ")	;
 											$noofrec=mysql_num_rows($res);
 											if($noofrec>0)
 											{	 
@@ -243,19 +247,43 @@ img.wp-smiley, img.emoji {
 										<ul class="courses-info smallfonts four_block">
 
 										<li class="smfont"><?php
-										  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
-										  ?>
-												&nbsp;-&nbsp;
-										  <?php
-										  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
-										   ?>
+													if($data['EnrStartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
+												
+												<?php
+													if($data['EnrEndDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
+									   
+									   echo  $endDate;
+												 }
+													?>
 												<br><span> <b> Enrollment Duration</b></span></li>
 	
 										   <li class="smfont">
 										   <?php
-										  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										 // echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
 										   
 										   ?>
+										   <?php
+													if($data['StartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
 												<br><span> <b> Course Date </b></span></li>
 																					</ul>
 	
@@ -306,9 +334,9 @@ img.wp-smiley, img.emoji {
         
 			<?php
 			$date=date('Y-m-d');
-			$cnd= " AND '$date' BETWEEN  EnrStartDate AND EndDate ";
+			//$cnd= " AND '$date' BETWEEN  EnrStartDate AND EndDate ";
 												
-			$res=mysql_query("SELECT * FROM tblcourse Where IsStatus = 1 $cnd order by StartDate ASC");
+			$res=mysql_query("SELECT * FROM tblcourse Where IsStatus = 1 AND ((EnrStartDate IS NULL and '$date' < EndDate) or ('$date' BETWEEN EnrStartDate AND EndDate)) order by StartDate ASC");
 				$noofrec=mysql_num_rows($res);
 				if($noofrec>0)
 				{	 
@@ -356,24 +384,48 @@ img.wp-smiley, img.emoji {
                                        
 										</ul>
                                    
-                                    <ul class="courses-info smallfonts four_block">
+										<ul class="courses-info smallfonts four_block">
 
-									<li class="smfont"><?php
-									  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
-									  ?>
-											&nbsp;-&nbsp;
-									  <?php
-									  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
-									   ?>
-                                            <br><span> <b> Enrollment Duration</b></span></li>
-
-                                       <li class="smfont">
-									   <?php
-									  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										<li class="smfont"><?php
+													if($data['EnrStartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 									   
-									   ?>
-                                            <br><span> <b> Course Date </b></span></li>
-                                        										</ul>
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
+												
+												<?php
+													if($data['EnrEndDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
+									   
+									   echo  $endDate;
+												 }
+													?>
+												<br><span> <b> Enrollment Duration</b></span></li>
+	
+										   <li class="smfont">
+										   <?php
+										 // echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										   
+										   ?>
+										   <?php
+													if($data['StartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
+												<br><span> <b> Course Date </b></span></li>
+																					</ul>
 
 										
 
@@ -480,19 +532,43 @@ img.wp-smiley, img.emoji {
 										<ul class="courses-info smallfonts four_block">
 
 										<li class="smfont"><?php
-										  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
-										  ?>
-												&nbsp;-&nbsp;
-										  <?php
-										  echo $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));
-										   ?>
+													if($data['EnrStartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
+												
+												<?php
+													if($data['EnrEndDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
+									   
+									   echo  $endDate;
+												 }
+													?>
 												<br><span> <b> Enrollment Duration</b></span></li>
 	
 										   <li class="smfont">
 										   <?php
-										  echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+										 // echo $endDate = date('m/d/Y', strtotime($data['StartDate']));  
 										   
 										   ?>
+										   <?php
+													if($data['StartDate']!='')
+												 {
+														 //  echo $data['StartDate'];
+														 
+									   $endDate = date('m/d/Y', strtotime($data['StartDate']));  
+									   
+									   echo  $endDate;
+												 }else{echo "N/A";}
+													?>
 												<br><span> <b> Course Date </b></span></li>
 																					</ul>
 	
@@ -611,7 +687,7 @@ img.wp-smiley, img.emoji {
 									   echo  $endDate;
 												 }else{echo "N/A";}
 													?>
-												&nbsp;-&nbsp;
+												
 												<?php
 													if($data['EnrEndDate']!='')
 												 {
@@ -620,7 +696,7 @@ img.wp-smiley, img.emoji {
 									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
 									   
 									   echo  $endDate;
-												 }else{echo "N/A";}
+												 }
 													?>
 												<br><span> <b> Enrollment Duration</b></span></li>
 	
@@ -692,6 +768,7 @@ img.wp-smiley, img.emoji {
 		<!-- user Profile -->
 		<?php
 	session_start();
+	
 	$reid=$_SESSION['RegisterId'];
 	if(isset($_SESSION['RegisterId']))
 	{

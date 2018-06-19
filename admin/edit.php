@@ -50,6 +50,8 @@
     include 'side_bar.php';
     include 'header.php';
     include 'connect.php';
+    session_start();
+$MODE=MODE;
     include 'functions.php';
     $update = $_REQUEST['CourseID'];
 
@@ -233,6 +235,7 @@ $(document).ready(function () {
 });
 </script> -->
     <div class="page-content-wrap">
+    <div class="<?php echo $MODE; ?>"></div>
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">

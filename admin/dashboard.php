@@ -3,6 +3,8 @@
 include 'side_bar.php';
 include 'header.php';
 include 'connect.php';
+session_start();
+$MODE=MODE;
 include 'functions.php';
 
 //Register user query 
@@ -49,6 +51,7 @@ $result4 = mysql_query($query4);
 
 
 <div class="page-content-wrap dashboard_blocks">
+<div class="<?php echo $MODE; ?>"></div>
     <div class="row">
         <div class="col-md-4">
 

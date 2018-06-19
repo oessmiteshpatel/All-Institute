@@ -1,5 +1,8 @@
 <?php 
 include("admin/connect.php");
+session_start();
+$MODE=MODE;
+
 $InsId=$_REQUEST['InsId']; 
 $res=mysql_query("SELECT * FROM tblmstinstructor Where InsId = '".$_REQUEST['InsId']."'");
 $data=mysql_fetch_array($res);
@@ -300,6 +303,7 @@ input.address
 </head>
 
 <body class="home page page-id-2 page-template page-template-page-home single single-team page-template-page-home-php desktop">
+<div class="<?php echo $MODE; ?>"></div>
 <div id="container">
 <div id="custom-content-popup" class="white-popup mfp-hide"> </div>
 <header id="header_new">

@@ -253,7 +253,7 @@ img.wp-smiley, img.emoji {
 														 
 									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 									   
-									   echo  $endDate;
+									   echo  $endDate. '&nbsp;&nbsp;-&nbsp;';
 												 }else{echo "N/A";}
 													?>
 												
@@ -393,7 +393,7 @@ img.wp-smiley, img.emoji {
 														 
 									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 									   
-									   echo  $endDate;
+									   echo  $endDate. '&nbsp;&nbsp;-&nbsp;';
 												 }else{echo "N/A";}
 													?>
 												
@@ -538,7 +538,7 @@ img.wp-smiley, img.emoji {
 														 
 									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 									   
-									   echo  $endDate;
+									   echo  $endDate. '&nbsp;&nbsp;-&nbsp;';
 												 }else{echo "N/A";}
 													?>
 												
@@ -684,7 +684,7 @@ img.wp-smiley, img.emoji {
 														 
 									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 									   
-									   echo  $endDate;
+									   echo  $endDate. '&nbsp;&nbsp;-&nbsp;';
 												 }else{echo "N/A";}
 													?>
 												
@@ -824,7 +824,8 @@ img.wp-smiley, img.emoji {
 										<ul class="courses-info smallfonts four_block">
 
 										<li class="smfont"><?php
-										  echo $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+										   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));
+										 echo  $endDate. '&nbsp;&nbsp;-&nbsp;';  
 										  ?>
 												&nbsp;-&nbsp;
 										  <?php

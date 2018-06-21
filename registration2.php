@@ -689,7 +689,7 @@ $date=date('Y-m-d');
 														 
 									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 									   
-									   echo  $endDate;
+									   echo  $endDate. '&nbsp;&nbsp;-&nbsp;';
 												 }else{echo "N/A";}
 													?>
 												
@@ -1122,11 +1122,11 @@ $setave=$totcap-$noofuserreg;
 												 {
 														 //  echo $data['StartDate'];
 														 
-									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+									   $strDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 									   
-									   echo  $endDate;
+										 echo  $strDate. '&nbsp;&nbsp;-&nbsp;';
 												 }else{echo "Not Available";}
-													?>&nbsp;&nbsp;to&nbsp;
+													?>
 												<?php
 													if($data['EnrEndDate']!='')
 												 {
@@ -1135,7 +1135,7 @@ $setave=$totcap-$noofuserreg;
 									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
 									   
 									   echo  $endDate;
-												 }else{echo "Not Available";}
+												 	}	//  }else{echo "Not Available";}
 													?>
 													</p>
                 </div>

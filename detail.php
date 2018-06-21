@@ -491,11 +491,11 @@ h3.sidebar-title
 												 {
 														 //  echo $data['StartDate'];
 														 
-									   $endDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
+									   $strDate = date('m/d/Y', strtotime($data['EnrStartDate']));  
 									   
-									   echo  $endDate;
+									   echo  $strDate. '&nbsp;&nbsp;-&nbsp;';
 												 }else{echo "Not Available";}
-													?>&nbsp;&nbsp;to&nbsp;
+													?>
 												<?php
 													if($data['EnrEndDate']!='')
 												 {
@@ -504,7 +504,7 @@ h3.sidebar-title
 									   $endDate = date('m/d/Y', strtotime($data['EnrEndDate']));  
 									   
 									   echo  $endDate;
-												 }else{echo "Not Available";}
+												 	}	//  }else{echo "Not Available";}
 													?>
 													</p>
 													<h3 class="sidebar-title sidebar-title2">Location</h3>
@@ -728,9 +728,9 @@ h3.sidebar-title
 												 {
 														 //  echo $data['StartDate'];
 														 
-									   $endDate = date('m/d/Y', strtotime($data1['EnrStartDate']));  
+									   $strDate = date('m/d/Y', strtotime($data1['EnrStartDate']));  
 									   
-									   echo  $endDate;
+									   echo  $strDate. '&nbsp;&nbsp;-&nbsp;';
 												 }else{echo "N/A";}
 													?>
 												

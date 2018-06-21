@@ -3,9 +3,9 @@
  error_reporting( ~E_DEPRECATED & ~E_NOTICE );
  session_start();
  // but I strongly suggest you to use PDO or MySQLi.
-   $webstatus="developement";  //production, developement,local
+  // $webstatus="developement";  //production, developement,local
   //$webstatus="QA";  //production, developement,local
- //$webstatus="local";  //production, developement,local
+ $webstatus="local";  //production, developement,local
 // $webstatus="production";  //production, developement,local
 
  
